@@ -1,0 +1,213 @@
+from ...Core.modules import glfw, GL, time
+from ...Core.glob import log_system
+from ...Core.base import System, Color3, Color4, stretchType
+
+class Window:
+    def __init__(self):
+
+        # CHECK INIT
+
+        log_system.addInfo("Window: check init")
+
+        if not glfw.init():
+            return
+
+        # WINDOW SETTINGS
+
+        log_system.addInfo("Window: create winsettings")
+
+        self.window_settings = {
+            "title":"Window",
+            "width":640,
+            "height":480,
+            "stretch":stretchType.RELATIVELY
+        }
+
+        self.frame_count = 0
+        self.fps = 0
+        self.last_fps_time = time.time()
+
+        # CURRENT SIZES
+
+        log_system.addInfo("Window: create current win sizes")
+
+        self.current_window_sizes = [640, 480]
+
+    def initWindow(self):
+        
+        # CREATE WINDOW
+
+        log_system.addInfo("Window: create window")
+
+        self.window = glfw.create_window(
+            self.window_settings.get("width"),
+            self.window_settings.get("height"),
+            self.window_settings.get("title"),
+            None,
+            None
+        )
+
+        if not self.window:
+            glfw.terminate()
+            return
+
+        # MOVE WINDOW TO THE CURRENT CONTEXT
+
+        log_system.addInfo("Window: move to the current context")
+        
+        glfw.make_context_current(self.window)
+
+        # VSYNC
+
+        glfw.swap_interval(0)
+
+        # GET CURRENT WINDOW SIZES
+
+        log_system.addInfo("Window: getting current win sizes")
+
+        self.current_window_sizes = glfw.get_framebuffer_size(self.window)
+
+    def setStretch(self, stretch:stretchType):
+        log_system.addInfo("Window: setting stretch")
+        self.window_settings["stretch"] = stretch
+    
+    def getFPS(self):
+        return self.fps
+
+    def setTitle(self, title:str="Window"):
+        log_system.addInfo("Window: setting title")
+
+        # CHECK EMPTY
+
+        if System.check_empty(title):
+            return
+
+        # APPLY TITLE
+        
+        self.window_settings["title"] = title
+
+        glfw.set_window_title(
+            self.window, 
+            self.window_settings.get("title")
+        )
+    
+    def setSize(self, width:int=640, height:int=480):
+        log_system.addInfo("Window: setting size")
+
+        # APPLY SIZE
+
+        self.window_settings["width"] = width
+        self.window_settings["height"] = height
+
+        glfw.set_window_size(
+            self.window, 
+            self.window_settings["width"], 
+            self.window_settings["height"]
+        )
+
+    def setBG(self, color:Color3 | Color4):
+        log_system.addInfo(f"Window: setting bg: ({color.r}, {color.g}, {color.b})")
+
+        self.color = color
+        self.color = System.c3toc4(self.color)
+        
+        GL.glClearColor(self.color.r, self.color.g, self.color.b, self.color.a)
+
+    def getMousePosition(self):
+        return glfw.get_cursor_pos(self.window)
+
+    def _render_frame(self, update=None):
+
+        # GET CURRENT WINDOW SIZES
+
+        self.current_window_sizes = list(glfw.get_framebuffer_size(self.window))
+
+        # CLEAR SCREEN
+
+        GL.glClear(GL.GL_COLOR_BUFFER_BIT)
+
+        # VIEWING AREA
+
+        if self.window_settings["stretch"] == stretchType.KEEP_ASPECT:
+            scale = min(self.current_window_sizes[0] / self.window_settings["width"], self.current_window_sizes[1] / self.window_settings["height"])
+            new_w = int(self.window_settings["width"] * scale)
+            new_h = int(self.window_settings["height"] * scale)
+            offset_x = (self.current_window_sizes[0] - new_w) // 2
+            offset_y = (self.current_window_sizes[1] - new_h) // 2
+            GL.glViewport(offset_x, offset_y, new_w, new_h)
+        else:
+            GL.glViewport(0, 0, self.current_window_sizes[0], self.current_window_sizes[1])
+
+        # PROJECTION MATRIX
+
+        GL.glMatrixMode(GL.GL_PROJECTION)
+        GL.glLoadIdentity()
+        
+        if self.window_settings["stretch"] == stretchType.KEEP_ASPECT:
+            GL.glOrtho(0, self.window_settings["width"], self.window_settings["height"], 0, -1, 1)
+        else:
+            GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
+
+        # MODELVIEW MATRIX
+
+        GL.glMatrixMode(GL.GL_MODELVIEW)
+        GL.glLoadIdentity()
+
+        # SCALE
+
+        if self.window_settings["stretch"] == stretchType.EXPAND:
+            GL.glScalef(self.current_window_sizes[0] / self.window_settings["width"], self.current_window_sizes[1] / self.window_settings["height"], 1.0)
+
+        # BLENDING
+
+        GL.glEnable(GL.GL_BLEND)
+        GL.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA)
+
+        # TEXTURE
+
+        GL.glEnable(GL.GL_TEXTURE_2D)
+
+        # CHECK UPDATE FUNCTION
+
+        if update:
+            update()
+
+        # WINDOW PROCESS
+        
+        glfw.swap_buffers(self.window)
+        glfw.poll_events()
+
+        # GET FPS
+
+        self.frame_count += 1
+        current_time = time.time()
+        if current_time - self.last_fps_time >= 1.0:
+            self.fps = self.frame_count
+            self.frame_count = 0
+            self.last_fps_time = current_time
+
+    def winProcess(self, update=None, fps: int | None = None):
+        log_system.addInfo(f"Window: creating winprocess, Update:{update}, FPS:{fps}")
+
+        # CHECK FPS
+
+        if fps is not None:
+            frame_time = 1.0 / fps
+            last_time = time.time()
+        
+        # RENDER LOOP
+
+        while not glfw.window_should_close(self.window):
+            if fps is not None:
+                current_time = time.time()
+                elapsed = current_time - last_time
+
+                if elapsed >= frame_time:
+                    self._render_frame(update)
+                    last_time = current_time
+                else:
+                    time.sleep(frame_time - elapsed)
+            else:
+                self._render_frame(update)
+
+        glfw.terminate()

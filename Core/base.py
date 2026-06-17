@@ -1,0 +1,108 @@
+from .modules import GL
+
+# VECTORS
+
+class Vec2:
+    def __init__(self, x:int | float, y:int | float):
+        self.x = x
+        self.y = y
+    
+    def plusVector(self, vector):
+        self.x += vector.x
+        self.y += vector.y
+    
+    def getVectors(self):
+        return self.x, self.y
+
+class Vec1:
+    def __init__(self, x:int | float):
+        self.x = x
+    
+    def getVectors(self):
+        return self.x
+
+# COLOR
+
+class c256:
+    def __new__(self, x: float):
+        return x / 256
+
+class Color3:
+    def __init__(self, r:float | c256, g:float | c256, b:float | c256):
+        self.r, self.g, self.b = r, g, b
+
+    def getColor(self):
+        return self.r, self.g, self.b
+
+class Color4:
+    def __init__(self, r:float | c256, g:float | c256, b:float | c256, a:float | c256):
+        self.r, self.g, self.b, self.a = r, g, b, a
+
+    def getColor(self):
+        return self.r, self.g, self.b, self.a
+
+# BINDS
+
+class Key:
+    def __init__(self, key:str):
+        self.key = key
+    
+    def getKey(self):
+        return self.key
+
+# SYSTEM
+
+class System:
+    @staticmethod
+    def check_empty(text:str):
+        replaced_text = text.replace(' ', '')
+        return replaced_text == ''
+
+    @staticmethod
+    def c3toc4(color:Color3, a:float | c256 = 1.0):
+        if isinstance(color, Color3):
+            return Color4(color.r, color.g, color.b, a)
+    
+        return color
+    
+    @staticmethod
+    def slfm(x:int | float, y:int | float):
+        return abs(x - y)
+
+# DRAWING
+
+class drawMode:
+    POINTS = GL.GL_POINTS
+    LOOP = GL.GL_LINE_LOOP
+    FORM = GL.GL_TRIANGLE_STRIP
+    FILL = GL.GL_POLYGON
+    RECT = GL.GL_QUADS
+
+# DEBUG
+
+class debugging:
+    def __init__(self, *, debug:bool=True):
+        self.debug = debug
+    
+    def dbgout(self, text:str):
+        if self.debug:
+            print(f'OGE Debug:{text}')
+
+# SHADERS
+
+class shaderType:
+    VERTEX = GL.GL_VERTEX_SHADER
+    FRAGMENT = GL.GL_FRAGMENT_SHADER
+
+# TEXTURES
+
+class textureType:
+    LINEAR = GL.GL_LINEAR
+    NEAREST = GL.GL_NEAREST
+
+# WINDOW
+
+class stretchType:
+    EXPAND = "EXPAND"
+    RELATIVELY = "RELATIVELY"
+    KEEP_ASPECT = "KEEP_ASPECT"
