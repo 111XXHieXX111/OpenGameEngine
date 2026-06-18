@@ -3,7 +3,7 @@ Game engine maded on OpenGL, Python 3.12
 
 ## Tutorial
 ### Run
-**IF YOU ARE USING LINUX, RUN AS ROOT!!!**
+**IF YOU ARE USING LINUX AND USING KeyPressed - RUN AS ROOT!!!**
 
 IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
 
