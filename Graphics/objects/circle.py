@@ -32,6 +32,8 @@ class Circle(Base):
         self.calculated = True
 
     def drawCircle(self, mode:drawMode):
+        self.draw("Circle")
+        
         if not self.calculated:
             self.calculateSize()
             return

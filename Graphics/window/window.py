@@ -1,6 +1,7 @@
 from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12
-from ...Core.glob import log_system, debug
-from ...Core.base import System, Color3, Color4, stretchType, Vec2
+from ...Core.glob import log_system, debug, render_items
+from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
+from ...Control.control import KeyJustPressed
 
 class Window:
     def __init__(self):
@@ -26,6 +27,8 @@ class Window:
         self.frame_count = 0
         self.fps = 0
         self.last_fps_time = time.time()
+        
+        self.debugmenu = False
 
         # CURRENT SIZES
 
@@ -151,7 +154,9 @@ class Window:
     def getMousePosition(self):
         return glfw.get_cursor_pos(self.window)
 
-    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0)):
+    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
+        if debug_only and not self.debugmenu:
+            return
         
         # CHECL TYPES
         
@@ -181,6 +186,10 @@ class Window:
             glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(char))
     
     def _render_frame(self, update=None):
+        
+        # CLEAR RENDER ITEMS
+        
+        render_items.clear()
 
         # GET CURRENT WINDOW SIZES
 
@@ -235,6 +244,19 @@ class Window:
 
         if update:
             update()
+        
+        # DEBUG ON/OFF
+        
+        if KeyJustPressed(Key("f12")):
+            self.debugmenu = not self.debugmenu
+        
+        # DEBUG SHOW
+        
+        if self.debugmenu and debug:
+            padding = 14
+            text = f"===OGE DEBUG===\nFPS:{self.getFPS()}\nWindow Size:{self.current_window_sizes}\nMouse pos:{self.getMousePosition()}\nRender objects:{len(render_items)}"
+            for index, label in enumerate(text.split("\n")):
+                self.drawText(label, Vec2(0, index*padding))
 
         # WINDOW PROCESS
         

@@ -1,5 +1,5 @@
 from .modules import *
-from ...Core.glob import log_system
+from ...Core.glob import log_system, render_items
 from ...Core.base import System
 
 class Base:
@@ -77,3 +77,6 @@ class Base:
             xs.append(v.x)
             ys.append(v.y)
         return Vec2(sum(xs) / len(xs), sum(ys) / len(ys))
+
+    def draw(self, name:str):
+        render_items.append(name)

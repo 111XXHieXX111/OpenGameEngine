@@ -16,7 +16,6 @@ class Rectangle(Base):
         self.texture = None
         self.calculated = False
     
-    
     def calculateSize(self):
         center = Vec2(
             self.position.x + self.size.x / 2,
@@ -46,6 +45,8 @@ class Rectangle(Base):
         self.calculated = True
     
     def drawRectangle(self, mode:drawMode):
+        self.draw("Rectangle")
+        
         if not self.calculated:
             self.calculateSize()
             return

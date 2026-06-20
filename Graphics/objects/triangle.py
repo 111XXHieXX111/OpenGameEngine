@@ -48,6 +48,8 @@ class Triangle(Base):
         self.calculated = True
     
     def drawTriangle(self, mode:drawMode):
+        self.draw("Triangle")
+        
         if not self.calculated:
             self.calculateSize()
             return
