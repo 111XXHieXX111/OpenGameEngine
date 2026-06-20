@@ -1,4 +1,5 @@
 from .modules import GL
+from .glob import log_system
 
 # VECTORS
 
@@ -62,12 +63,21 @@ class System:
     def c3toc4(color:Color3, a:float | c256 = 1.0):
         if isinstance(color, Color3):
             return Color4(color.r, color.g, color.b, a)
+        else:
+            if not isinstance(color, Color3) and not isinstance(color, Color4):
+                log_system.addWarn("Use Color3|Color4")
+                return Color4(0, 0, 0, 1)
     
         return color
     
     @staticmethod
     def slfm(x:int | float, y:int | float):
         return abs(x - y)
+
+    @staticmethod
+    def cltv2(l:list|tuple):
+        if len(l) > 1:
+            return Vec2(l[0], l[1])
 
 # DRAWING
 

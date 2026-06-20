@@ -1,4 +1,4 @@
-from .modules import datetime, time, inspect
+from .modules import datetime, time, inspect, os
 
 class Logging:
     def __init__(self, addtime:bool=True, colored:bool=False, calledfile:bool=False):
@@ -11,7 +11,7 @@ class Logging:
 
     def getfile(self):
         frame = inspect.currentframe().f_back.f_back
-        caller_file = frame.f_code.co_filename
+        caller_file = os.path.basename(frame.f_code.co_filename)
         return caller_file
     
     def addInfo(self, text:str):

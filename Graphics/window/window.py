@@ -1,6 +1,6 @@
-from ...Core.modules import glfw, GL, time
-from ...Core.glob import log_system
-from ...Core.base import System, Color3, Color4, stretchType
+from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12
+from ...Core.glob import log_system, debug
+from ...Core.base import System, Color3, Color4, stretchType, Vec2
 
 class Window:
     def __init__(self):
@@ -51,6 +51,10 @@ class Window:
             glfw.terminate()
             return
 
+        # INIT GLUT
+        
+        glutInit()
+
         # MOVE WINDOW TO THE CURRENT CONTEXT
 
         log_system.addInfo("Window: move to the current context")
@@ -69,6 +73,9 @@ class Window:
 
     def setStretch(self, stretch:stretchType):
         log_system.addInfo("Window: setting stretch")
+    
+        # APPLY STRETCH
+        
         self.window_settings["stretch"] = stretch
     
     def getFPS(self):
@@ -76,6 +83,12 @@ class Window:
 
     def setTitle(self, title:str="Window"):
         log_system.addInfo("Window: setting title")
+        
+        # CHECK TYPE
+        
+        if not isinstance(title, str):
+            log_system.addError("Use string in setTitle")
+            return
 
         # CHECK EMPTY
 
@@ -93,6 +106,12 @@ class Window:
     
     def setSize(self, width:int=640, height:int=480):
         log_system.addInfo("Window: setting size")
+        
+        # CHECK TYPES
+        
+        if not isinstance(width, int) or not isinstance(height, int):
+            log_system.addError("Use int in setSize")
+            return
 
         # APPLY SIZE
 
@@ -106,16 +125,61 @@ class Window:
         )
 
     def setBG(self, color:Color3 | Color4):
-        log_system.addInfo(f"Window: setting bg: ({color.r}, {color.g}, {color.b})")
-
-        self.color = color
+        c = color
+        
+        # CHECK TYPE
+        
+        if isinstance(color, tuple) or isinstance(color, list):
+            log_system.addWarn("Use Color3|Color4 for setBG")
+            c = Color3(color[0], color[1], color[2])
+        else:
+            if not isinstance(color, Color3) or not isinstance(color, Color4):
+                log_system.addError("Use Color3|Color4 for setBG")
+                return
+        
+        log_system.addInfo(f"Window: setting bg: ({c.r}, {c.g}, {c.b})")
+        
+        # SET COLOR AND CONVERT
+        
+        self.color = c
         self.color = System.c3toc4(self.color)
         
+        # SETUP COLOR
+                
         GL.glClearColor(self.color.r, self.color.g, self.color.b, self.color.a)
 
     def getMousePosition(self):
         return glfw.get_cursor_pos(self.window)
 
+    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0)):
+        
+        # CHECL TYPES
+        
+        if not isinstance(text, str):
+            return
+        
+        if not isinstance(position, Vec2):
+            if isinstance(position, list) or isinstance(position, tuple):
+                position = System.cltv2(position)
+        
+        if not isinstance(color, Color3):
+            if isinstance(color, Color4):
+                color = Color3(color.r, color.b, color.g) 
+            elif isinstance(color, list) or isinstance(color, tuple):
+                color = Color3(color[0], color[1], color[2])
+            else:
+                return
+        
+        # SET COLOR AND POSITION
+        
+        GL.glColor3f(color.r, color.g, color.b)
+        GL.glRasterPos2f(position.x, position.y+10)
+        
+        # DRAW CHARS
+        
+        for char in str(text):
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(char))
+    
     def _render_frame(self, update=None):
 
         # GET CURRENT WINDOW SIZES
