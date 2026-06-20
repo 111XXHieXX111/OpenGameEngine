@@ -88,16 +88,6 @@ class drawMode:
     FILL = GL.GL_POLYGON
     RECT = GL.GL_QUADS
 
-# DEBUG
-
-class debugging:
-    def __init__(self, *, debug:bool=True):
-        self.debug = debug
-    
-    def dbgout(self, text:str):
-        if self.debug:
-            print(f'OGE Debug:{text}')
-
 # SHADERS
 
 class shaderType:

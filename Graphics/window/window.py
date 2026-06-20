@@ -129,8 +129,6 @@ class Window:
         
         # CHECK TYPE
         
-        print(type(color))
-        
         if isinstance(color, tuple) or isinstance(color, list):
             log_system.addWarn("Use Color3|Color4 for setBG")
             c = Color3(color[0], color[1], color[2])
