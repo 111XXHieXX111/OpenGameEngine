@@ -71,6 +71,9 @@ def update():
     # Get mouse position
     mouse_pos = window.getMousePosition()
     
+    # Show fps
+    window.drawText(str(fps), Vec2(0, 0), Color3(1, 0, 0)) # 1 arg - text, 2 arg - position, 3 arg - color
+
     # Get current window sizes
     cur_winsize = window.current_window_sizes
 
