@@ -155,7 +155,7 @@ class Window:
         return glfw.get_cursor_pos(self.window)
 
     def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
-        if debug_only and not self.debugmenu:
+        if self.debugmenu and not debug_only:
             return
         
         # CHECL TYPES
@@ -247,7 +247,7 @@ class Window:
         
         # DEBUG ON/OFF
         
-        if KeyJustPressed(Key("f12")):
+        if KeyJustPressed(Key("f12")) and debug:
             self.debugmenu = not self.debugmenu
         
         # DEBUG SHOW
@@ -256,7 +256,7 @@ class Window:
             padding = 14
             text = f"===OGE DEBUG===\nFPS:{self.getFPS()}\nWindow Size:{self.current_window_sizes}\nMouse pos:{self.getMousePosition()}\nRender objects:{len(render_items)}"
             for index, label in enumerate(text.split("\n")):
-                self.drawText(label, Vec2(0, index*padding))
+                self.drawText(label, Vec2(0, index*padding), debug_only=True)
 
         # WINDOW PROCESS
         
