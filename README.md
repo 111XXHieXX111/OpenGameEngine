@@ -3,7 +3,7 @@ Game engine maded on OpenGL, Python 3.12
 
 ## Tutorial
 ### Run
-**IF YOU ARE USING LINUX AND USING KeyPressed - RUN AS ROOT!!!**
+**IF YOU ARE USING LINUX - RUN AS ROOT!!!**
 
 IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
 
@@ -80,6 +80,8 @@ def update():
 # Run window mainloop, 1 arg - update function, 2 arg - window fps
 window.winProcess(update, 60)
 ```
+
+To open the unlock menu, press F12
 
 ### Graphics
 
