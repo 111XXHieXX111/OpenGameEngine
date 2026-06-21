@@ -3,7 +3,7 @@ from ..Core.base import textureType
 from ..Core.glob import log_system
 
 def loadTexture(path:str, textureType:textureType):
-    log_system.addInfo(f"Texture: loading texture {path}")
+    log_system.addInfo(f"Loading texture {path}")
 
     img = Image.open(path).convert("RGBA")
     img_data = np.array(img, dtype=np.uint8)
