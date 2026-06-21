@@ -6,7 +6,26 @@ class Base:
     def __init__(self):
         log_system.addInfo("Base: creating figure")
 
+    def setPointSize(self, new_size:Vec1):
+        
+        # CHECK
+        
+        if isinstance(new_size, int) or isinstance(new_size, float):
+            log_system.addWarn("Use Vec1 in setPointSize")
+            new_size = Vec1(new_size)
+        else:
+            if not isinstance(new_size, Vec1):
+                log_system.addError("Use Vec1 in setPointSize")
+                return
+        
+        # APPLY
+        
+        self.pointsize = new_size
+
     def setWidthLines(self, new_width:Vec1):
+        
+        # CHECK
+        
         if isinstance(new_width, int) or isinstance(new_width, float):
             log_system.addWarn("Use Vec1 in setWidthLines")
             new_width = Vec1(new_width)
@@ -14,6 +33,9 @@ class Base:
             if not isinstance(new_width, Vec1):
                 log_system.addError("Use Vec1 in setWidthLines")
                 return
+        
+        # APPLY
+        
         self.widthlines = new_width
     
     def setSize(self, new_size:Vec2):
@@ -78,5 +100,5 @@ class Base:
             ys.append(v.y)
         return Vec2(sum(xs) / len(xs), sum(ys) / len(ys))
 
-    def draw(self, name:str):
+    def _draw(self, name:str):
         render_items.append(name)

@@ -5,6 +5,7 @@ class Vertex:
     def __init__(self):
         self.position = Vec2(0.0, 0.0)
         self.size = Vec1(0.1)
+        self.width = Vec1(1.0)
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
         self.texcoord = Vec2(0,0)
     
@@ -20,12 +21,16 @@ class Vertex:
     def setSize(self, new_size:Vec1):
         self.size = new_size
     
+    def setWidth(self, new_size:Vec1):
+        self.width = new_size
+    
     def drawVertex(self, begin:bool, end:bool, mode:drawMode):
         if self.size.x < 0.01:
             return
 
         if begin:
             GL.glPointSize(self.size.x)
+            GL.glLineWidth(self.width.x)
             GL.glBegin(mode)
         
         GL.glColor4f(self.color.r, self.color.g, self.color.b, self.color.a)

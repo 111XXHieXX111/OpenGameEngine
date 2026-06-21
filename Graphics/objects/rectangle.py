@@ -12,6 +12,7 @@ class Rectangle(Base):
         self.rotation = Vec1(0.0)
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
         self.widthlines = Vec1(1.0)
+        self.pointsize = Vec1(1.0)
         self.uv = [Vec2(0, 0), Vec2(1, 0), Vec2(1, 1), Vec2(0, 1)]
         self.texture = None
         self.calculated = False
@@ -45,7 +46,7 @@ class Rectangle(Base):
         self.calculated = True
     
     def drawRectangle(self, mode:drawMode):
-        self.draw("Rectangle")
+        self._draw("Rectangle")
         
         if not self.calculated:
             self.calculateSize()
@@ -54,6 +55,7 @@ class Rectangle(Base):
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)
         polygon.setWidthLines(self.widthlines)
+        polygon.setPointSize(self.pointsize)
         polygon.setTexCoords(self.uv)
         polygon.setTexture(self.texture)
         polygon.drawPolygon(mode)

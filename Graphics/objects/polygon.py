@@ -22,6 +22,9 @@ class Polygon:
     def setWidthLines(self, width:Vec1):
         self.widthlines = width
     
+    def setPointSize(self, new_size:Vec1):
+        self.pointsize = new_size
+    
     def drawPolygon(self, mode:drawMode):
         if self.texture:
             GL.glEnable(GL.GL_TEXTURE_2D)
@@ -32,7 +35,8 @@ class Polygon:
         for i, v in enumerate(self.vertexes):
             vertex = Vertex()
             vertex.setPosition(v)
-            vertex.setSize(self.widthlines)
+            vertex.setWidth(self.widthlines)
+            vertex.setSize(self.pointsize)
             vertex.setColor(self.color)
             vertex.setTexCoord(self.texcoords[i])
 

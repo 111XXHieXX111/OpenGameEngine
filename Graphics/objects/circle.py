@@ -12,6 +12,7 @@ class Circle(Base):
         self.rotation = Vec1(0.0)
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
         self.widthlines = Vec1(1.0)
+        self.pointsize = Vec1(1.0)
         self.uv = []
         self.texture = None
         self.calculated = False
@@ -32,7 +33,7 @@ class Circle(Base):
         self.calculated = True
 
     def drawCircle(self, mode:drawMode):
-        self.draw("Circle")
+        self._draw("Circle")
         
         if not self.calculated:
             self.calculateSize()
@@ -41,6 +42,7 @@ class Circle(Base):
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)
         polygon.setWidthLines(self.widthlines)
+        polygon.setPointSize(self.pointsize)
         polygon.setTexCoords(self.uv)
         polygon.setTexture(self.texture)
         polygon.drawPolygon(mode)
