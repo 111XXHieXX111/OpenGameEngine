@@ -4,7 +4,7 @@ from ...Core.base import System
 
 class Base:
     def __init__(self):
-        log_system.addInfo("Base: creating figure")
+        log_system.addInfo("Creating figure")
 
     def setPointSize(self, new_size:Vec1):
         

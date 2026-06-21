@@ -8,14 +8,14 @@ class Window:
 
         # CHECK INIT
 
-        log_system.addInfo("Window: check init")
+        log_system.addInfo("Check init")
 
         if not glfw.init():
             return
 
         # WINDOW SETTINGS
 
-        log_system.addInfo("Window: create winsettings")
+        log_system.addInfo("Create winsettings")
 
         self.window_settings = {
             "title":"Window",
@@ -28,19 +28,25 @@ class Window:
         self.fps = 0
         self.last_fps_time = time.time()
         
+        self.iconified = 0
+        self.iconifiedwork = True
+        
         self.debugmenu = False
 
         # CURRENT SIZES
 
-        log_system.addInfo("Window: create current win sizes")
+        log_system.addInfo("Create current win sizes")
 
         self.current_window_sizes = [640, 480]
 
+    def _iconify_callback(self, window, iconified):
+        self.iconified = iconified
+
     def initWindow(self):
         
+        log_system.addInfo("Init window")
+        
         # CREATE WINDOW
-
-        log_system.addInfo("Window: create window")
 
         self.window = glfw.create_window(
             self.window_settings.get("width"),
@@ -60,7 +66,7 @@ class Window:
 
         # MOVE WINDOW TO THE CURRENT CONTEXT
 
-        log_system.addInfo("Window: move to the current context")
+        log_system.addInfo("Move window to the current context")
         
         glfw.make_context_current(self.window)
 
@@ -70,12 +76,16 @@ class Window:
 
         # GET CURRENT WINDOW SIZES
 
-        log_system.addInfo("Window: getting current win sizes")
+        log_system.addInfo("Getting current win sizes")
 
         self.current_window_sizes = glfw.get_framebuffer_size(self.window)
+        
+        # CONNECT CALLBACK(S)
+        
+        glfw.set_window_iconify_callback(self.window, self._iconify_callback)
 
     def setStretch(self, stretch:stretchType):
-        log_system.addInfo("Window: setting stretch")
+        log_system.addInfo("Setting stretch")
     
         # APPLY STRETCH
         
@@ -85,7 +95,7 @@ class Window:
         return self.fps
 
     def setTitle(self, title:str="Window"):
-        log_system.addInfo("Window: setting title")
+        log_system.addInfo("Set title")
         
         # CHECK TYPE
         
@@ -108,7 +118,7 @@ class Window:
         )
     
     def setSize(self, width:int=640, height:int=480):
-        log_system.addInfo("Window: setting size")
+        log_system.addInfo("Set size")
         
         # CHECK TYPES
         
@@ -140,7 +150,7 @@ class Window:
                 log_system.addError("Use Color3|Color4 for setBG")
                 return
         
-        log_system.addInfo(f"Window: setting bg: ({c.r}, {c.g}, {c.b})")
+        log_system.addInfo(f"Set BG: ({c.r}, {c.g}, {c.b})")
         
         # SET COLOR AND CONVERT
         
@@ -153,12 +163,23 @@ class Window:
 
     def getMousePosition(self):
         return glfw.get_cursor_pos(self.window)
+    
+    def EnableEventsByIconify(self):
+        log_system.addInfo("Iconified work:Enabled")
+        self.iconifiedwork = True
+    
+    def DisableEventsByIconify(self):
+        log_system.addInfo("Iconified work:Disabled")
+        self.iconifiedwork = False
 
     def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
+        
+        # DISABLE TEXT
+        
         if self.debugmenu and not debug_only:
             return
         
-        # CHECL TYPES
+        # CHECK TYPES
         
         if not isinstance(text, str):
             return
@@ -187,13 +208,20 @@ class Window:
     
     def _render_frame(self, update=None):
         
-        # CLEAR RENDER ITEMS
-        
-        render_items.clear()
-
         # GET CURRENT WINDOW SIZES
 
         self.current_window_sizes = list(glfw.get_framebuffer_size(self.window))
+        
+        # SKIP RENDER
+        
+        if self.current_window_sizes[0] <= 0 or self.current_window_sizes[1] <= 0:
+            glfw.poll_events()
+            
+            return
+        
+        # CLEAR RENDER ITEMS
+        
+        render_items.clear()
 
         # CLEAR SCREEN
 
@@ -247,7 +275,7 @@ class Window:
         
         # DEBUG ON/OFF
         
-        if KeyJustPressed(Key("f12")) and debug:
+        if KeyJustPressed(Key("f12"), self) and debug:
             self.debugmenu = not self.debugmenu
         
         # DEBUG SHOW
@@ -273,7 +301,10 @@ class Window:
             self.last_fps_time = current_time
 
     def winProcess(self, update=None, fps: int | None = None):
-        log_system.addInfo(f"Window: creating winprocess, Update:{update}, FPS:{fps}")
+        try:
+            log_system.addInfo(f"Create winprocess, Update:{update.__name__}, FPS:{fps}")
+        except:
+            log_system.addInfo(f"Create winprocess, Update:{update}, FPS:{fps}")
 
         # CHECK FPS
 

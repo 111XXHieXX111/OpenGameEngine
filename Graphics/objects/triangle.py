@@ -5,7 +5,6 @@ from .modules import *
 
 class Triangle(Base):
     def __init__(self):
-        log_system.addInfo("Figure: create triangle")
         self.vertexes = [Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0)]
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)
@@ -49,7 +48,7 @@ class Triangle(Base):
         self.calculated = True
     
     def drawTriangle(self, mode:drawMode):
-        self.draw("Triangle")
+        self._draw("Triangle")
         
         if not self.calculated:
             self.calculateSize()

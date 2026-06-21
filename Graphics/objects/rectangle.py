@@ -5,7 +5,6 @@ from .modules import *
 
 class Rectangle(Base):
     def __init__(self):
-        log_system.addInfo("Figure: create rectangle")
         self.vertexes = [Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0)]
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)

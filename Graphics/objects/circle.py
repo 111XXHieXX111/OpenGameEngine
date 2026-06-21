@@ -5,7 +5,6 @@ from .modules import *
 
 class Circle(Base):
     def __init__(self):
-        log_system.addInfo("Figure: create circle")
         self.vertexes = [Vec2(0.0, 0.0) for _ in range(360)]
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)

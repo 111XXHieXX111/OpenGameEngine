@@ -3,7 +3,14 @@ from ..Core.base import Key
 
 _pressed = {}
 
-def KeyPressed(key:Key):
+def KeyPressed(key:Key, window=None):
+    
+    # CHECK ICONIFY
+    
+    if window:
+        if window.iconified:
+            if window.iconifiedwork:
+                return
     
     # CHECK TYPE
     
@@ -15,7 +22,14 @@ def KeyPressed(key:Key):
     if key:
         return keyboard.is_pressed(key.key)
 
-def KeyJustPressed(key: Key):
+def KeyJustPressed(key:Key, window=None):
+    
+    # CHECK ICONIFY
+    
+    if window:
+        if window.iconified:
+            if window.iconifiedwork:
+                return
     
     # CHECK TYPE
     
