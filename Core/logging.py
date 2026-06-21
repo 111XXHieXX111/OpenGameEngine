@@ -1,4 +1,4 @@
-from .modules import datetime, time, inspect, os
+from .modules import time, inspect, os
 
 class Logging:
     def __init__(self, addtime:bool=True, colored:bool=False, calledfile:bool=False):
@@ -28,9 +28,9 @@ class Logging:
         
         if self.addtime:
             if self.colored:
-                pre += f'[\033[90m{datetime.datetime.now().strftime("%H:%M:%S")}\033[0m] -> '
+                pre += f'[\033[90m{time.strftime("%H:%M:%S", time.localtime())}\033[0m] -> '
             else:
-                pre += f'[{datetime.datetime.now().strftime("%H:%M:%S")}] -> '
+                pre += f'[{time.strftime("%H:%M:%S", time.localtime())}] -> '
         self.log.append(pre + text)
         if self.console:
             print(pre + text)
@@ -49,9 +49,9 @@ class Logging:
         
         if self.addtime:
             if self.colored:
-                pre += f'[\033[90m{datetime.datetime.now().strftime("%H:%M:%S")}\033[0m] -> '
+                pre += f'[\033[90m{time.strftime("%H:%M:%S", time.localtime())}\033[0m] -> '
             else:
-                pre += f'[{datetime.datetime.now().strftime("%H:%M:%S")}] -> '
+                pre += f'[{time.strftime("%H:%M:%S", time.localtime())}] -> '
         self.log.append(pre + text)
         if self.console:
             print(pre + text)
@@ -70,9 +70,9 @@ class Logging:
         
         if self.addtime:
             if self.colored:
-                pre += f'[\033[90m{datetime.datetime.now().strftime("%H:%M:%S")}\033[0m] -> '
+                pre += f'[\033[90m{time.strftime("%H:%M:%S", time.localtime())}\033[0m] -> '
             else:
-                pre += f'[{datetime.datetime.now().strftime("%H:%M:%S")}] -> '
+                pre += f'[{time.strftime("%H:%M:%S", time.localtime())}] -> '
         self.log.append(pre + text)
         if self.console:
             print(pre + text)
@@ -91,9 +91,9 @@ class Logging:
         
         if self.addtime:
             if self.colored:
-                pre += f'[\033[90m{datetime.datetime.now().strftime("%H:%M:%S")}\033[0m] -> '
+                pre += f'[\033[90m{time.strftime("%H:%M:%S", time.localtime())}\033[0m] -> '
             else:
-                pre += f'[{datetime.datetime.now().strftime("%H:%M:%S")}] -> '
+                pre += f'[{time.strftime("%H:%M:%S", time.localtime())}] -> '
         self.log.append(pre + text)
         if self.console:
             print(pre + text)

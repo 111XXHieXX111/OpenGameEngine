@@ -1,12 +1,17 @@
-from ..Core.modules import Image, GL, np
+from ..Core.modules import GL
 from ..Core.base import textureType
 from ..Core.glob import log_system
 
 def loadTexture(path:str, textureType:textureType):
+    from PIL import Image
     log_system.addInfo(f"Texture: loading texture {path}")
 
+    # READ TEXTURE
+
     img = Image.open(path).convert("RGBA")
-    img_data = np.array(img, dtype=np.uint8)
+    img_data = img.tobytes()
+
+    # LOAD TEXTURE
 
     tex_id = GL.glGenTextures(1)
     GL.glBindTexture(GL.GL_TEXTURE_2D, tex_id)
@@ -19,5 +24,5 @@ def loadTexture(path:str, textureType:textureType):
     GL.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, img.width, img.height, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, img_data)
 
     GL.glBindTexture(GL.GL_TEXTURE_2D, 0)
-
+    
     return tex_id

@@ -1,6 +1,7 @@
 from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12 # type: ignore
 from ...Core.glob import log_system, debug, render_items
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
+from ...Utils.memory import MemoryMonitor
 from ...Control.control import KeyJustPressed
 
 class Window:
@@ -62,7 +63,15 @@ class Window:
 
         # INIT GLUT
         
+        log_system.addInfo("Glut init")
+        
         glutInit()
+        
+        # INIT MEMORY MANAGER
+        
+        log_system.addInfo("Memory manager init")
+        
+        self.momorymonitor = MemoryMonitor()
 
         # MOVE WINDOW TO THE CURRENT CONTEXT
 
@@ -76,7 +85,7 @@ class Window:
 
         # GET CURRENT WINDOW SIZES
 
-        log_system.addInfo("Getting current win sizes")
+        log_system.addInfo("Get current win sizes")
 
         self.current_window_sizes = glfw.get_framebuffer_size(self.window)
         
@@ -282,8 +291,20 @@ class Window:
         
         if self.debugmenu and debug:
             padding = 14
-            text = f"===OGE DEBUG===\nFPS:{self.getFPS()}\nWindow Size:{self.current_window_sizes}\nMouse pos:{self.getMousePosition()}\nRender objects:{len(render_items)}"
-            for index, label in enumerate(text.split("\n")):
+            
+            memory_info = self.momorymonitor.getMemory()
+            
+            text_lines = [
+                "===OGE DEBUG===",
+                f"FPS:{self.getFPS()}",
+                f"Window size:{self.current_window_sizes}",
+                f"Mouse pos:{self.getMousePosition()}",
+                f"Render objects:{len(render_items)}",
+                f"RSS:{memory_info['rss']:.2f}MB",
+                f"VMS:{memory_info['vms']:.2f}MB",
+                f"Memory peak:{memory_info['peak']:.2f}MB"
+            ]
+            for index, label in enumerate(text_lines):
                 self.drawText(label, Vec2(0, index*padding), debug_only=True)
 
         # WINDOW PROCESS
@@ -302,7 +323,7 @@ class Window:
 
     def winProcess(self, update=None, fps: int | None = None):
         try:
-            log_system.addInfo(f"Create winprocess, Update:{update.__name__}, FPS:{fps}")
+            log_system.addInfo(f"Create winprocess, Update:{update.__name__}, FPS:{fps}") # type: ignore
         except:
             log_system.addInfo(f"Create winprocess, Update:{update}, FPS:{fps}")
 
