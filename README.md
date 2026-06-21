@@ -125,7 +125,7 @@ There is also a **checkcollision** function, it checks whether the first primiti
 
 ### Control
 ```python
-KeyPressed(Key("space")) # Return bool value, if key is pressed - True else False. arg1 - Key
+KeyPressed(Key("space"), None) # Return bool value, if key is pressed - True else False. arg1 - Key, 2arg - Window (optional)
 ```
 
 ### Game example
