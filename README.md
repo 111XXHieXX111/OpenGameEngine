@@ -145,14 +145,14 @@ player.setSize(Vec2(60, 60))
 player.setColor(Color3(0, 0, 0))
 
 def update():
-    if KeyPressed(Key("w")):
+    if KeyPressed(Key("w"), window):
         player.position.y -= 8
-    elif KeyPressed(Key("s")):
+    elif KeyPressed(Key("s"), window):
         player.position.y += 8
     
-    if KeyPressed(Key("a")):
+    if KeyPressed(Key("a"), window):
         player.position.x -= 8
-    elif KeyPressed(Key("d")):
+    elif KeyPressed(Key("d"), window):
         player.position.x += 8
     
     player.calculateSize()
