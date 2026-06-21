@@ -8,6 +8,7 @@ class Polygon:
         self.widthlines = Vec1(0.0)
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
         self.texcoords = [Vec2(0,0)] * len(vertexes)
+        self.pointsize = Vec1(1.0)
         self.texture = None
     
     def setTexture(self, texture):

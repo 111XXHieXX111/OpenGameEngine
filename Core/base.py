@@ -81,7 +81,7 @@ class System:
 
 # DRAWING
 
-class drawMode:
+class drawMode(Enum):
     POINTS = GL.GL_POINTS
     LOOP = GL.GL_LINE_LOOP
     FORM = GL.GL_TRIANGLE_STRIP
