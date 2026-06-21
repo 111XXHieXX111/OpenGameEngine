@@ -107,7 +107,8 @@ polygon = Graphics.Polygon([]) # Arg is vertexes list
 + setColor - setting the color of the primitive;
 + setUV - setting the UV mapping position;
 + setTexture - setting the texture;
-+ getCenter - getting the center of the primitive.
++ getCenter - getting the center of the primitive;
++ setPointSize - setting the vertex size.
 
 There is one more very important function: **draw**, only it is not in the usual form, the formula is as follows: **draw** + the name of the primitive with a capital letter. Examples:
 ```python
