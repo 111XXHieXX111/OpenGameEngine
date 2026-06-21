@@ -125,7 +125,7 @@ There is also a **checkcollision** function, it checks whether the first primiti
 
 ### Control
 ```python
-KeyPressed(Key("space")) # Return bool value, if key is pressed - True else False. arg1 - Key
+KeyPressed(Key("space"), None) # Return bool value, if key is pressed - True else False. arg1 - Key, 2arg - Window (optional)
 ```
 
 ### Game example
@@ -145,14 +145,14 @@ player.setSize(Vec2(60, 60))
 player.setColor(Color3(0, 0, 0))
 
 def update():
-    if KeyPressed(Key("w")):
+    if KeyPressed(Key("w"), window):
         player.position.y -= 8
-    elif KeyPressed(Key("s")):
+    elif KeyPressed(Key("s"), window):
         player.position.y += 8
     
-    if KeyPressed(Key("a")):
+    if KeyPressed(Key("a"), window):
         player.position.x -= 8
-    elif KeyPressed(Key("d")):
+    elif KeyPressed(Key("d"), window):
         player.position.x += 8
     
     player.calculateSize()

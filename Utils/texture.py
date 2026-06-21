@@ -3,8 +3,12 @@ from ..Core.base import textureType
 from ..Core.glob import log_system
 
 def loadTexture(path:str, textureType:textureType):
+<<<<<<< HEAD
     from PIL import Image
     log_system.addInfo(f"Texture: loading texture {path}")
+=======
+    log_system.addInfo(f"Loading texture {path}")
+>>>>>>> ab66bdb5f1ee2d843ba91716a234d08a2bb751e0
 
     # READ TEXTURE
 
