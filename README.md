@@ -10,7 +10,7 @@ IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
 **MACOS NOT SUPPORTED!!!**
 
 **INSTALL MODULES**
-```
+```bash
 pip install PyOpenGL PyOpenGL_accelerate glfw keyboard Pillow psutil
 ```
 
