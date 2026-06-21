@@ -1,4 +1,4 @@
-from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12
+from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12 # type: ignore
 from ...Core.glob import log_system, debug, render_items
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Control.control import KeyJustPressed

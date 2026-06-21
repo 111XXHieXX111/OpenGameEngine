@@ -1,4 +1,4 @@
-from .modules import GL
+from .modules import GL, Enum
 from .glob import log_system
 
 # VECTORS
@@ -25,7 +25,7 @@ class Vec1:
 # COLOR
 
 class c256:
-    def __new__(self, x: float):
+    def __new__(cls, x: float):
         return x / 256
 
 class Color3:
@@ -60,7 +60,7 @@ class System:
         return replaced_text == ''
 
     @staticmethod
-    def c3toc4(color:Color3, a:float | c256 = 1.0):
+    def c3toc4(color:Color3 | Color4, a:float | c256 = 1.0):
         if isinstance(color, Color3):
             return Color4(color.r, color.g, color.b, a)
         else:
@@ -102,7 +102,7 @@ class textureType:
 
 # WINDOW
 
-class stretchType:
+class stretchType(Enum):
     EXPAND = "EXPAND"
     RELATIVELY = "RELATIVELY"
     KEEP_ASPECT = "KEEP_ASPECT"
