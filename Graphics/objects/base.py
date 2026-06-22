@@ -3,9 +3,6 @@ from ...Core.glob import log_system, render_items
 from ...Core.base import System
 
 class Base:
-    def __init__(self):
-        log_system.addInfo("Creating figure")
-
     def setPointSize(self, new_size:Vec1):
         
         # CHECK
