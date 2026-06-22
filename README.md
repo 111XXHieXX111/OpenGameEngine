@@ -73,9 +73,6 @@ def update():
     # Get window fps
     fps = window.getFPS()
     
-    # Get mouse position
-    mouse_pos = window.getMousePosition()
-    
     # Show fps
     window.drawText(str(fps), Vec2(0, 0), Color3(1, 0, 0)) # 1 arg - text, 2 arg - position, 3 arg - color
 
@@ -226,4 +223,42 @@ def update():
     rect.calculateSize()
 
 window.winProcess(update, 60)
+```
+
+```python
+from OpenGameEngine import *
+
+window = Window()
+window.initWindow()
+window.setBG(Color3(0, 0.5, 0))
+window.setTitle("Dragging")
+
+rect = Rectangle()
+rect.setPosition(Vec2(20, 20))
+rect.setSize(Vec2(40, 40))
+rect.setColor(Color3(0, 0, 0))
+
+mouserect = Rectangle()
+mouserect.setSize(Vec2(10, 10))
+
+def update():
+    mousePos = Mouse.getPosition(window)
+    
+    McenterX = mousePos.x - mouserect.size.x / 2
+    McenterY = mousePos.y - mouserect.size.y / 2
+    
+    mouserect.setPosition(Vec2(McenterX, McenterY))
+    mouserect.calculateSize()
+    
+    if Mouse.MouseKeyPressed(window, MouseButton.LEFT):
+        if checkCollision(mouserect.vertexes, rect.vertexes):
+            RcenterX = mouserect.position.x - rect.size.x / 2
+            RcenterY = mouserect.position.y - rect.size.y / 2
+            
+            rect.setPosition(Vec2(RcenterX, RcenterY))
+            rect.calculateSize()
+    
+    rect.drawRectangle(drawMode.FILL)
+
+window.winProcess(update)
 ```
