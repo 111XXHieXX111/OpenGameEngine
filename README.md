@@ -128,6 +128,13 @@ polygon.drawPolygon(drawMode.FILL)           # arg1 - drawMode
 
 There is also a **checkcollision** function, it checks whether the first primitive touches the second one. Primitives such as **Rectangle**, **Triangle**, **Circle** need to call the calculateSize function in order to calculate the size, and it is called **BEFORE draw**
 
+Draw modes:
++ POINTS
++ LOOP
++ FORM
++ FILL
++ RECT
+
 ### Control
 ```python
 # Keyboard
