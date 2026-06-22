@@ -2,7 +2,7 @@ from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_
 from ...Core.glob import log_system, debug, render_items
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Utils.memory import MemoryMonitor
-from ...Control.keyboard import KeyJustPressed
+from ...Control.keyboard import Keyboard
 
 class Window:
     def __init__(self):
@@ -281,7 +281,7 @@ class Window:
         
         # DEBUG ON/OFF
         
-        if KeyJustPressed(Key("f12"), self) and debug:
+        if Keyboard.KeyJustPressed(Key("f12"), self) and debug:
             self.debugmenu = not self.debugmenu
         
         # DEBUG SHOW
