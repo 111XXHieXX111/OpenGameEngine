@@ -9,6 +9,11 @@ IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
 
 **MACOS NOT SUPPORTED!!!**
 
+### Install modules
+```bash
+pip install PyOpenGL PyOpenGL_accelerate glfw keyboard Pillow psutil
+```
+
 ### Import
 ```python
 # Import game lib
