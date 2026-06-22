@@ -17,4 +17,4 @@ class Mouse:
     
     @staticmethod
     def setVisibility(window, visible:bool):
-        glfw.set_input_mode(window.window, glfw.CURSOR, glfw.CURSOR_NORMAL if visible else glfw.CURSOR_HIDDEN)
+        glfw.set_input_mode(window.window, glfw.CURSOR, glfw.CURSOR_NORMAL if visible else glfw.CURSOR_CAPTURED)
