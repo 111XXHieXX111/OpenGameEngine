@@ -2,7 +2,7 @@ from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_
 from ...Core.glob import log_system, debug, render_items
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Utils.memory import MemoryMonitor
-from ...Control.control import KeyJustPressed
+from ...Control.keyboard import KeyJustPressed
 
 class Window:
     def __init__(self):
@@ -170,14 +170,11 @@ class Window:
                 
         GL.glClearColor(self.color.r, self.color.g, self.color.b, self.color.a)
 
-    def getMousePosition(self):
-        return glfw.get_cursor_pos(self.window)
-    
-    def EnableEventsByIconify(self):
+    def enableEventsByIconify(self):
         log_system.addInfo("Iconified work:Enabled")
         self.iconifiedwork = True
     
-    def DisableEventsByIconify(self):
+    def disableEventsByIconify(self):
         log_system.addInfo("Iconified work:Disabled")
         self.iconifiedwork = False
 
