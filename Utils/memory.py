@@ -10,7 +10,7 @@ class MemoryMonitor:
     
     def getMemory(self):
         if not hasattr(self, "process"):
-            return {"rss": 0, "vms": 0, "shared": 0, "peak": 0}
+            return {"rss": 0, "vms": 0, "peak": 0}
         
         mem = self.process.memory_info()
         current = mem.rss / (1024 * 1024)

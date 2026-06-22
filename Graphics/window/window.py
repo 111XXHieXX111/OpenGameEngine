@@ -3,6 +3,7 @@ from ...Core.glob import log_system, debug, render_items
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Utils.memory import MemoryMonitor
 from ...Control.keyboard import Keyboard
+from ...Control.mouse import Mouse
 
 class Window:
     def __init__(self):
@@ -290,12 +291,13 @@ class Window:
             padding = 14
             
             memory_info = self.momorymonitor.getMemory()
+            mouse_pos = Mouse.getPosition(self)
             
             text_lines = [
                 "===OGE DEBUG===",
                 f"FPS:{self.getFPS()}",
                 f"Window size:{self.current_window_sizes}",
-                f"Mouse pos:{self.getMousePosition()}",
+                f"Mouse pos:{int(mouse_pos.x)} {int(mouse_pos.y)}",
                 f"Render objects:{len(render_items)}",
                 f"RSS:{memory_info['rss']:.2f}MB",
                 f"VMS:{memory_info['vms']:.2f}MB",
