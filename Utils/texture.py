@@ -1,8 +1,13 @@
-from ..Core.modules import GL
+from ..Core.modules import GL, os
 from ..Core.base import textureType
 from ..Core.glob import log_system
 
 def loadTexture(path:str, textureType:textureType):
+    
+    log_system.addInfo(f"Load texture:{os.path.basename(path)}")
+    
+    # IMPORT PILLOW
+    
     from PIL import Image
 
     # READ TEXTURE

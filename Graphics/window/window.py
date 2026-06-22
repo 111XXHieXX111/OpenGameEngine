@@ -4,6 +4,7 @@ from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Utils.memory import MemoryMonitor
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
+from .gui import _drawText, SimpleButton
 
 class Window:
     def __init__(self):
@@ -25,6 +26,8 @@ class Window:
             "height":480,
             "stretch":stretchType.RELATIVELY
         }
+        
+        self.buttons = []
 
         self.frame_count = 0
         self.fps = 0
@@ -180,38 +183,13 @@ class Window:
         self.iconifiedwork = False
 
     def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
-        
-        # DISABLE TEXT
-        
-        if self.debugmenu and not debug_only:
-            return
-        
-        # CHECK TYPES
-        
-        if not isinstance(text, str):
-            return
-        
-        if not isinstance(position, Vec2):
-            if isinstance(position, list) or isinstance(position, tuple):
-                position = System.cltv2(position)
-        
-        if not isinstance(color, Color3):
-            if isinstance(color, Color4):
-                color = Color3(color.r, color.b, color.g) 
-            elif isinstance(color, list) or isinstance(color, tuple):
-                color = Color3(color[0], color[1], color[2])
-            else:
-                return
-        
-        # SET COLOR AND POSITION
-        
-        GL.glColor3f(color.r, color.g, color.b)
-        GL.glRasterPos2f(position.x, position.y+10)
-        
-        # DRAW CHARS
-        
-        for char in str(text):
-            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(char))
+        _drawText(self, text, position, color, debug_only)
+    
+    def addButton(self, button:SimpleButton):
+        self.buttons.append(button)
+    
+    def removeButton(self, button:SimpleButton):
+        self.buttons.remove(button)
     
     def _render_frame(self, update=None):
         
@@ -306,6 +284,12 @@ class Window:
             for index, label in enumerate(text_lines):
                 self.drawText(label, Vec2(0, index*padding), debug_only=True)
 
+        # BUTTONS DRAW
+        
+        for button in self.buttons:
+            button._process(self)
+            button._draw(self)
+        
         # WINDOW PROCESS
         
         glfw.swap_buffers(self.window)

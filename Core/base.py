@@ -8,12 +8,20 @@ class Vec2:
         self.x = x
         self.y = y
     
-    def plusVector(self, vector):
-        self.x += vector.x
-        self.y += vector.y
-    
     def getVectors(self):
         return self.x, self.y
+    
+    def __add__(self, other):
+        return Vec2(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Vec2(self.x - other.x, self.y - other.y)
+    
+    def __mul__(self, scalar):
+        return Vec2(self.x * scalar, self.y * scalar)
+    
+    def __truediv__(self, scalar):
+        return Vec2(self.x / scalar, self.y / scalar)
 
 class Vec1:
     def __init__(self, x:int | float):
