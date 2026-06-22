@@ -130,7 +130,15 @@ There is also a **checkcollision** function, it checks whether the first primiti
 
 ### Control
 ```python
-KeyPressed(Key("space"), None) # Return bool value, if key is pressed - True else False. arg1 - Key, 2arg - Window (optional)
+# Keyboard
+Keyboard.KeyPressed(Key("space"), Window)         # Return bool value, if key is pressed - True else False. arg1 - Key, arg2 - Window (optional)
+Keyboard.KeyJustPressed(Key("space"), Window)     # Return bool value, if key is just pressed - True else False, arg1 - Key, arg2 - Window (optional)
+
+# Mouse:
+Mouse.getPosition()                              # Return position in Vec2
+Mouse.MouseKeyPressed(Window, MouseButton.LEFT)  # Return bool value, if key is pressed - True else False, arg1 - Window, arg2 - MouseButton
+Mouse.MouseKeyReleased(Window, MouseButton.LEFT) # Return bool value, if key is released - True else False, arg1 - Window, arg2 - MouseButton
+Mouse.setVisibility(Window, True)                # Sets the mouse visibility, arg1 - Window, arg2 - Bool If set to True, it is visible, if set to False, it is invisible but not captured.
 ```
 
 ### Game example
