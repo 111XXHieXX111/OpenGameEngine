@@ -167,7 +167,10 @@ Mouse.MouseKeyReleased(Window, MouseButton.LEFT) # Return bool value, if key is 
 Mouse.setVisibility(Window, True)                # Sets the mouse visibility, arg1 - Window, arg2 - Bool If set to True, it is visible, if set to False, it is invisible but not captured.
 ```
 
-### Game example
+### Game examples
+
+*Keyboard*
+
 ```python
 from OpenGameEngine import *
 
@@ -199,6 +202,8 @@ def update():
 
 window.winProcess(update, 60)
 ```
+
+*checkCollision*
 
 ```python
 from OpenGameEngine import *
@@ -247,6 +252,8 @@ def update():
 window.winProcess(update, 60)
 ```
 
+*Mouse*
+
 ```python
 from OpenGameEngine import *
 
@@ -283,4 +290,56 @@ def update():
     rect.drawRectangle(drawMode.FILL)
 
 window.winProcess(update)
+```
+
+*SimpleButton*
+
+```python
+from OpenGameEngine import *
+
+window = Window()
+window.initWindow()
+window.setBG(Color3(1, 1, 1))
+
+def test_func():
+    print("Hello, World!")
+
+window.addButton(
+    SimpleButton("Hello, World!", Vec2(20, 20), Vec2(120, 60), Color3(0, 0, 0), test_func) # arg1 - text, arg2 - position, arg3 - size, arg4 - text color (fg), arg5 - function (optional)
+)
+
+window.winProcess(fps=60)
+```
+
+*SimpleParticles*
+
+```python
+from OpenGameEngine import *
+
+window = Window()
+window.initWindow()
+window.setBG(Color3(1, 1, 1))
+
+particles = Graphics.SimpleParticles()
+particles.setPosition(Vec2(500, 400))
+particles.setColor(Color3(0.0, 0.0, 0.0))
+particles.setSize(Vec2(20, 20))
+particles.setGravity(Vec1(2))
+particles.setSpawnRadius(Vec2(10, 10))
+particles.setLifetime(60)
+
+def update():
+    if Keyboard.KeyPressed(Key("a"), window):
+        particles.position.x -= 4
+    elif Keyboard.KeyPressed(Key("d"), window):
+        particles.position.x += 4
+    
+    if Keyboard.KeyPressed(Key("w"), window):
+        particles.position.y -= 4
+    elif Keyboard.KeyPressed(Key("s"), window):
+        particles.position.y += 4
+    
+    particles.drawParticles()
+
+window.winProcess(update, 60)
 ```
