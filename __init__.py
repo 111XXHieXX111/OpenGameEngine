@@ -5,4 +5,5 @@ from .Control.keyboard import Keyboard
 from .Control.mouse import Mouse
 from .Graphics import *
 from .Utils.texture import loadTexture
+from .Utils.frametimer import frameTimer
 from .Core.glob import log_system
