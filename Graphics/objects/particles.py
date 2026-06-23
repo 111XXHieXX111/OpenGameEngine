@@ -4,13 +4,16 @@ from ...Core.modules import random
 from ...Utils.frametimer import frameTimer
 
 class Particle:
-    def __init__(self, lifetime, gravity, color, size, position, particlelist):
+    def __init__(self, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction):
         self.surface = Rectangle()
         self.surface.setColor(color)
         self.surface.setSize(size)
         self.surface.setPosition(position)
+        self.surface.setTexture(texture)
+        self.surface.setRotation(rotation)
         
         self.gravity = gravity
+        self.direction = direction
         self.particlelist = particlelist
         
         self.lifetime_timer = frameTimer(lifetime, self.destroyParticle)
@@ -20,6 +23,7 @@ class Particle:
     
     def physicsProcess(self):
         self.surface.position.y += self.gravity.x
+        self.surface.position.x += self.direction.x
         self.surface.calculateSize()
         
         self.lifetime_timer.timerProcess()
@@ -27,15 +31,50 @@ class Particle:
     def drawParticle(self):
         self.surface.drawRectangle(drawMode.FILL)
 
-class SimpleParticles:
+class simpleParticles:
     def __init__(self):
-        self.position = Vec2(0.0, 0.0)
-        self.gravity = Vec1(0.0)
-        self.size = Vec2(0.0, 0.0)
-        self.color = Color4(0.0, 0.0, 0.0, 0.0)
-        self.spawnradius = Vec2(0.0, 0.0)
-        self.lifetime = 0
+        
+        # PARTICLES DATA
+        
         self.particles = []
+        self.max_particles = 120
+        
+        # SIZE
+        
+        self.size = Vec2(0.0, 0.0)
+        self.rnd_size = Vec2(0.0, 0.0)
+        self.rnd_size_rounded = True
+        
+        # POSITION
+        
+        self.position = Vec2(0.0, 0.0)
+        self.spawnradius = Vec2(0.0, 0.0)
+        
+        # ROTATION
+        
+        self.rotation = Vec1(0.0)
+        self.rnd_rotation = Vec1(0.0)
+        
+        # COLOR
+        
+        self.color = Color4(0.0, 0.0, 0.0, 0.0)
+        
+        # TEXTURE
+        
+        self.texture = None
+        
+        # PHYSICS
+        
+        self.gravity = Vec1(0.0)
+        
+        # PROCESS
+        
+        self.lifetime = 0
+        
+        # DIRECTION
+        
+        self.directionX = Vec1(0.0)
+        self.rnd_directionX = Vec2(0.0, 0.0)
 
     def setGravity(self, gravity:Vec1):
         self.gravity = gravity
@@ -55,12 +94,75 @@ class SimpleParticles:
     def setSpawnRadius(self, radius:Vec2=Vec2(0.0, 0.0)):
         self.spawnradius = radius
     
+    def setTexture(self, texture):
+        self.texture = texture
+    
+    def setDirectionX(self, dirX:Vec2):
+        self.directionX = dirX
+    
+    def setRandomRotation(self, maxR:Vec1):
+        self.rnd_rotation = maxR
+    
+    def setRandomSize(self, maxS:Vec2, rounded:bool=True):
+        self.rnd_size = maxS
+        self.rnd_size_rounded = rounded
+    
+    def setRandomDirectionX(self, maxD:Vec2):
+        self.rnd_directionX = maxD
+    
+    def setMaxParticles(self, maxP:int):
+        self.max_particles = maxP
+    
     def addParticle(self):
+        
+        # CHECK MAX PARTICLES
+        
+        if len(self.particles) > self.max_particles:
+            
+            # SKIP ADD
+            
+            return
+        
+        
+        # GENERATE OFFSETS
+        
         random_offset = Vec2(
             random.uniform(-self.spawnradius.x, self.spawnradius.x),
             random.uniform(-self.spawnradius.y, self.spawnradius.y)
         )
-        self.particles.append(Particle(self.lifetime, self.gravity, self.color, self.size, self.position+random_offset, self.particles))
+        
+        random_rotate = Vec1(
+            random.uniform(0, self.rnd_rotation.x)
+        )
+        
+        if self.rnd_size_rounded:
+            size = random.uniform(-self.rnd_size.x, self.rnd_size.x)
+            random_size = Vec2(size, size)
+        else:
+            random_size = Vec2(
+                random.uniform(-self.rnd_size.x, self.rnd_size.x),
+                random.uniform(-self.rnd_size.y, self.rnd_size.y)
+            )
+
+        random_directionX = Vec1(
+            random.uniform(self.rnd_directionX.x, self.rnd_directionX.y)
+        )
+        
+        # ADD PARTICLE
+        
+        self.particles.append(
+            Particle(
+                self.lifetime, 
+                self.gravity, 
+                self.color, 
+                self.size+random_size,
+                self.position+random_offset, 
+                self.particles,
+                self.texture,
+                self.rotation+random_rotate,
+                self.directionX+random_directionX
+            )
+        )
     
     def drawParticles(self):
         self.addParticle()

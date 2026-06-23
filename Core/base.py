@@ -30,6 +30,18 @@ class Vec1:
     def getVectors(self):
         return self.x
 
+    def __add__(self, other):
+        return Vec1(self.x + other.x)
+    
+    def __sub__(self, other):
+        return Vec1(self.x - other.x)
+    
+    def __mul__(self, scalar):
+        return Vec1(self.x * scalar.x)
+    
+    def __truediv__(self, scalar):
+        return Vec1(self.x / scalar.x)
+
 # COLOR
 
 class c256:

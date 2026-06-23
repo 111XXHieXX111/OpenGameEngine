@@ -52,7 +52,6 @@ class Triangle(Base):
         
         if not self.calculated:
             self.calculateSize()
-            return
         
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)

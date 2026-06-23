@@ -5,4 +5,4 @@ from .objects.rectangle import Rectangle
 from .objects.triangle import Triangle
 from .objects.circle import Circle
 from .objects.collision_check import checkCollision
-from .objects.particles import SimpleParticles
+from .objects.particles import simpleParticles

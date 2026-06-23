@@ -8,6 +8,6 @@ log_system.addInfo("Logging system connected!")
 debug = True
 render_items = []
 
-VERSION = "26.1.0.1R"
+VERSION = "26.1.0.1"
 
 log_system.addInfo(f"Open Game Engine. Version:{VERSION}")

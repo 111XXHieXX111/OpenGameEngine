@@ -145,7 +145,9 @@ polygon.drawPolygon(drawMode.FILL)           # arg1 - drawMode
 
 **Important! draw** must be placed in the function specified by **Window** in **winProcess**
 
-There is also a **checkcollision** function, it checks whether the first primitive touches the second one. Primitives such as **Rectangle**, **Triangle**, **Circle** need to call the calculateSize function in order to calculate the size, and it is called **BEFORE draw**
+There is also a **checkcollision** function, it checks whether the first primitive touches the second one. 
+**Note:** This function uses AABB (Axis-Aligned Bounding Box). It creates an axis-aligned rectangle around each shape, so for rotated objects the collision area will be larger than the actual shape. For non-rotated objects it works perfectly.
+Primitives such as **Rectangle**, **Triangle**, **Circle** need to call the calculateSize function in order to calculate the size, and it is called **BEFORE draw**
 
 Draw modes:
 + POINTS
@@ -165,15 +167,27 @@ SimpleParticles has methods:
 + setGravity - set particles gravity, arg1 - Vec1
 + setSpawnRadius - set particles spawn radius (box shape), arg1 - Vec2
 + setLifetime - set particles life time, arg1 - int
++ setTexture - set particles texture, arg1 - loaded texture
++ setDirectionX - set particles direction in axis X (offset), arg1 - Vec1 (-1 left, 1 right, you can have any values)
++ setRandomRotation - set particles random rotation, arg1 - Vec1 (max rotation)
++ setRandomSize - set particles random size, arg1 - Vec2 (maximum deviation from the base size in X and Y), arg2 - Bool (Answers whether random sizes will be the same.)
++ setRandomDirectionX - set particles random direction, arg1 - Vec2 (value1 - minimum posX, value2 - maximum)
++ setMaxParticles - set max **drawing particles**, arg1 - int
 
 ```python
-particles = Graphics.SimpleParticles()
+particles = Graphics.simpleParticles()
 particles.setPosition(Vec2(0.0, 0.0))
 particles.setColor(Color3(0.0, 0.0, 0.0))
 particles.setSize(Vec2(0.0, 0.0))
 particles.setGravity(Vec1(0.0))
 particles.setSpawnRadius(Vec2(0.0, 0.0))
 particles.setLifetime(0.0)
+particles.setTexture(None)
+particles.setDirectionX(Vec1(0.0))
+particles.setRandomRotation(Vec1(0.0))
+particles.setRandomSize(Vec2(0.0, 0.0), None)
+particles.setRandomDirectionX(Vec2(0.0, 0.0))
+particles.setMaxParticles(0)
 ```
 
 ### Control
@@ -197,7 +211,7 @@ Mouse.setVisibility(Window, True)                # Sets the mouse visibility, ar
 def test_func():
     print("Hello, World!")
 
-timer = frameTimer(60, test_func) # arg1 - target framel, arg2 - func
+timer = frameTimer(60, test_func) # arg1 - target frame, arg2 - func
 
 def update():
     timer.timerProcess()
@@ -358,13 +372,18 @@ window = Window()
 window.initWindow()
 window.setBG(Color3(1, 1, 1))
 
-particles = Graphics.SimpleParticles()
+particles = Graphics.simpleParticles()
 particles.setPosition(Vec2(500, 400))
-particles.setColor(Color3(0.0, 0.0, 0.0))
+particles.setColor(Color3(1, 1, 1))
 particles.setSize(Vec2(20, 20))
 particles.setGravity(Vec1(2))
 particles.setSpawnRadius(Vec2(10, 10))
-particles.setLifetime(60)
+particles.setLifetime(120)
+particles.setTexture(None)
+particles.setDirectionX(Vec1(0))
+particles.setRandomRotation(Vec1(360))
+particles.setRandomSize(Vec2(15, 25))
+particles.setRandomDirectionX(Vec2(-5, 5))
 
 def update():
     if Keyboard.KeyPressed(Key("a"), window):
