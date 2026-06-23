@@ -154,6 +154,28 @@ Draw modes:
 + FILL
 + RECT
 
+#### Particles
+
+##### SimpleParticles
+
+SimpleParticles has methods:
++ setPosition - set particles position, arg1 - Vec2
++ setColor - set particles color, arg1 - Color3 | Color4
++ setSize - set particles size, arg1 - Vec2
++ setGravity - set particles gravity, arg1 - Vec1
++ setSpawnRadius - set particles spawn radius (box shape), arg1 - Vec2
++ setLifetime - set particles life time, arg1 - int
+
+```python
+particles = Graphics.SimpleParticles()
+particles.setPosition(Vec2(0.0, 0.0))
+particles.setColor(Color3(0.0, 0.0, 0.0))
+particles.setSize(Vec2(0.0, 0.0))
+particles.setGravity(Vec1(0.0))
+particles.setSpawnRadius(Vec2(0.0, 0.0))
+particles.setLifetime(0.0)
+```
+
 ### Control
 ```python
 # Keyboard
@@ -166,6 +188,22 @@ Mouse.MouseKeyPressed(Window, MouseButton.LEFT)  # Return bool value, if key is 
 Mouse.MouseKeyReleased(Window, MouseButton.LEFT) # Return bool value, if key is released - True else False, arg1 - Window, arg2 - MouseButton
 Mouse.setVisibility(Window, True)                # Sets the mouse visibility, arg1 - Window, arg2 - Bool If set to True, it is visible, if set to False, it is invisible but not captured.
 ```
+
+### Other
+
+#### frameTimer
+
+```python
+def test_func():
+    print("Hello, World!")
+
+timer = frameTimer(60, test_func) # arg1 - target framel, arg2 - func
+
+def update():
+    timer.timerProcess()
+```
+
+The function is triggered when the current frame is the same in count as the number of the target. When the goal is reached, the timer is reset and so on in a circle.
 
 ### Game examples
 
