@@ -1,3 +1,8 @@
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Github](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/111XXHieXX111)
+![OpenGL](https://img.shields.io/badge/OpenGL-4.6-5586A4?logo=opengl&logoColor=white)
+![GLFW](https://img.shields.io/badge/GLFW-3.4-865500?logo=glfw&logoColor=white)
+
 # OpenGameEngine
 Game engine maded on OpenGL, Python 3.12
 
@@ -74,7 +79,7 @@ def update():
     fps = window.getFPS()
     
     # Show fps
-    window.drawText(str(fps), Vec2(0, 0), Color3(1, 0, 0)) # 1 arg - text, 2 arg - position, 3 arg - color
+    window.drawText(str(fps), Vec2(0, 0), Color3(1, 0, 0)) # arg1 - text, arg2 - position, arg3 - color
 
     # Get current window sizes
     cur_winsize = window.current_window_sizes
@@ -83,7 +88,24 @@ def update():
 window.winProcess(update, 60)
 ```
 
-To open the unlock menu, press F12
+To open the unlock menu, press **F12**
+
+Window has methods addButton/removeButton
++ addButton - add button in window, arg1 - SimpleButton
++ removeButton - remove button in window, arg1 - SimpleButton
+
+```python
+btn = SimpleButton("Button", Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0), None) # arg1 - text, arg2 - position, arg3 - size, arg4 - text color (fg), arg5 - function (optional)
+window.addButton(btn)                                                                     # Rendering is automatic
+```
+
+Window has method drawText
++ drawText - drawing any text in window, arg1 - text, arg2 - position, arg3 - text color (fg)
+
+```python
+def update(): # Function in winProcess
+    window.drawText("Hello, World!", Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0))
+```
 
 ### Graphics
 
