@@ -222,6 +222,24 @@ def update():
 
 The function is triggered when the current frame is the same in count as the number of the target. When the goal is reached, the timer is reset and so on in a circle.
 
+#### dataSave
+
+```python
+
+key = genKey()                     # Generate random key
+
+data = {                           # Your data
+    "a":2
+}
+
+saveData("save.dat", data, key)    # Save data to file, arg1 - path, arg2 - data, arg3 - key
+
+loaded = loadData("save.dat", key) # Load data, arg1 - path, arg2 - key
+
+print(loaded)
+
+```
+
 ### Game examples
 
 *Keyboard*

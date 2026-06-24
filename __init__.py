@@ -6,4 +6,6 @@ from .Control.mouse import Mouse
 from .Graphics import *
 from .Utils.texture import loadTexture
 from .Utils.frametimer import frameTimer
+from .Utils.saver import saveData, loadData
+from .Utils.crypto import genKey
 from .Core.glob import log_system

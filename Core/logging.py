@@ -24,7 +24,7 @@ class Logging:
             if self.colored:
                 pre += f'(\033[1m{self.getfile()}\033[0m) '
             else:
-                pre += f'({self.getfile()})'
+                pre += f'({self.getfile()}) '
         
         if self.addtime:
             if self.colored:

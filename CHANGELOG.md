@@ -8,5 +8,5 @@ added **frameTimer** + **Particle system** + **Update README.md** + **Improved w
 
 # 24.06.26
 
-updated **Simple particles**
-added **randomColor3** + **randomColor4**
+updated **Simple particles**, **log_system**
+added **randomColor3** + **randomColor4** + **genKey** + **saveData** + **loadData**
