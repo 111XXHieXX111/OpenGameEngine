@@ -43,7 +43,7 @@ class Triangle(Base):
             self.vertexes[i] = Vec2(x_new, y_new)
 
         for i in range(3):
-            self.vertexes[i].plusVector(center)
+            self.vertexes[i] += center
 
         self.calculated = True
     
