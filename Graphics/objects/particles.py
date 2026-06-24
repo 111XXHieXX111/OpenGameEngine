@@ -99,7 +99,7 @@ class simpleParticles:
     def setTexture(self, texture):
         self.texture = texture
     
-    def setDirectionX(self, dirX:Vec2):
+    def setDirectionX(self, dirX:Vec1):
         self.directionX = dirX
     
     def setRandomRotation(self, maxR:Vec1):
@@ -154,6 +154,8 @@ class simpleParticles:
             random_directionX = Vec1(
                 random.uniform(self.rnd_directionX.x, self.rnd_directionX.y)
             )
+        else:
+            random_directionX = Vec1(0.0)
         
         if self.rnd_color:
             random_color = randomColor4(False)
