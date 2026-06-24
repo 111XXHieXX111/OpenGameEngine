@@ -174,6 +174,7 @@ SimpleParticles has methods:
 + setRandomSize - set particles random size, arg1 - Vec2 (maximum deviation from the base size in X and Y), arg2 - Bool (Answers whether random sizes will be the same.)
 + setRandomDirectionX - set particles random direction, arg1 - Vec2 (value1 - minimum posX, value2 - maximum)
 + setMaxParticles - set max **drawing particles**, arg1 - int
++ setRandomColor - set random color, arg1 - bool (if True - enabled else disabled random)
 
 ```python
 particles = Graphics.simpleParticles()
@@ -189,6 +190,7 @@ particles.setRandomRotation(Vec1(0.0))
 particles.setRandomSize(Vec2(0.0, 0.0), None)
 particles.setRandomDirectionX(Vec2(0.0, 0.0))
 particles.setMaxParticles(0)
+particles.setRandomColor(False)
 ```
 
 ### Control
@@ -374,17 +376,19 @@ window.initWindow()
 window.setBG(Color3(1, 1, 1))
 
 particles = Graphics.simpleParticles()
-particles.setPosition(Vec2(500, 400))
-particles.setColor(Color3(1, 1, 1))
-particles.setSize(Vec2(20, 20))
-particles.setGravity(Vec1(2))
-particles.setSpawnRadius(Vec2(10, 10))
-particles.setLifetime(120)
+particles.setPosition(Vec2(100, 100))
+particles.setColor(Color3(0.0, 0.0, 0.0))
+particles.setSize(Vec2(20.0, 20.0))
+particles.setGravity(Vec1(2.0))
+particles.setSpawnRadius(Vec2(2.0, 2.0))
+particles.setLifetime(60.0)
 particles.setTexture(None)
-particles.setDirectionX(Vec1(0))
-particles.setRandomRotation(Vec1(360))
-particles.setRandomSize(Vec2(15, 25))
-particles.setRandomDirectionX(Vec2(-5, 5))
+particles.setDirectionX(Vec1(0.0))
+particles.setRandomRotation(Vec1(0.0))
+particles.setRandomSize(Vec2(5.0, 5.0), None)
+particles.setRandomDirectionX(Vec2(-1.0, 1.0))
+particles.setMaxParticles(1200)
+particles.setRandomColor(True)
 
 def update():
     if Keyboard.KeyPressed(Key("a"), window):

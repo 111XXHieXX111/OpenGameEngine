@@ -6,3 +6,4 @@ from .objects.triangle import Triangle
 from .objects.circle import Circle
 from .objects.collision_check import checkCollision
 from .objects.particles import simpleParticles
+from .objects.randomcolor import randomColor3, randomColor4

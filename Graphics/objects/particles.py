@@ -1,7 +1,8 @@
 from ...Core.base import Vec1, Vec2, Color3, Color4, drawMode, System
-from ..objects.rectangle import Rectangle
 from ...Core.modules import random
 from ...Utils.frametimer import frameTimer
+from ..objects.rectangle import Rectangle
+from .randomcolor import randomColor4
 
 class Particle:
     def __init__(self, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction):
@@ -58,6 +59,7 @@ class simpleParticles:
         # COLOR
         
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
+        self.rnd_color = False
         
         # TEXTURE
         
@@ -110,6 +112,9 @@ class simpleParticles:
     def setRandomDirectionX(self, maxD:Vec2):
         self.rnd_directionX = maxD
     
+    def setRandomColor(self, enabled:bool):
+        self.rnd_color = enabled
+    
     def setMaxParticles(self, maxP:int):
         self.max_particles = maxP
     
@@ -131,9 +136,10 @@ class simpleParticles:
             random.uniform(-self.spawnradius.y, self.spawnradius.y)
         )
         
-        random_rotate = Vec1(
-            random.uniform(0, self.rnd_rotation.x)
-        )
+        if self.rnd_rotation:
+            random_rotate = Vec1(
+                random.uniform(0, self.rnd_rotation.x)
+            )
         
         if self.rnd_size_rounded:
             size = random.uniform(-self.rnd_size.x, self.rnd_size.x)
@@ -144,9 +150,15 @@ class simpleParticles:
                 random.uniform(-self.rnd_size.y, self.rnd_size.y)
             )
 
-        random_directionX = Vec1(
-            random.uniform(self.rnd_directionX.x, self.rnd_directionX.y)
-        )
+        if self.rnd_directionX:
+            random_directionX = Vec1(
+                random.uniform(self.rnd_directionX.x, self.rnd_directionX.y)
+            )
+        
+        if self.rnd_color:
+            random_color = randomColor4(False)
+        else:
+            random_color = self.color
         
         # ADD PARTICLE
         
@@ -154,7 +166,7 @@ class simpleParticles:
             Particle(
                 self.lifetime, 
                 self.gravity, 
-                self.color, 
+                random_color, 
                 self.size+random_size,
                 self.position+random_offset, 
                 self.particles,
