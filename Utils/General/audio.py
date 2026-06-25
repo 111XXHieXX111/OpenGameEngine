@@ -58,8 +58,8 @@ class soundManager(Manager):
         self.objs = []
 
     def addSound(self, name:str, sound:loadSound):
-        index, sound = self._find(name)
-        if sound:
+        index, s = self._find(name)
+        if s:
             log_system.addError(f"Sound:{name} with this name already exists")
             return
         
