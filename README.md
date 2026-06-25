@@ -249,7 +249,7 @@ scenes.sceneProcess()            # Place in update
 
 **Scene class:**
 
-```pytnon
+```python
 class scene:
     def sceneInit(self):
         pass # Init your scene
