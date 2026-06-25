@@ -10,3 +10,7 @@ added **frameTimer** + **Particle system** + **Update README.md** + **Improved w
 
 updated **Simple particles**, **log_system**
 added **randomColor3** + **randomColor4** + **genKey** + **saveData** + **loadData**
+
+# 25.06.2026
+
+added **checkInDebbuger** + **requirements.txt** + **builtin icons**

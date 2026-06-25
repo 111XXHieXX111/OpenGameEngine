@@ -9,4 +9,4 @@ from .Utils.frametimer import frameTimer
 from .Utils.saver import saveData, loadData
 from .Utils.crypto import genKey
 from .Utils.trace import checkInDebbuger
-from .Core.glob import log_system
+from .Core.glob import log_system, icons

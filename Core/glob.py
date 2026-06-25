@@ -33,4 +33,13 @@ render_items = []
 
 VERSION = "26.1.0.2"
 
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
+
+icons = {
+    "Icon": os.path.join(PROJECT_ROOT, "Icons", "OGE.png"),
+    "HRIcon": os.path.join(PROJECT_ROOT, "Icons", "OGEHR.png"),
+    "IcoIcon": os.path.join(PROJECT_ROOT, "Icons", "OGE.ico")
+}
+
 log_system.addInfo(f"Open Game Engine. Version:{VERSION}")
