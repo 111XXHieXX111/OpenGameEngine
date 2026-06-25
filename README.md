@@ -235,6 +235,35 @@ print(loaded)
 
 ```
 
+### Sound
+
+#### loadSound
+
+```python
+sound = loadSound("sound.wav", "float32") # Load sound, arg1 - audio file, arg2 - type (optional)
+sound.play(None)                          # Play loaded sound, arg1 - loop (bool) (optional)
+sound.stop()                              # Stop playing sound
+sound.isPlaying()                         # Return is playing sound
+sound.getVolume()                         # Return sound volume
+sound.setVolume(0.0)                      # Set sound volume
+```
+
+#### soundManager
+
+```python
+manager = soundManager()
+manager.addSound("sound", loadSound("sound.wav")) # Add sound, arg1 - name, arg2 - loaded sound
+manager.playSound("sound")                        # Play sound, arg1 - name
+manager.stopSound("sound")                        # Stop sound, arg1 - name
+manager.isPlayingSound("sound")                   # Return is playing sound, arg1 - name
+manager.setSoundVolume("sound", 0.0)              # Set sound volume, arg1 - name, arg2 - volume
+manager.getSoundVolume("sound")                   # Return sound volume, arg1 - name
+manager.setGeneralVolume(0.0)                     # Set volume for alls sounds, arg1 - volume
+manager.stopSounds()                              # Stop all sounds
+manager.getSound("sound")                         # Return sound, arg1 - name
+manager.removeSound("sound")                      # Remove sound, arg1 - name
+```
+
 ### Game examples
 
 *Keyboard*
