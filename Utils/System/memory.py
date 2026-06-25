@@ -1,7 +1,7 @@
-from ..Core.glob import debug
+from ...Core.glob import debug
 import os
 
-class MemoryMonitor:
+class memoryMonitor:
     def __init__(self):
         self.peak_memory = 0
         if debug:

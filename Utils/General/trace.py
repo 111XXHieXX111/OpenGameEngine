@@ -1,4 +1,4 @@
-from ..Core.modules import sys
+from ...Core.modules import sys
 
 def checkInDebbuger():
     if sys.gettrace() is not None:

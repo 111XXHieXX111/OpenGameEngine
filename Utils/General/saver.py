@@ -1,5 +1,5 @@
-from .crypto import encryptData, decryptData
-from ..Core.modules import json
+from ..System.crypto import encryptData, decryptData
+from ...Core.modules import json
 
 def saveData(path:str, data, key:str):
     json_str = json.dumps(data)

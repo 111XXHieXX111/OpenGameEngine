@@ -1,7 +1,7 @@
 from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12 # type: ignore
 from ...Core.glob import log_system, debug, render_items
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
-from ...Utils.memory import MemoryMonitor
+from ...Utils.System.memory import memoryMonitor
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
 from .gui import _drawText, SimpleButton
@@ -75,7 +75,7 @@ class Window:
         
         log_system.addInfo("Memory manager init")
         
-        self.momorymonitor = MemoryMonitor()
+        self.momorymonitor = memoryMonitor()
 
         # MOVE WINDOW TO THE CURRENT CONTEXT
 

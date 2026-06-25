@@ -1,4 +1,4 @@
-from ..Core.modules import Fernet
+from ...Core.modules import Fernet
 
 def encryptData(data, key:str):
     fernet = Fernet(key.encode() if isinstance(key, str) else key)

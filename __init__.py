@@ -4,9 +4,10 @@ from .Graphics.window.gui import SimpleButton
 from .Control.keyboard import Keyboard
 from .Control.mouse import Mouse
 from .Graphics import *
-from .Utils.texture import loadTexture
-from .Utils.frametimer import frameTimer
-from .Utils.saver import saveData, loadData
-from .Utils.crypto import genKey
-from .Utils.trace import checkInDebbuger
+from .Utils.General.texture import loadTexture
+from .Utils.General.frametimer import frameTimer
+from .Utils.General.saver import saveData, loadData
+from .Utils.General.trace import checkInDebbuger
+from .Utils.General.audio import loadSound, soundManager
+from .Utils.System.crypto import genKey
 from .Core.glob import log_system, icons

@@ -1,6 +1,6 @@
-from ..Core.modules import GL, os
-from ..Core.base import textureType
-from ..Core.glob import log_system
+from ...Core.modules import GL, os
+from ...Core.base import textureType
+from ...Core.glob import log_system
 
 def loadTexture(path:str, textureType:textureType):
     
