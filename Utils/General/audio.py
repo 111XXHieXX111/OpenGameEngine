@@ -11,7 +11,7 @@ class loadSound:
         self._playing = False
         self._volume = 1.0
         self.data, self.fs = sf.read(self.path, dtype=self.audiotype)
-        log_system.addError("Sound loaded")
+        log_system.addInfo("Sound loaded")
     
     def play(self, loop: bool=False):
         import sounddevice as sd
