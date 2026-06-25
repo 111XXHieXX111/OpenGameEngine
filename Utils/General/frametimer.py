@@ -10,9 +10,7 @@ class frameTimer:
         if self.frame >= self.target:
             if self.func:
                 self.func()
+                self.frame = 0
             return True
-        
-        if self.frame > self.target:
-            self.frame = 0
         
         return False

@@ -9,5 +9,6 @@ from .Utils.General.frametimer import frameTimer
 from .Utils.General.saver import saveData, loadData
 from .Utils.General.trace import checkInDebbuger
 from .Utils.General.audio import loadSound, soundManager
+from .Utils.General.scene import sceneManager
 from .Utils.System.crypto import genKey
 from .Core.glob import log_system, icons
