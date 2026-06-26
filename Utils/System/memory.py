@@ -1,4 +1,5 @@
-from ...Core.glob import debug
+from ...Core.glob import debug, textures, log_system
+from ...Core.modules import GL
 import os
 
 class memoryMonitor:
@@ -23,3 +24,10 @@ class memoryMonitor:
             "vms": mem.vms / (1024 * 1024),
             "peak": self.peak_memory
         }
+
+def memoryClean():
+    log_system.addInfo(f"Deleting {len(textures)} textures")
+    
+    GL.glDeleteTextures(len(textures), textures)
+    
+    textures.clear()

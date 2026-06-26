@@ -14,6 +14,11 @@ class Keyboard:
                 if window.iconifiedwork:
                     return
         
+        # CHECK HANDLER
+        
+        if window.selected_keyboard:
+            return
+        
         # CHECK TYPE
         
         if not isinstance(key, Key):
@@ -33,6 +38,11 @@ class Keyboard:
             if window.iconified:
                 if window.iconifiedwork:
                     return
+        
+        # CHECK HANDLER
+        
+        if window.selected_keyboard:
+            return
         
         # CHECK TYPE
         

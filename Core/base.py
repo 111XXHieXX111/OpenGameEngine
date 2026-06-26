@@ -4,6 +4,8 @@ from .glob import log_system
 # VECTORS
 
 class Vec2:
+    __slots__ = ("x", "y")
+    
     def __init__(self, x:int | float, y:int | float):
         self.x = x
         self.y = y
@@ -24,6 +26,8 @@ class Vec2:
         return Vec2(self.x / scalar, self.y / scalar)
 
 class Vec1:
+    __slots__ = ("x",)
+    
     def __init__(self, x:int | float):
         self.x = x
     
@@ -45,10 +49,12 @@ class Vec1:
 # COLOR
 
 class c256:
-    def __new__(cls, x: float):
+    def __new__(cls, x:float):
         return x / 256
 
 class Color3:
+    __slots__ = ("r", "g", "b")
+    
     def __init__(self, r:float | c256, g:float | c256, b:float | c256):
         self.r, self.g, self.b = r, g, b
 
@@ -56,6 +62,8 @@ class Color3:
         return self.r, self.g, self.b
 
 class Color4:
+    __slots__ = ("r", "g", "b", "a")
+    
     def __init__(self, r:float | c256, g:float | c256, b:float | c256, a:float | c256):
         self.r, self.g, self.b, self.a = r, g, b, a
 
@@ -65,6 +73,8 @@ class Color4:
 # BINDS
 
 class Key:
+    __slots__ = ("key")
+    
     def __init__(self, key:str):
         self.key = key
     
@@ -123,6 +133,12 @@ class drawMode:
 class shaderType:
     VERTEX = GL.GL_VERTEX_SHADER
     FRAGMENT = GL.GL_FRAGMENT_SHADER
+
+# BATCH
+
+class batchDrawing:
+    DYNAMIC = "DYNAMIC"
+    STATIC = "STATIC"
 
 # TEXTURES
 

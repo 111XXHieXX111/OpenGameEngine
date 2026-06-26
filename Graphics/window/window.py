@@ -1,10 +1,10 @@
 from ...Core.modules import glfw, GL, time, glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12 # type: ignore
-from ...Core.glob import log_system, debug, render_items
+from ...Core.glob import log_system, debug, render_items, textures
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
-from ...Utils.System.memory import memoryMonitor
+from ...Utils.System.memory import memoryMonitor, memoryClean
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
-from .gui import _drawText, SimpleButton
+from .gui import _drawText, SimpleButton, Frame, textInput
 
 class Window:
     def __init__(self):
@@ -27,7 +27,7 @@ class Window:
             "stretch":stretchType.RELATIVELY
         }
         
-        self.buttons = []
+        self.elements = []
 
         self.frame_count = 0
         self.fps = 0
@@ -37,12 +37,17 @@ class Window:
         self.iconifiedwork = True
         
         self.debugmenu = False
+        
+        self.selected_keyboard = None
 
         # CURRENT SIZES
 
         log_system.addInfo("Create current win sizes")
 
         self.current_window_sizes = [640, 480]
+
+    def _on_close_callback(self, window):
+        memoryClean()
 
     def _iconify_callback(self, window, iconified):
         self.iconified = iconified
@@ -96,6 +101,7 @@ class Window:
         # CONNECT CALLBACK(S)
         
         glfw.set_window_iconify_callback(self.window, self._iconify_callback)
+        glfw.set_window_close_callback(self.window, self._on_close_callback)
 
     def setStretch(self, stretch:stretchType):
         log_system.addInfo("Setting stretch")
@@ -185,11 +191,11 @@ class Window:
     def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
         _drawText(self, text, position, color, debug_only)
     
-    def addButton(self, button:SimpleButton):
-        self.buttons.append(button)
+    def addElement(self, element:SimpleButton | Frame | textInput):
+        self.elements.append(element)
     
-    def removeButton(self, button:SimpleButton):
-        self.buttons.remove(button)
+    def removeElement(self, element:SimpleButton | Frame | textInput):
+        self.elements.remove(element)
     
     def _render_frame(self, update=None):
         
@@ -263,6 +269,18 @@ class Window:
         if Keyboard.KeyJustPressed(Key("f12"), self) and debug:
             self.debugmenu = not self.debugmenu
         
+        # DRAW ELEMENTS
+        
+        for element in self.elements:
+            if isinstance(element, SimpleButton):
+                element._process(self)
+                element._draw(self)
+            elif isinstance(element, Frame):
+                element._draw(self)
+            elif isinstance(element, textInput):
+                element._process(self)
+                element._draw(self)
+        
         # DEBUG SHOW
         
         if self.debugmenu and debug:
@@ -281,14 +299,9 @@ class Window:
                 f"VMS:{memory_info['vms']:.2f}MB",
                 f"Memory peak:{memory_info['peak']:.2f}MB"
             ]
+            
             for index, label in enumerate(text_lines):
                 self.drawText(label, Vec2(0, index*padding), debug_only=True)
-
-        # BUTTONS DRAW
-        
-        for button in self.buttons:
-            button._process(self)
-            button._draw(self)
         
         # WINDOW PROCESS
         

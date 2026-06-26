@@ -118,6 +118,9 @@ class simpleParticles:
     def setMaxParticles(self, maxP:int):
         self.max_particles = maxP
     
+    def clearParticles(self):
+        self.particles.clear()
+    
     def addParticle(self):
         
         # CHECK MAX PARTICLES
@@ -127,7 +130,6 @@ class simpleParticles:
             # SKIP ADD
             
             return
-        
         
         # GENERATE OFFSETS
         

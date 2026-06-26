@@ -1,6 +1,6 @@
 from ...Core.modules import GL, os
 from ...Core.base import textureType
-from ...Core.glob import log_system
+from ...Core.glob import log_system, textures
 
 def loadTexture(path:str, textureType:textureType):
     
@@ -28,5 +28,7 @@ def loadTexture(path:str, textureType:textureType):
     GL.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGBA, img.width, img.height, 0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, img_data)
 
     GL.glBindTexture(GL.GL_TEXTURE_2D, 0)
+    
+    textures.append(tex_id)
     
     return tex_id

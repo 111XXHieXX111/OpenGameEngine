@@ -30,8 +30,9 @@ log_system.addInfo("Logging system connected!")
 
 debug = True
 render_items = []
+textures = []
 
-VERSION = "26.1.0.2"
+VERSION = "26.1.1.0R"
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)

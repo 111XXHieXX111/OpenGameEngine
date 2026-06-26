@@ -6,3 +6,4 @@ Pillow
 psutil
 soundfile
 sounddevice
+cryptography

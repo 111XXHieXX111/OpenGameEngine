@@ -50,6 +50,9 @@ textype = textureType.LINEAR # textureType has: LINEAR, NEAREST
 
 stype = stretchType.KEEP_ASPECT # stretchType has: EXPAND, RELATIVELY, KEEP_ASPECT
 
+# Batch
+
+bdrawing = batchDrawing.STATIC # batchDrawing has: STATIC, DYNAMIC
 ```
 
 ### Window
@@ -86,13 +89,25 @@ window.winProcess(update, 60)
 
 To open the unlock menu, press **F12**
 
-Window has methods addButton/removeButton
-+ addButton - add button in window, arg1 - SimpleButton
-+ removeButton - remove button in window, arg1 - SimpleButton
+Window has methods addElement/removeElement
++ addElement - add element in window, arg1 - SimpleButton | Frame | textInput
++ removeElement - remove element in window, arg1 - SimpleButton | Frame | textInput
 
 ```python
 btn = SimpleButton("Button", Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0), None) # arg1 - text, arg2 - position, arg3 - size, arg4 - text color (fg), arg5 - function (optional)
-window.addButton(btn)                                                                     # Rendering is automatic
+window.addElement(btn)                                                                    # Rendering is automatic
+```
+
+```python
+frm = Frame(Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0)) # arg1 - position, arg2 - size, arg3 - color
+window.addElement(frm)                                             # Rendering is automatic
+```
+
+```python
+inp = textInput(Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0)) # arg1 - position, arg2 - size, arg3 - color
+inp.getValue()                                                         # Return current text, arg1 - None
+inp.setValue("Text")                                                   # Set text, arg1 - str
+window.addElement(inp)                                                 # Rendering is automatic
 ```
 
 Window has method drawText
@@ -102,6 +117,10 @@ Window has method drawText
 def update(): # Function in winProcess
     window.drawText("Hello, World!", Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0))
 ```
+
+window has methods enableEventsByIconify/disableEventsByIconify
++ window.enableEventsByIconify - Enable events when window is minimized
++ window.disableEventsByIconify - Disable events when window is minimized
 
 ### Graphics
 
@@ -114,7 +133,7 @@ loadTexture("texturepath/texture.png", textureType.LINEAR) # Load texture, arg1 
 ```python
 rectangle = Graphics.Rectangle()
 triangle = Graphics.Triangle()
-circle = Graphics.Circle()
+circle = Graphics.Circle() # arg1 - int, number of segments (default 8)
 
 vertex = Graphics.Vertex()
 polygon = Graphics.Polygon([]) # Arg is vertexes list
@@ -152,40 +171,32 @@ Draw modes:
 + FILL
 + RECT
 
-#### Particles
+#### Batch
 
-##### SimpleParticles
+```python
+render = batchRender(batchDrawing.STATIC) # batchDrawing (STATIC - for static primitives, add it once. DYNAMIC - for dynamic primitives and are added to update.)
+render.addPrimitive(rect)                 # Add primitive (Only Rectangle, Triangle. Textures not supported!!! Don't use draw for batch)
+render.setDrawMode(drawMode.FILL)        # Set drawMode for primitives
+render.renderPrimitives()                 # Draw primitives, place in update
+```
 
-SimpleParticles has methods:
-+ setPosition - set particles position, arg1 - Vec2
-+ setColor - set particles color, arg1 - Color3 | Color4
-+ setSize - set particles size, arg1 - Vec2
-+ setGravity - set particles gravity, arg1 - Vec1
-+ setSpawnRadius - set particles spawn radius (box shape), arg1 - Vec2
-+ setLifetime - set particles life time, arg1 - int
-+ setTexture - set particles texture, arg1 - loaded texture
-+ setDirectionX - set particles direction in axis X (offset), arg1 - Vec1 (-1 left, 1 right, you can have any values)
-+ setRandomRotation - set particles random rotation, arg1 - Vec1 (max rotation)
-+ setRandomSize - set particles random size, arg1 - Vec2 (maximum deviation from the base size in X and Y), arg2 - Bool (Answers whether random sizes will be the same.)
-+ setRandomDirectionX - set particles random direction, arg1 - Vec2 (value1 - minimum posX, value2 - maximum)
-+ setMaxParticles - set max **drawing particles**, arg1 - int
-+ setRandomColor - set random color, arg1 - bool (if True - enabled else disabled random)
+#### SimpleParticles
 
 ```python
 particles = Graphics.simpleParticles()
-particles.setPosition(Vec2(0.0, 0.0))
-particles.setColor(Color3(0.0, 0.0, 0.0))
-particles.setSize(Vec2(0.0, 0.0))
-particles.setGravity(Vec1(0.0))
-particles.setSpawnRadius(Vec2(0.0, 0.0))
-particles.setLifetime(0.0)
-particles.setTexture(None)
-particles.setDirectionX(Vec1(0.0))
-particles.setRandomRotation(Vec1(0.0))
-particles.setRandomSize(Vec2(0.0, 0.0), None)
-particles.setRandomDirectionX(Vec2(0.0, 0.0))
-particles.setMaxParticles(0)
-particles.setRandomColor(False)
+particles.setPosition(Vec2(0.0, 0.0))         # Set particles position, arg1 - Vec2
+particles.setColor(Color3(0.0, 0.0, 0.0))     # Set particles color, arg1 - Color3 | Color4
+particles.setSize(Vec2(0.0, 0.0))             # Set particles size, arg1 - Vec2
+particles.setGravity(Vec1(0.0))               # Set particles gravity, arg1 - Vec1
+particles.setSpawnRadius(Vec2(0.0, 0.0))      # Set particles spawn radius (box shape), arg1 - Vec2
+particles.setLifetime(0.0)                    # Set particles life time, arg1 - int
+particles.setTexture(None)                    # Set particles texture, arg1 - loaded texture
+particles.setDirectionX(Vec1(0.0))            # Set particles direction in axis X (offset), arg1 - Vec1 (-1 left, 1 right, you can have any values)
+particles.setRandomRotation(Vec1(0.0))        # Set particles random rotation, arg1 - Vec1 (max rotation)
+particles.setRandomSize(Vec2(0.0, 0.0), None) # Set particles random size, arg1 - Vec2 (maximum deviation from the base size in X and Y), arg2 - Bool (Answers whether random sizes will be the same.)
+particles.setRandomDirectionX(Vec2(0.0, 0.0)) # Set particles random direction, arg1 - Vec2 (value1 - minimum posX, value2 - maximum)
+particles.setMaxParticles(0)                  # Set max drawing particles, arg1 - int
+particles.setRandomColor(False)               # Set random color, arg1 - bool (if True - enabled else disabled random)
 ```
 
 ### Control
@@ -256,6 +267,32 @@ class scene:
     
     def sceneProcess(self):
         pass # Update your scene
+```
+
+#### logSystem
+
+```python
+log_system.addInfo("Info message")                   # Add info log, arg1 - str
+log_system.addWarn("Warning message")                # Add warning log, arg1 - str
+log_system.addError("Error message")                 # Add error log, arg1 - str
+log_system.addCritical("Critical message")           # Add critical log, arg1 - str
+log_system.consoleStream(True)                       # Enable/disable console output, arg1 - bool
+log_system.getLog()                                  # Print all logs
+log_system.saveLog()                                 # Save logs to timestamp_log.txt
+```
+
+#### checkInDebbuger
+
+```python
+checkInDebbuger() # Return True if running under debugger, False otherwise
+```
+
+#### icons
+
+```python
+icons["Icon"]    # png icon
+icons["HRIcon"]  # high resoultion png icon
+icons["IcoIcon"] # ico icon
 ```
 
 ### Sound
@@ -424,7 +461,7 @@ window.setBG(Color3(1, 1, 1))
 def test_func():
     print("Hello, World!")
 
-window.addButton(
+window.addElement(
     SimpleButton("Hello, World!", Vec2(20, 20), Vec2(120, 60), Color3(0, 0, 0), test_func) # arg1 - text, arg2 - position, arg3 - size, arg4 - text color (fg), arg5 - function (optional)
 )
 
