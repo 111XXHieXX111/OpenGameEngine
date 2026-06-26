@@ -24,7 +24,7 @@ Developed with ❤️ by **XXHieXX**
 [GitHub](https://github.com/111XXHieXX111)
 
 ## Documentation
-The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the engine. [DOC](DOC.md)
+The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [DOC](DOC.md)
 
 ## Thank you for watching!
 By **XXHieXX**
