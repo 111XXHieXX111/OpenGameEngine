@@ -23,6 +23,8 @@ This **engine**, like some others, is provided as a library without a graphical 
 Developed with ❤️ by **XXHieXX**  
 [GitHub](https://github.com/111XXHieXX111)
 
+[Discord](https://discord.gg/PHpD3HzwBJ)
+
 ## Documentation
 The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [DOC](DOC.md)
 
