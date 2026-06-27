@@ -243,7 +243,7 @@ print(loaded)
 
 ```python
 scenes = sceneManager()          # Create scene manager
-scenes.addScene("Scene 1", None) # Add your scene, arg1 - name, arg2 - scene class
+scenes.addScene("Scene 1", sceneclass) # Add your scene, arg1 - name, arg2 - scene class
 scenes.selectScene("Scene 1")    # Select scene, arg1 - name
 scenes.removeScene("Scene 1")    # Remove your scene, arg1 - name
 scenes.sceneProcess()            # Place in update
