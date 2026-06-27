@@ -2,6 +2,8 @@ from .logging import Logging
 from .modules import sys, os
 
 def colorSupportChecker():
+    log_system.addInfo(f"Platform:{sys.platform}")
+    
     if not sys.stdout.isatty():
         return False
     
@@ -23,8 +25,10 @@ def colorSupportChecker():
     
     return True
 
-log_system = Logging(True, colorSupportChecker(), True)
+log_system = Logging(True, True, True)
 log_system.consoleStream(True)
+
+log_system.colored = colorSupportChecker()
 
 log_system.addInfo("Logging system connected!")
 
@@ -33,6 +37,8 @@ render_items = []
 textures = []
 
 VERSION = "26.1.1.0R"
+
+log_system.addInfo("Loading icons path's")
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
@@ -44,3 +50,24 @@ icons = {
 }
 
 log_system.addInfo(f"Open Game Engine. Version:{VERSION}")
+
+def logWrapper(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except KeyboardInterrupt:
+            log_system.addWarn("KeyboardInterrupt, undo action.")
+            return None
+        except PermissionError:
+            log_system.addError("Not enough rights!")
+            return None
+        except Exception as ex:
+            log_system.addError(f"{ex}")
+            return None
+    return wrapper
+
+def classWrapper(cls):
+    for name, method in cls.__dict__.items():
+        if callable(method):
+            setattr(cls, name, logWrapper(method))
+    return cls

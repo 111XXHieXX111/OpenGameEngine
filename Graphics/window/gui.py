@@ -1,8 +1,10 @@
 from ...Core.modules import GL, threading, keyboard, time, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12  # type: ignore
 from ...Core.base import Vec2, System, Color3, Color4, drawMode, MouseButton
+from ...Core.glob import classWrapper, logWrapper
 from ...Control.mouse import Mouse
 from ..objects.rectangle import Rectangle
 
+@logWrapper
 def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), debug_only=False, donthide=False):
     
     # DISABLE TEXT
@@ -38,6 +40,7 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
     for char in str(text):
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(char))
 
+@classWrapper
 class SimpleButton:
     def __init__(self, text=str, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), func=None):
         
@@ -123,6 +126,7 @@ class SimpleButton:
         elif not self.clicked and self.funcactivated:
             self.funcactivated = False
 
+@classWrapper
 class Frame:
     def __init__(self, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), bgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), debug_only=False):
         
@@ -160,6 +164,7 @@ class Frame:
         if self.rect:
             self.rect.drawRectangle(drawMode.FILL)
 
+@classWrapper
 class textInput:
     def __init__(self, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0)):
         
@@ -218,7 +223,7 @@ class textInput:
         
         if self.selected:
             keyboard.on_press(self._key_pressed)
-        
+    
     def _key_pressed(self, event):
         key = event.name
         if len(key) == 1 and key.isalpha() or key in ["backspace", "enter"] or key in "1234567890":

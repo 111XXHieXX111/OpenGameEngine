@@ -1,3 +1,6 @@
+from ...Core.glob import classWrapper
+
+@classWrapper
 class Manager:
     def _find(self, name):
         for index, obj in enumerate(self.objs):

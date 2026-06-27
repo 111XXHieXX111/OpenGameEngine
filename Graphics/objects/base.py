@@ -1,7 +1,8 @@
 from .modules import *
-from ...Core.glob import log_system, render_items
+from ...Core.glob import log_system, render_items, classWrapper
 from ...Core.base import System
 
+@classWrapper
 class Base:
     def setPointSize(self, new_size:Vec1):
         
@@ -84,7 +85,7 @@ class Base:
     def setColor(self, new_color:Color3 | Color4):
         self.color = System.c3toc4(new_color)
     
-    def setUV(self, uv:list[Vec2] | tuple[Vec1]):
+    def setUV(self, uv:list[Vec2] | tuple[Vec2]):
         self.uv = uv
     
     def setTexture(self, texture):

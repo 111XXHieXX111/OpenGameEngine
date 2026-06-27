@@ -1,7 +1,8 @@
 from ...Core.modules import GL, os
 from ...Core.base import textureType
-from ...Core.glob import log_system, textures
+from ...Core.glob import log_system, textures, logWrapper
 
+@logWrapper
 def loadTexture(path:str, textureType:textureType):
     
     log_system.addInfo(f"Load texture:{os.path.basename(path)}")

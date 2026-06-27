@@ -1,6 +1,8 @@
 from ..Core.modules import glfw
 from ..Core.base import Vec2, MouseButton
+from ..Core.glob import classWrapper
 
+@classWrapper
 class Mouse:
     @staticmethod
     def getPosition(window):

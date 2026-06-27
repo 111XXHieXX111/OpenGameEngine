@@ -1,8 +1,10 @@
 from ..Core.modules import keyboard
 from ..Core.base import Key
+from ..Core.glob import classWrapper
 
 _pressed = {}
 
+@classWrapper
 class Keyboard:
     @staticmethod
     def KeyPressed(key:Key, window=None):

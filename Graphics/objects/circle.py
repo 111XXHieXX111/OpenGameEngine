@@ -1,8 +1,9 @@
-from ...Core.glob import log_system
+from ...Core.glob import classWrapper
 from .polygon import Polygon
 from .base import Base
 from .modules import *
 
+@classWrapper
 class Circle(Base):
     def __init__(self, segments=8):
         self.segments = segments

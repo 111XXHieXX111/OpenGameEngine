@@ -1,9 +1,11 @@
 from ...Core.base import Vec1, Vec2, Color3, Color4, drawMode, System
 from ...Core.modules import random
+from ...Core.glob import classWrapper
 from ...Utils.General.frametimer import frameTimer
 from ..objects.rectangle import Rectangle
 from .randomcolor import randomColor4
 
+@classWrapper
 class Particle:
     def __init__(self, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction):
         self.surface = Rectangle()
@@ -32,6 +34,7 @@ class Particle:
     def drawParticle(self):
         self.surface.drawRectangle(drawMode.FILL)
 
+@classWrapper
 class simpleParticles:
     def __init__(self):
         

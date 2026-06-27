@@ -103,12 +103,11 @@ class System:
     def c3toc4(color:Color3 | Color4, a:float | c256 = 1.0):
         if isinstance(color, Color3):
             return Color4(color.r, color.g, color.b, a)
+        elif isinstance(color, Color4):
+            return Color4(color.r, color.g, color.b, color.a if a == 1.0 else a)
         else:
-            if not isinstance(color, Color3) and not isinstance(color, Color4):
-                log_system.addWarn("Use Color3|Color4")
-                return Color4(0, 0, 0, 1)
-    
-        return color
+            log_system.addWarn("Use Color3|Color4")
+            return Color4(0, 0, 0, 1)
     
     @staticmethod
     def slfm(x:int | float, y:int | float):

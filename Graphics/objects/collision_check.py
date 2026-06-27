@@ -1,5 +1,7 @@
 from .modules import *
+from ...Core.glob import logWrapper
 
+@logWrapper
 def checkCollision(verts1:list[Vec2] | tuple[Vec2], verts2:list[Vec2] | tuple[Vec2]):
     min_x1 = min(v.x for v in verts1)
     max_x1 = max(v.x for v in verts1)

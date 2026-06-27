@@ -1,7 +1,8 @@
-from ...Core.glob import debug, textures, log_system
+from ...Core.glob import debug, textures, log_system, classWrapper, logWrapper
 from ...Core.modules import GL
 import os
 
+@classWrapper
 class memoryMonitor:
     def __init__(self):
         self.peak_memory = 0
@@ -25,6 +26,7 @@ class memoryMonitor:
             "peak": self.peak_memory
         }
 
+@logWrapper
 def memoryClean():
     log_system.addInfo(f"Deleting {len(textures)} textures")
     

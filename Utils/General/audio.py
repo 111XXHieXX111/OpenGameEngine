@@ -1,7 +1,8 @@
 from ...Core.modules import threading
-from ...Core.glob import log_system
+from ...Core.glob import log_system, classWrapper
 from ..System.manager import Manager
 
+@classWrapper
 class loadSound:
     def __init__(self, path:str, audiotype:str="float32"):
         import soundfile as sf
@@ -53,6 +54,7 @@ class loadSound:
     def setVolume(self, volume:float):
         self._volume = volume
 
+@classWrapper
 class soundManager(Manager):
     def __init__(self):
         self.objs = []

@@ -1,7 +1,9 @@
 from ...Core.modules import GL
+from ...Core.glob import classWrapper
 from .vertex import Vertex
 from .modules import *
 
+@classWrapper
 class Polygon:
     def __init__(self, vertexes:list[Vec2] | tuple[Vec2]):
         self.vertexes = vertexes

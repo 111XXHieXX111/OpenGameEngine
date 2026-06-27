@@ -1,6 +1,7 @@
 from ..System.manager import Manager
-from ...Core.glob import log_system
+from ...Core.glob import log_system, classWrapper
 
+@classWrapper
 class sceneManager(Manager):
     def __init__(self):
         self.objs = []

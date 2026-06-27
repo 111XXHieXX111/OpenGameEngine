@@ -1,6 +1,8 @@
 from ...Core.modules import random
 from ...Core.base import Color3, Color4
+from ...Core.glob import logWrapper
 
+@logWrapper
 def randomColor3():
     r = random.uniform(0.000, 1.000)
     g = random.uniform(0.000, 1.000)
@@ -8,6 +10,7 @@ def randomColor3():
     
     return Color3(r, g, b)
 
+@logWrapper
 def randomColor4(random_alpha=False):
     r = random.uniform(0.000, 1.000)
     g = random.uniform(0.000, 1.000)

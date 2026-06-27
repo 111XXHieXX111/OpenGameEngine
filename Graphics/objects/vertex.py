@@ -1,6 +1,8 @@
 from ...Core.modules import GL
+from ...Core.glob import classWrapper
 from .modules import *
 
+@classWrapper
 class Vertex:
     def __init__(self):
         self.position = Vec2(0.0, 0.0)

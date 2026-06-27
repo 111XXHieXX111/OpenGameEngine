@@ -1,3 +1,6 @@
+from ...Core.glob import classWrapper
+
+@classWrapper
 class frameTimer:
     def __init__(self, target_frame:int=0, func=None):
         self.frame = 0

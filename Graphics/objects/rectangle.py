@@ -1,8 +1,9 @@
-from ...Core.glob import log_system
+from ...Core.glob import classWrapper
 from .polygon import Polygon
 from .base import Base
 from .modules import *
 
+@classWrapper
 class Rectangle(Base):
     def __init__(self):
         self.vertexes = [Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0)]
