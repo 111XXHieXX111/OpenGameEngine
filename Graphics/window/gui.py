@@ -40,6 +40,45 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
     for char in str(text):
         glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(char))
 
+@logWrapper
+def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), debug_only=False, donthide=False):
+    
+    # DISABLE TEXT
+    
+    if not donthide:
+        if self.debugmenu and not debug_only:
+            return
+    
+    # CHECK TYPES
+    
+    if not isinstance(text, str):
+        return
+    
+    if not isinstance(position, Vec2):
+        if isinstance(position, list) or isinstance(position, tuple):
+            position = System.cltv2(position)
+    
+    if not isinstance(color, Color3):
+        if isinstance(color, Color4):
+            color = Color3(color.r, color.b, color.g) 
+        elif isinstance(color, list) or isinstance(color, tuple):
+            color = Color3(color[0], color[1], color[2])
+        else:
+            return
+    
+    char_size = Vec2(6, 12)
+    
+    chunks = [text[i:i+charslen] for i in range(0, len(text), charslen)]
+    
+    rect = Rectangle(self)
+    rect.setPosition(position)
+    rect.setSize(Vec2(char_size.x*charslen, char_size.y*len(chunks)))
+    rect.setColor(bgcolor)
+    rect.drawRectangle(drawMode.FILL)
+    
+    for index, chunk in enumerate(chunks):
+        _drawText(self, chunk, Vec2(position.x, position.y+index*12), color, debug_only)
+
 @classWrapper
 class SimpleButton:
     def __init__(self, text=str, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), func=None):

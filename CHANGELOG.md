@@ -20,3 +20,8 @@ added **checkInDebbuger** + **requirements.txt** + **builtin icons** + **loadSou
 
 updated **Window** + **README.md**
 added **batchRender** + **Frame** + **textInput** + **memoryClean** (Clean memory before exit)
+
+# 27.06.26
+
+removed **version in glob**
+added **textBox** + **Optimization** + **Redirecting errors to the log**

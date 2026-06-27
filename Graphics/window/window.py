@@ -4,7 +4,7 @@ from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Utils.System.memory import memoryMonitor, memoryClean
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
-from .gui import _drawText, SimpleButton, Frame, textInput
+from .gui import _drawText, SimpleButton, Frame, textInput, _drawTextBox
 
 @classWrapper
 class Window:
@@ -195,6 +195,9 @@ class Window:
 
     def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
         _drawText(self, text, position, color, debug_only)
+    
+    def drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), charslen:int=0, color:Color3=Color3(1.0, 0.0, 0.0), bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), *, debug_only=False):
+        _drawTextBox(self, text, position, color, charslen, bgcolor, debug_only)
     
     def addElement(self, element:SimpleButton | Frame | textInput):
         self.elements.append(element)

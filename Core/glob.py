@@ -36,8 +36,6 @@ debug = True
 render_items = []
 textures = []
 
-VERSION = "26.1.1.0R"
-
 log_system.addInfo("Loading icons path's")
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -48,8 +46,6 @@ icons = {
     "HRIcon": os.path.join(PROJECT_ROOT, "Icons", "OGEHR.png"),
     "IcoIcon": os.path.join(PROJECT_ROOT, "Icons", "OGE.ico")
 }
-
-log_system.addInfo(f"Open Game Engine. Version:{VERSION}")
 
 def logWrapper(func):
     def wrapper(*args, **kwargs):
