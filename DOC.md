@@ -16,7 +16,7 @@ from OpenGameEngine import *
 ```python
 # Vectors, vectors has method "getVectors"
 
-vec1 = Vec1(0, 0)
+vec1 = Vec1(0)
 vec2 = Vec2(0, 0)
 
 # Colors
@@ -122,9 +122,9 @@ loadTexture("texturepath/texture.png", textureType.LINEAR) # Load texture, arg1 
 
 #### Primitives
 ```python
-rectangle = Graphics.Rectangle()
-triangle = Graphics.Triangle()
-circle = Graphics.Circle() # arg1 - int, number of segments (default 8)
+rectangle = Graphics.Rectangle() # arg1 - window (optional) (for optimization)
+triangle = Graphics.Triangle() # arg1 - window (optional) (for optimization)
+circle = Graphics.Circle() # arg1 - int, number of segments (default 8), arg2 - window (optional) (for optimization)
 
 vertex = Graphics.Vertex()
 polygon = Graphics.Polygon([]) # Arg is vertexes list

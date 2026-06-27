@@ -5,7 +5,7 @@ from .modules import *
 
 @classWrapper
 class Triangle(Base):
-    def __init__(self):
+    def __init__(self, window=None):
         self.vertexes = [Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0)]
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)
@@ -16,6 +16,7 @@ class Triangle(Base):
         self.uv = [Vec2(0, 0), Vec2(1, 0), Vec2(0.5, 1)]
         self.texture = None
         self.calculated = False
+        self.window = window
 
     def calculateSize(self):
         center = Vec2(
@@ -49,6 +50,16 @@ class Triangle(Base):
         self.calculated = True
     
     def drawTriangle(self, mode:drawMode):
+        
+        # Optimization
+        
+        if self.position.x+self.size.x < 0 or self.position.y+self.size.y < 0:
+            return
+
+        if self.window:
+            if self.position.x-self.size.x > self.window.current_window_sizes[0] or self.position.y-self.size.y > self.window.current_window_sizes[1]:
+                return
+        
         self._draw("Triangle")
         
         if not self.calculated:

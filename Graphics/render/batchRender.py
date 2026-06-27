@@ -1,9 +1,10 @@
 from ..objects.rectangle import Rectangle
 from ..objects.triangle import Triangle
 from ...Core.base import drawMode, batchDrawing
-from ...Core.glob import render_items, logWrapper
+from ...Core.glob import render_items, classWrapper
 from ...Core.modules import GL
 
+@classWrapper
 class batchRender:
     def __init__(self, batchMode:batchDrawing):
         self.vertexes = []
@@ -12,11 +13,9 @@ class batchRender:
         self.batchmode = batchMode
         self.count = 0
     
-    @logWrapper
     def setDrawMode(self, drawMode:drawMode):
         self.mode = drawMode
     
-    @logWrapper
     def addPrimitive(self, primitive:Rectangle | Triangle):
         primitive.calculateSize()
         
@@ -36,7 +35,6 @@ class batchRender:
                 self.colors.append(primitive.color)
             self.count += 1
 
-    @logWrapper
     def renderPrimitives(self):
         if not self.vertexes:
             return

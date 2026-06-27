@@ -5,7 +5,7 @@ from .modules import *
 
 @classWrapper
 class Circle(Base):
-    def __init__(self, segments=8):
+    def __init__(self, segments=8, window=None):
         self.segments = segments
         self.vertexes = [Vec2(0.0, 0.0) for _ in range(segments)]
         self.position = Vec2(0.0, 0.0)
@@ -18,6 +18,7 @@ class Circle(Base):
         self.texture = None
         self._dirty = True
         self._cached_vertices = None
+        self.window = window
     
     def calculateSize(self):
         if not self._dirty and self._cached_vertices is not None:
@@ -44,6 +45,16 @@ class Circle(Base):
         self._dirty = False
 
     def drawCircle(self, mode:drawMode):
+        
+        # Optimization
+        
+        if self.position.x+self.size.x < 0 or self.position.y+self.size.y < 0:
+            return
+
+        if self.window:
+            if self.position.x-self.size.x > self.window.current_window_sizes[0] or self.position.y-self.size.y > self.window.current_window_sizes[1]:
+                return
+        
         self._draw("Circle")
         if self._dirty or self._cached_vertices is None:
             self.calculateSize()

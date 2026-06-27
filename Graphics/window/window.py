@@ -59,6 +59,8 @@ class Window:
         
         # CREATE WINDOW
 
+        log_system.addInfo("Creating window")
+        
         self.window = glfw.create_window(
             self.window_settings.get("width"),
             self.window_settings.get("height"),
@@ -100,6 +102,8 @@ class Window:
         self.current_window_sizes = glfw.get_framebuffer_size(self.window)
         
         # CONNECT CALLBACK(S)
+        
+        log_system.addInfo("Connect callback(s)")
         
         glfw.set_window_iconify_callback(self.window, self._iconify_callback)
         glfw.set_window_close_callback(self.window, self._on_close_callback)

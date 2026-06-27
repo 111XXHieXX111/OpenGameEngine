@@ -7,8 +7,8 @@ from .randomcolor import randomColor4
 
 @classWrapper
 class Particle:
-    def __init__(self, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction):
-        self.surface = Rectangle()
+    def __init__(self, window, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction):
+        self.surface = Rectangle(window)
         self.surface.setColor(color)
         self.surface.setSize(size)
         self.surface.setPosition(position)
@@ -36,7 +36,7 @@ class Particle:
 
 @classWrapper
 class simpleParticles:
-    def __init__(self):
+    def __init__(self, window=None):
         
         # PARTICLES DATA
         
@@ -80,6 +80,10 @@ class simpleParticles:
         
         self.directionX = Vec1(0.0)
         self.rnd_directionX = Vec2(0.0, 0.0)
+        
+        # WINDOW
+        
+        self.window = window
 
     def setGravity(self, gravity:Vec1):
         self.gravity = gravity
@@ -171,6 +175,7 @@ class simpleParticles:
         
         self.particles.append(
             Particle(
+                self.window,
                 self.lifetime, 
                 self.gravity, 
                 random_color, 
