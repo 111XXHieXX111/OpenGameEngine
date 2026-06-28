@@ -46,6 +46,15 @@ class Window:
         log_system.addInfo("Create current win sizes")
 
         self.current_window_sizes = [640, 480]
+        
+        # CAMERA
+        
+        self.camera = {
+            "x":0.0,
+            "y":0.0,
+            "zoom":1.0,
+            "enabled":False
+        }
 
     def _on_close_callback(self, window):
         memoryClean()
@@ -205,6 +214,23 @@ class Window:
     def removeElement(self, element:SimpleButton | Frame | textInput):
         self.elements.remove(element)
     
+    def setCameraPosition(self, position:Vec2):
+        self.camera["x"] = position.x
+        self.camera["y"] = position.y
+    
+    def moveCamera(self, move:Vec2):
+        self.camera["x"] += move.x
+        self.camera["y"] += move.y
+    
+    def setCameraZoom(self, zoom:float):
+        self.camera["zoom"] = zoom
+    
+    def getCameraPosition(self):
+        return Vec2(self.camera["x"], self.camera["y"])
+    
+    def setCameraEnabled(self, enabled:bool):
+        self.camera["enabled"] = enabled
+    
     def _render_frame(self, update=None):
         
         # GET CURRENT WINDOW SIZES
@@ -215,7 +241,6 @@ class Window:
         
         if self.current_window_sizes[0] <= 0 or self.current_window_sizes[1] <= 0:
             glfw.poll_events()
-            
             return
         
         # CLEAR RENDER ITEMS
@@ -248,8 +273,18 @@ class Window:
         else:
             GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
 
-        # MODELVIEW MATRIX
+        # CAMERA
 
+        if self.camera["enabled"]:
+            width = self.window_settings["width"] if self.window_settings["stretch"] == stretchType.KEEP_ASPECT else self.current_window_sizes[0]
+            height = self.window_settings["height"] if self.window_settings["stretch"] == stretchType.KEEP_ASPECT else self.current_window_sizes[1]
+            
+            GL.glScalef(1.0 / self.camera["zoom"], 1.0 / self.camera["zoom"], 1.0)
+            
+            GL.glTranslatef(-self.camera["x"] + width/2, -self.camera["y"] + height/2, 0)
+    
+        # MODELVIEW MATRIX
+    
         GL.glMatrixMode(GL.GL_MODELVIEW)
         GL.glLoadIdentity()
 

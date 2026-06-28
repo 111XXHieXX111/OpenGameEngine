@@ -28,5 +28,9 @@ Developed with ❤️ by **XXHieXX**
 ## Documentation
 The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [DOC](DOC.md)
 
+## Examples
+
+There are few examples, but this is enough to understand the basics of the **engine**. [EXAMPLES](Examples)
+
 ## Thank you for watching!
 By **XXHieXX**

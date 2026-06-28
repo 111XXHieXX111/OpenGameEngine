@@ -26,7 +26,7 @@ class Circle(Base):
             return
         
         if not hasattr(self, "_angles") or len(self._angles) != self.segments:
-            self._angles = [2 * math.pi * i / self.segments for i in range(self.segments)]
+            self._angles = [2 * PI * i / self.segments for i in range(self.segments)]
         
         half_x = self.size.x / 2
         half_y = self.size.y / 2
@@ -34,11 +34,11 @@ class Circle(Base):
         self.uv = []
         
         for i, angle in enumerate(self._angles):
-            self.vertexes[i].x = (math.cos(angle) * half_x) + self.position.x
-            self.vertexes[i].y = (math.sin(angle) * half_y) + self.position.y
+            self.vertexes[i].x = (cos(angle) * half_x) + self.position.x
+            self.vertexes[i].y = (sin(angle) * half_y) + self.position.y
             
-            u = (math.cos(angle) + 1) / 2
-            v = (math.sin(angle) + 1) / 2
+            u = (cos(angle) + 1) / 2
+            v = (sin(angle) + 1) / 2
             self.uv.append(Vec2(u, v))
         
         self._cached_vertices = self.vertexes.copy()

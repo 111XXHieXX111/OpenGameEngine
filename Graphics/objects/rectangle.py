@@ -24,10 +24,10 @@ class Rectangle(Base):
             self.position.y + self.size.y / 2
         )
         
-        angle = math.radians(self.rotation.x)
+        angle = radians(self.rotation.x)
         
-        cos_angle = math.cos(angle)
-        sin_angle = math.sin(angle)
+        cos_angle = cos(angle)
+        sin_angle = sin(angle)
 
         half_width = self.size.x / 2
         half_height = self.size.y / 2

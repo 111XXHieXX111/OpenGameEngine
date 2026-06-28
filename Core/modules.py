@@ -6,7 +6,6 @@ import keyboard
 import glfw
 import time
 import inspect
-import math
 import os
 import psutil
 import threading
