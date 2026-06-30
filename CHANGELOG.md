@@ -32,3 +32,11 @@ added **textBox** + **Optimization** + **Redirecting errors to the log**
 # 28.06.26
 
 added **textBox** + **Optimization** + **Redirecting errors to the log** + **OGE math**
+
+# 30.06.26
+
+updated **Color3** + **Color4**
+
+added **gradient for gui**
+
+removed **Frame**

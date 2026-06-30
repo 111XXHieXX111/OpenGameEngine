@@ -4,6 +4,18 @@ from ...Core.glob import classWrapper, logWrapper
 from ...Control.mouse import Mouse
 from ..objects.rectangle import Rectangle
 
+def bgframe(position, size, addcolor):
+    color1 = addcolor + Color4(0.3, 0.3, 0.3, 1)
+    color2 = addcolor + Color4(0.2, 0.2, 0.2, 1)
+    GL.glBegin(GL.GL_POLYGON)
+    GL.glColor4f(color1.r, color1.g, color1.b, color1.a)
+    GL.glVertex2f(position.x, position.y)
+    GL.glVertex2f(position.x + size.x, position.y)
+    GL.glColor4f(color2.r, color2.g, color2.b, color2.a)
+    GL.glVertex2f(position.x + size.x, position.y + size.y)
+    GL.glVertex2f(position.x, position.y + size.y)
+    GL.glEnd()
+
 @logWrapper
 def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), debug_only=False, donthide=False):
     
@@ -85,13 +97,9 @@ class SimpleButton:
         
         # COLORS
         
-        self.normalColor = Color3(0.4, 0.4, 0.4)
-        self.hoverColor = Color3(0.3, 0.3, 0.3)
-        self.pressedColor = Color3(0.2, 0.2, 0.2)
-        
-        # RECT
-        
-        self.rect = Rectangle()
+        self.normalColor = Color4(0, 0, 0, 0)
+        self.hoverColor = Color4(-0.05, -0.05, -0.05, 0)
+        self.pressedColor = Color4(-0.1, -0.1, -0.1, 0)
 
         # VALUES
 
@@ -114,21 +122,14 @@ class SimpleButton:
 
     def _draw(self, window):
         
-        # DRAW RECT
-        
-        self.rect.setPosition(self.position)
-        self.rect.setSize(self.size)
-        self.rect.calculateSize()
-        self.rect.drawRectangle(drawMode.FILL)
-        
-        # SET RECT COLOR
+        # DRAWING BG
         
         if self.clicked:
-            self.rect.setColor(self.pressedColor)
+            bgframe(self.position, self.size, self.pressedColor)
         elif self.hovered:
-            self.rect.setColor(self.hoverColor)
+            bgframe(self.position, self.size, self.hoverColor)
         else:
-            self.rect.setColor(self.normalColor)
+            bgframe(self.position, self.size, self.normalColor)
 
         # DRAW TEXT
 
@@ -139,8 +140,8 @@ class SimpleButton:
         
         # HOVER
         
-        if mousePos.x >= self.rect.position.x and mousePos.x <= self.rect.position.x + self.rect.size.x:
-            if mousePos.y >= self.rect.position.y and mousePos.y <= self.rect.position.y + self.rect.size.y:
+        if mousePos.x >= self.position.x and mousePos.x <= self.position.x + self.size.x:
+            if mousePos.y >= self.position.y and mousePos.y <= self.position.y + self.size.y:
                 self.hovered = True
             else:
                 self.hovered = False
@@ -166,55 +167,13 @@ class SimpleButton:
             self.funcactivated = False
 
 @classWrapper
-class Frame:
-    def __init__(self, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), bgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), debug_only=False):
-        
-        # CHECK TYPES
-        
-        if not isinstance(position, Vec2):
-            if isinstance(position, list) or isinstance(position, tuple):
-                position = System.cltv2(position)
-        
-        if not isinstance(bgcolor, Color3):
-            if isinstance(bgcolor, Color4):
-                bgcolor = Color3(bgcolor.r, bgcolor.b, bgcolor.g) 
-            elif isinstance(bgcolor, list) or isinstance(bgcolor, tuple):
-                bgcolor = Color3(bgcolor[0], bgcolor[1], bgcolor[2])
-            else:
-                return
-        
-        self.debug_only = debug_only
-        self.bgcolor = bgcolor
-        self.position = position
-        self.size = size
-        
-        self.rect = Rectangle()
-        self.rect.setColor(self.bgcolor)
-        self.rect.setPosition(self.position)
-        self.rect.setSize(self.size)
-    
-    def _draw(self, window):
-        
-        # DISABLE FRAME
-        
-        if window.debugmenu and not self.debug_only:
-            return
-
-        if self.rect:
-            self.rect.drawRectangle(drawMode.FILL)
-
-@classWrapper
 class textInput:
     def __init__(self, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0)):
         
         # COLORS
         
-        self.normalColor = Color3(0.4, 0.4, 0.4)
-        self.selectedColor = Color3(0.3, 0.3, 0.3)
-        
-        # RECT
-        
-        self.rect = Rectangle()
+        self.normalColor = Color4(0, 0, 0, 0)
+        self.selectedColor = Color4(-0.1, -0.1, -0.1, 0)
 
         # VALUES
 
@@ -241,8 +200,8 @@ class textInput:
         
         # SELECT
         
-        if mousePos.x >= self.rect.position.x and mousePos.x <= self.rect.position.x + self.rect.size.x:
-            if mousePos.y >= self.rect.position.y and mousePos.y <= self.rect.position.y + self.rect.size.y:
+        if mousePos.x >= self.position.x and mousePos.x <= self.position.x + self.size.x:
+            if mousePos.y >= self.position.y and mousePos.y <= self.position.y + self.size.y:
                 if Mouse.MouseKeyPressed(window, MouseButton.LEFT):
                     self.selected = True
                     window.selected_keyboard = self
@@ -290,19 +249,12 @@ class textInput:
 
     def _draw(self, window):
         
-        # DRAW RECT
-        
-        self.rect.setPosition(self.position)
-        self.rect.setSize(self.size)
-        self.rect.calculateSize()
-        self.rect.drawRectangle(drawMode.FILL)
-        
-        # SET RECT COLOR
+        # DRAWING BG
         
         if self.selected:
-            self.rect.setColor(self.selectedColor)
+            bgframe(self.position, self.size, self.selectedColor)
         else:
-            self.rect.setColor(self.normalColor)
+            bgframe(self.position, self.size, self.normalColor)
 
         # DRAW TEXT
 

@@ -61,6 +61,18 @@ class Color3:
     def getColor(self):
         return self.r, self.g, self.b
 
+    def __add__(self, other):
+        return Color3(self.r + other.r, self.g + other.g, self.b + other.b)
+
+    def __sub__(self, other):
+        return Color3(self.r - other.r, self.g - other.g, self.b - other.b)
+    
+    def __mul__(self, scalar):
+        return Color3(self.r * scalar.r, self.g * scalar.g, self.b * scalar.b)
+    
+    def __truediv__(self, scalar):
+        return Color3(self.r / scalar.r, self.g / scalar.g, self.b / scalar.b)
+
 class Color4:
     __slots__ = ("r", "g", "b", "a")
     
@@ -69,6 +81,18 @@ class Color4:
 
     def getColor(self):
         return self.r, self.g, self.b, self.a
+    
+    def __add__(self, other):
+        return Color4(self.r + other.r, self.g + other.g, self.b + other.b, self.a + other.a)
+
+    def __sub__(self, other):
+        return Color4(self.r - other.r, self.g - other.g, self.b - other.b, self.a - other.a)
+    
+    def __mul__(self, scalar):
+        return Color4(self.r * scalar.r, self.g * scalar.g, self.b * scalar.b, self.a * scalar.a)
+    
+    def __truediv__(self, scalar):
+        return Color4(self.r / scalar.r, self.g / scalar.g, self.b / scalar.b, self.a / scalar.a)
 
 # BINDS
 
