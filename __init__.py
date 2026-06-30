@@ -1,7 +1,7 @@
 from .Core.glob import log_system, icons
 from .Core.base import Vec1, Vec2, Color3, Color4, c256, Key, MouseButton, drawMode, shaderType, textureType, stretchType, batchDrawing
 from .Graphics.window.window import Window
-from .Graphics.window.gui import SimpleButton, Frame, textInput
+from .Graphics.window.gui import SimpleButton, textInput
 from .Control.keyboard import Keyboard
 from .Control.mouse import Mouse
 from .Graphics import *
