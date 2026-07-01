@@ -4,6 +4,7 @@ from tkinter.messagebox import showerror
 import lzma
 import json
 import base64
+import threading
 
 class App:
     def __init__(self, master:Tk):
@@ -49,11 +50,14 @@ class App:
     def winSettings(self):
         self.root.title("OShaderIDE")
         self.root.geometry("640x480")
+        
+        self.root.bind("<Control-s>", self.save)
 
     def new(self):
         self.current_file = ""
         self.frageditor.delete("1.0", END)
         self.verteditor.delete("1.0", END)
+        self.updatePath()
     
     def open(self):
         path = askopenfilename(filetypes=[("Shader", "*.oshader"), ("Any", "*.*")])
@@ -67,6 +71,8 @@ class App:
             
         self.current_file = path
         
+        self.updatePath()
+        
         try:    
             frag_bytes = base64.b64decode(data["f"])
             vert_bytes = base64.b64decode(data["v"])
@@ -79,7 +85,7 @@ class App:
         except Exception as ex:
             showerror("Error", f"Error:{ex}")
 
-    def save(self):
+    def save(self, event=None):
         if self.current_file == "":
             path = asksaveasfilename(defaultextension=".oshader", filetypes=[("Shader", "*.oshader")])
             if not path:
@@ -99,8 +105,18 @@ class App:
                 json.dump(data, f)
         except Exception as ex:
             showerror("Error", f"Error:{ex}")
+    
+    def updatePath(self):
+        import Utils.manager
+        Utils.manager.file_path = self.current_file
 
-if __name__ == "__main__":
+def process():
+    global app
     root = Tk()
     app = App(root)
     root.mainloop()
+
+if __name__ == "__main__":
+    thread = threading.Thread(target=process)
+    thread.start()
+    import Utils.shaderviewer

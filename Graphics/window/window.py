@@ -63,7 +63,6 @@ class Window:
         self.iconified = iconified
 
     def initWindow(self):
-        
         log_system.addInfo("Init window")
         
         # CREATE WINDOW
@@ -99,6 +98,15 @@ class Window:
         log_system.addInfo("Move window to the current context")
         
         glfw.make_context_current(self.window)
+        
+        # INFO
+        
+        try:
+            log_system.addInfo(f"OpenGL Version:{GL.glGetString(GL.GL_VERSION).decode()}")
+            log_system.addInfo(f"GLSL Version:{GL.glGetString(GL.GL_SHADING_LANGUAGE_VERSION).decode()}")
+            log_system.addInfo(f"Render:{GL.glGetString(GL.GL_RENDERER).decode()}")
+        except Exception as ex:
+            log_system.addError(f"Information could not be retrieved:{ex}")
 
         # VSYNC
 
