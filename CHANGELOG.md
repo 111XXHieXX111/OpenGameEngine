@@ -40,3 +40,7 @@ updated **Color3** + **Color4**
 added **gradient for gui**
 
 removed **Frame**
+
+# 1.07.26
+
+added **shaders**

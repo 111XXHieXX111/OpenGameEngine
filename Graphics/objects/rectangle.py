@@ -17,6 +17,7 @@ class Rectangle(Base):
         self.texture = None
         self.calculated = False
         self.window = window
+        self.shader = None
     
     def calculateSize(self):
         center = Vec2(
@@ -61,6 +62,9 @@ class Rectangle(Base):
         
         if not self.calculated:
             self.calculateSize()
+        
+        if self.shader:
+            GL.glUseProgram(self.shader.program)
 
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)
@@ -69,3 +73,6 @@ class Rectangle(Base):
         polygon.setTexCoords(self.uv)
         polygon.setTexture(self.texture)
         polygon.drawPolygon(mode)
+        
+        if self.shader:
+            GL.glUseProgram(0)

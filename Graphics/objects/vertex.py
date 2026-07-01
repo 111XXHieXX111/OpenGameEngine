@@ -1,4 +1,3 @@
-from ...Core.modules import GL
 from ...Core.glob import classWrapper
 from .modules import *
 

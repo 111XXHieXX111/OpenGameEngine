@@ -1,6 +1,7 @@
 from .modules import *
 from ...Core.glob import log_system, render_items, classWrapper
 from ...Core.base import System
+from ...Utils.General.shader import Shader
 
 @classWrapper
 class Base:
@@ -90,6 +91,9 @@ class Base:
     
     def setTexture(self, texture):
         self.texture = texture
+    
+    def setShader(self, shader:Shader):
+        self.shader = shader
     
     def getCenter(self):
         xs, ys = [], []

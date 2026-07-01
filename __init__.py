@@ -12,4 +12,5 @@ from .Utils.General.saver import saveData, loadData
 from .Utils.General.trace import checkInDebbuger
 from .Utils.General.audio import loadSound, soundManager
 from .Utils.General.scene import sceneManager
+from .Utils.General.shader import Shader, loadShader
 from .Utils.System.crypto import genKey

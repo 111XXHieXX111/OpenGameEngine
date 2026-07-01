@@ -17,6 +17,7 @@ class Triangle(Base):
         self.texture = None
         self.calculated = False
         self.window = window
+        self.shader = None
 
     def calculateSize(self):
         center = Vec2(
@@ -65,6 +66,9 @@ class Triangle(Base):
         if not self.calculated:
             self.calculateSize()
         
+        if self.shader:
+            GL.glUseProgram(self.shader.program)
+        
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)
         polygon.setWidthLines(self.widthlines)
@@ -72,3 +76,6 @@ class Triangle(Base):
         polygon.setTexCoords(self.uv)
         polygon.setTexture(self.texture)
         polygon.drawPolygon(mode)
+        
+        if self.shader:
+            GL.glUseProgram(0)

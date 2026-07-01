@@ -1,4 +1,5 @@
 from OpenGL.GLUT import glutInit, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12 # type: ignore
+from OpenGL.GL.shaders import compileShader
 from cryptography.fernet import Fernet
 from OpenGL import GL
 from enum import Enum

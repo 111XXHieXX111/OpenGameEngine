@@ -19,6 +19,7 @@ class Circle(Base):
         self._dirty = True
         self._cached_vertices = None
         self.window = window
+        self.shader = None
     
     def calculateSize(self):
         if not self._dirty and self._cached_vertices is not None:
@@ -59,6 +60,9 @@ class Circle(Base):
         if self._dirty or self._cached_vertices is None:
             self.calculateSize()
         
+        if self.shader:
+            GL.glUseProgram(self.shader.program)
+        
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)
         polygon.setWidthLines(self.widthlines)
@@ -66,3 +70,6 @@ class Circle(Base):
         polygon.setTexCoords(self.uv)
         polygon.setTexture(self.texture)
         polygon.drawPolygon(mode)
+        
+        if self.shader:
+            GL.glUseProgram(0)
