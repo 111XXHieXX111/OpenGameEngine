@@ -1,4 +1,4 @@
-from ..System.manager import Manager
+from ..system.manager import Manager
 from ...Core.glob import log_system, classWrapper
 
 @classWrapper

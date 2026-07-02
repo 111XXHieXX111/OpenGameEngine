@@ -1,7 +1,7 @@
 from .modules import *
 from ...Core.glob import log_system, render_items, classWrapper
 from ...Core.base import System
-from ...Utils.General.shader import Shader
+from ...Utils.general.shader import Shader
 
 @classWrapper
 class Base:

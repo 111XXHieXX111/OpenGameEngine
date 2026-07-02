@@ -7,11 +7,11 @@ from .Control.mouse import Mouse
 from .Graphics import *
 from .Graphics.render.batchRender import batchRender
 from .Graphics.sprites.sprite import Sprite
-from .Utils.General.texture import loadTexture
-from .Utils.General.frametimer import frameTimer
-from .Utils.General.saver import saveData, loadData
-from .Utils.General.trace import checkInDebbuger
-from .Utils.General.audio import loadSound, soundManager
-from .Utils.General.scene import sceneManager
-from .Utils.General.shader import Shader, loadShader
-from .Utils.System.crypto import genKey
+from .Utils.general.texture import loadTexture
+from .Utils.general.frametimer import frameTimer
+from .Utils.general.saver import saveData, loadData
+from .Utils.general.trace import checkInDebbuger
+from .Utils.general.audio import loadSound, soundManager
+from .Utils.general.scene import sceneManager
+from .Utils.general.shader import Shader, loadShader
+from .Utils.system.crypto import genKey

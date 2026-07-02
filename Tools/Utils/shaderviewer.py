@@ -9,8 +9,8 @@ sys.path.insert(0, parent_dir)
 from OpenGameEngine.Graphics.window.window import Window # type: ignore
 from OpenGameEngine.Core.base import Vec2, Color3, drawMode, stretchType # type: ignore
 from OpenGameEngine.Graphics import Rectangle # type: ignore
-from OpenGameEngine.Utils.General.frametimer import frameTimer # type: ignore
-from OpenGameEngine.Utils.General.shader import loadShader # type: ignore
+from OpenGameEngine.Utils.general.frametimer import frameTimer # type: ignore
+from OpenGameEngine.Utils.general.shader import loadShader # type: ignore
 
 selected = "r"
 file_path = ""

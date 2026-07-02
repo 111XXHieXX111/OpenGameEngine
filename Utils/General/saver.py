@@ -1,4 +1,4 @@
-from ..System.crypto import encryptData, decryptData
+from ..system.crypto import encryptData, decryptData
 from ...Core.modules import json
 from ...Core.glob import logWrapper, log_system
 

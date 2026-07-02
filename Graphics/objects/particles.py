@@ -1,7 +1,7 @@
 from ...Core.base import Vec1, Vec2, Color3, Color4, drawMode, System
 from ...Core.modules import random
 from ...Core.glob import classWrapper
-from ...Utils.General.frametimer import frameTimer
+from ...Utils.general.frametimer import frameTimer
 from ..objects.rectangle import Rectangle
 from .randomcolor import randomColor4
 

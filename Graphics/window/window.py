@@ -1,7 +1,7 @@
 from ...Core.modules import glfw, GL, time, glutInit
 from ...Core.glob import log_system, debug, render_items, classWrapper
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
-from ...Utils.System.memory import memoryMonitor, memoryClean
+from ...Utils.system.memory import memoryMonitor, memoryClean
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
 from .gui import _drawText, SimpleButton, textInput, _drawTextBox

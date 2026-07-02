@@ -1,6 +1,6 @@
 from ...Core.modules import threading
 from ...Core.glob import log_system, classWrapper
-from ..System.manager import Manager
+from ..system.manager import Manager
 
 @classWrapper
 class loadSound:
