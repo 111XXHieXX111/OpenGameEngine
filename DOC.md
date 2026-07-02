@@ -190,6 +190,17 @@ particles.setMaxParticles(0)                  # Set max drawing particles, arg1 
 particles.setRandomColor(False)               # Set random color, arg1 - bool (if True - enabled else disabled random)
 ```
 
+#### Sprite
+
+```python
+sprite = Sprite(None, None) # arg1 - Window, arg2 - Update function
+sprite.setPosition(Vec2(0.0, 0.0)) # arg1 - Vec2
+sprite.setSize(Vec2(0.0, 0.0)) # arg2 - Vec2
+sprite.setColor(Color4(0.0, 0.0, 0.0, 0.0)) # arg1 - Color3 | Color4
+sprite.customData.update({"Data":None}) # add custom data
+sprite.spriteProcess() # Drawing sprite
+```
+
 ### Control
 ```python
 # Keyboard

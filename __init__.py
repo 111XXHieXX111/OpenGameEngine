@@ -6,6 +6,7 @@ from .Control.keyboard import Keyboard
 from .Control.mouse import Mouse
 from .Graphics import *
 from .Graphics.render.batchRender import batchRender
+from .Graphics.sprites.sprite import Sprite
 from .Utils.General.texture import loadTexture
 from .Utils.General.frametimer import frameTimer
 from .Utils.General.saver import saveData, loadData

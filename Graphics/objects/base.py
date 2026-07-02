@@ -5,6 +5,8 @@ from ...Utils.General.shader import Shader
 
 @classWrapper
 class Base:
+    __slots__ = ("vertexes", "position", "size", "rotation", "color", "widthlines", "pointsize", "uv", "texture", "calculated", "window", "shader", "segments", "_dirty", "_cached_vertices")
+    
     def setPointSize(self, new_size:Vec1):
         
         # CHECK

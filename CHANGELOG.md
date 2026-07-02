@@ -44,3 +44,7 @@ removed **Frame**
 # 1.07.26
 
 added **shaders**
+
+# 2.07.26
+
+added **Sprite** + **optimization**
