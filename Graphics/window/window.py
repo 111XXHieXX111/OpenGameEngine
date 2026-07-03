@@ -1,5 +1,5 @@
 from ...Core.modules import glfw, GL, time, glutInit
-from ...Core.glob import log_system, debug, render_items, classWrapper
+from ...Core.glob import log_system, debug, render_items, classWrapper, fonts
 from ...Core.base import System, Color3, Color4, stretchType, Vec2, Key
 from ...Utils.system.memory import memoryMonitor, memoryClean
 from ...Control.keyboard import Keyboard
@@ -210,8 +210,8 @@ class Window:
         log_system.addInfo("Iconified work:Disabled")
         self.iconifiedwork = False
 
-    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), *, debug_only=False):
-        _drawText(self, text, position, color, debug_only)
+    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], *, debug_only=False):
+        _drawText(self, text, position, color, font, debug_only)
     
     def drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), charslen:int=0, color:Color3=Color3(1.0, 0.0, 0.0), bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), *, debug_only=False):
         _drawTextBox(self, text, position, color, charslen, bgcolor, debug_only)

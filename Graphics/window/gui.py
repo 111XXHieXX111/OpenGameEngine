@@ -1,6 +1,6 @@
-from ...Core.modules import GL, threading, keyboard, time, glutBitmapCharacter, GLUT_BITMAP_HELVETICA_12  # type: ignore
+from ...Core.modules import GL, threading, keyboard, time, glutBitmapCharacter # type: ignore
 from ...Core.base import Vec2, System, Color3, Color4, drawMode, MouseButton
-from ...Core.glob import classWrapper, logWrapper
+from ...Core.glob import classWrapper, logWrapper, fonts
 from ...Control.mouse import Mouse
 from ..objects.rectangle import Rectangle
 
@@ -17,7 +17,7 @@ def bgframe(position, size, addcolor):
     GL.glEnd()
 
 @logWrapper
-def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), debug_only=False, donthide=False):
+def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
     
     # DISABLE TEXT
     
@@ -50,10 +50,10 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
     # DRAW CHARS
     
     for char in str(text):
-        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, ord(char))
+        glutBitmapCharacter(font, ord(char))
 
 @logWrapper
-def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), debug_only=False, donthide=False):
+def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
     
     # DISABLE TEXT
     
@@ -89,11 +89,11 @@ def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Colo
     rect.drawRectangle(drawMode.FILL)
     
     for index, chunk in enumerate(chunks):
-        _drawText(self, chunk, Vec2(position.x, position.y+index*12), color, debug_only)
+        _drawText(self, chunk, Vec2(position.x, position.y+index*12), color, font, debug_only)
 
 @classWrapper
 class SimpleButton:
-    def __init__(self, text=str, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), func=None):
+    def __init__(self, text=str, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), func=None, font=fonts["HELVETICA 12"]):
         
         # COLORS
         
@@ -108,6 +108,7 @@ class SimpleButton:
         self.size = size
         self.fgcolor = fgcolor
         self.func = func
+        self.font = font
         
         # DYNAMIC VALUE
         
@@ -133,7 +134,7 @@ class SimpleButton:
 
         # DRAW TEXT
 
-        _drawText(window, self.text, self.position, self.fgcolor, False, True)
+        _drawText(window, self.text, self.position, self.fgcolor, self.font, False, True)
     
     def _process(self, window):
         mousePos = Mouse.getPosition(window)
@@ -168,7 +169,7 @@ class SimpleButton:
 
 @classWrapper
 class textInput:
-    def __init__(self, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0)):
+    def __init__(self, position:Vec2=Vec2(0.0, 0.0), size:Vec2=Vec2(0.0, 0.0), fgcolor:Color3|Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"]):
         
         # COLORS
         
@@ -181,6 +182,7 @@ class textInput:
         self.position = position
         self.size = size
         self.fgcolor = fgcolor
+        self.font = font
         
         # DYNAMIC VALUE
         
@@ -258,4 +260,4 @@ class textInput:
 
         # DRAW TEXT
 
-        _drawText(window, self.value, self.position, self.fgcolor, False, True)
+        _drawText(window, self.value, self.position, self.fgcolor, self.font, False, True)

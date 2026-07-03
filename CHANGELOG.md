@@ -48,3 +48,9 @@ added **shaders**
 # 2.07.26
 
 added **Sprite** + **optimization** + **Refactoring struct**
+
+# 3.07.26
+
+updated **examples**
+
+added **fonts**

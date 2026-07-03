@@ -1,4 +1,4 @@
-from .Core.glob import log_system, icons
+from .Core.glob import log_system, icons, fonts
 from .Core.base import Vec1, Vec2, Color3, Color4, c256, Key, MouseButton, drawMode, shaderType, textureType, stretchType, batchDrawing
 from .Graphics.window.window import Window
 from .Graphics.window.gui import SimpleButton, textInput

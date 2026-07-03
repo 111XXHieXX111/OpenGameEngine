@@ -81,28 +81,23 @@ window.winProcess(update, 60)
 To open the unlock menu, press **F12**
 
 Window has methods addElement/removeElement
-+ addElement - add element in window, arg1 - SimpleButton | Frame | textInput
-+ removeElement - remove element in window, arg1 - SimpleButton | Frame | textInput
++ addElement - add element in window, arg1 - SimpleButton | textInput
++ removeElement - remove element in window, arg1 - SimpleButton | textInput
 
 ```python
-btn = SimpleButton("Button", Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0), None) # arg1 - text, arg2 - position, arg3 - size, arg4 - text color (fg), arg5 - function (optional)
+btn = SimpleButton("Button", Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0), None) # arg1 - text, arg2 - position, arg3 - size, arg4 - text color (fg), arg5 - function (optional), arg6 - fonts (optional)
 window.addElement(btn)                                                                    # Rendering is automatic
 ```
 
 ```python
-frm = Frame(Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0)) # arg1 - position, arg2 - size, arg3 - color
-window.addElement(frm)                                             # Rendering is automatic
-```
-
-```python
-inp = textInput(Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0)) # arg1 - position, arg2 - size, arg3 - color
-inp.getValue()                                                         # Return current text, arg1 - None
+inp = textInput(Vec2(0.0, 0.0), Vec2(0.0, 0.0), Color3(0.0, 0.0, 0.0)) # arg1 - position, arg2 - size, arg3 - color, arg4 - fonts (optional)
+inp.getValue()                                                         # Return current text
 inp.setValue("Text")                                                   # Set text, arg1 - str
 window.addElement(inp)                                                 # Rendering is automatic
 ```
 
 Window has method drawText
-+ drawText - drawing any text in window, arg1 - text, arg2 - position, arg3 - text color (fg)
++ drawText - drawing any text in window, arg1 - text, arg2 - position, arg3 - text color (fg), arg4 - fonts (optional)
 
 ```python
 def update(): # Function in winProcess
@@ -295,6 +290,16 @@ checkInDebbuger() # Return True if running under debugger, False otherwise
 icons["Icon"]    # png icon
 icons["HRIcon"]  # high resoultion png icon
 icons["IcoIcon"] # ico icon
+```
+
+#### fonts
+
+```python
+fonts["HELVETICA 10"]
+fonts["HELVETICA 12"]
+fonts["HELVETICA 18"]
+fonts["ROMAN 10"]
+fonts["ROMAN 24"]
 ```
 
 ### Sound
