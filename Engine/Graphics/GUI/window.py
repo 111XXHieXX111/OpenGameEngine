@@ -22,13 +22,11 @@ def bgframe(position, size, addcolor):
 def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
     
     # DISABLE TEXT
-    
     if not donthide:
-        if self.debugmenu and not debug_only:
+        if self.debugmenu in (1, 2) and not debug_only:
             return
-        
-    # CHECK TYPES
     
+    # CHECK TYPES
     if not isinstance(text, str):
         return
     
@@ -44,15 +42,15 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
         else:
             return
     
-    # SET COLOR AND POSITION
+    GL.glDisable(GL.GL_TEXTURE_2D)
     
     GL.glColor3f(color.r, color.g, color.b)
-    GL.glRasterPos2f(position.x, position.y+10)
-    
-    # DRAW CHARS
+    GL.glRasterPos2f(position.x, position.y + 10)
     
     for char in str(text):
         glutBitmapCharacter(font, ord(char))
+    
+    GL.glEnable(GL.GL_TEXTURE_2D)
 
 @logWrapper
 def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
@@ -60,7 +58,7 @@ def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Colo
     # DISABLE TEXT
     
     if not donthide:
-        if self.debugmenu and not debug_only:
+        if self.debugmenu in (1, 2) and not debug_only:
             return
     
     # CHECK TYPES
