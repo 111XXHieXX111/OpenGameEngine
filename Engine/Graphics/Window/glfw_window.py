@@ -97,7 +97,7 @@ class Window:
         
         log_system.addInfo("Memory manager init")
         
-        self.momorymonitor = memoryMonitor()
+        self.memorymonitor = memoryMonitor()
 
         # MOVE WINDOW TO THE CURRENT CONTEXT
 
@@ -356,7 +356,7 @@ class Window:
         if self.debugmenu == 1 and debug:
             padding = 14
             
-            memory_info = self.momorymonitor.getMemory()
+            memory_info = self.memorymonitor.getMemory()
             mouse_pos = Mouse.getPosition(self)
             
             text_lines = [
