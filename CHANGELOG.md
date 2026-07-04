@@ -60,3 +60,9 @@ added **fonts**
 updated **Structure** + **DOC**
 
 added **Uniforms**
+
+# 5.07.26
+
+updated **Debug menu**
+
+added **Delta**

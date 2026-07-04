@@ -37,10 +37,13 @@ class Window:
         self.fps = 0
         self.last_fps_time = time.time()
         
+        self.delta_time = 0.0
+        self.last_frame_time = time.time()
+        
         self.iconified = 0
         self.iconifiedwork = True
         
-        self.debugmenu = False
+        self.debugmenu = 0
         
         self.selected_keyboard = None
 
@@ -137,6 +140,9 @@ class Window:
     
     def getFPS(self):
         return self.fps
+
+    def getDelta(self):
+        return self.delta_time
 
     def setTitle(self, title:str="Window"):
         log_system.addInfo("Set title")
@@ -248,6 +254,15 @@ class Window:
 
         self.current_window_sizes = list(glfw.get_framebuffer_size(self.window))
         
+        # DELTA
+        
+        current_time = time.time()
+        self.delta_time = current_time - self.last_frame_time
+        self.last_frame_time = current_time
+        
+        if self.delta_time > 0.05:
+            self.delta_time = 0.05
+        
         # SKIP RENDER
         
         if self.current_window_sizes[0] <= 0 or self.current_window_sizes[1] <= 0:
@@ -312,16 +327,19 @@ class Window:
         # TEXTURE
 
         GL.glEnable(GL.GL_TEXTURE_2D)
-
-        # CHECK UPDATE FUNCTION
-
-        if update:
-            update()
         
         # DEBUG ON/OFF
         
-        if Keyboard.KeyJustPressed(Key("f12"), self) and debug:
-            self.debugmenu = not self.debugmenu
+        if Keyboard.KeyPressed(Key("shift"), self) and Keyboard.KeyJustPressed(Key("f12"), self) and debug:
+            if self.debugmenu == 2:
+                self.debugmenu = 0
+            else:
+                self.debugmenu = 2
+        elif Keyboard.KeyJustPressed(Key("f12"), self) and debug:
+            if self.debugmenu == 1:
+                self.debugmenu = 0
+            else:
+                self.debugmenu = 1
         
         # DRAW ELEMENTS
         
@@ -335,7 +353,7 @@ class Window:
         
         # DEBUG SHOW
         
-        if self.debugmenu and debug:
+        if self.debugmenu == 1 and debug:
             padding = 14
             
             memory_info = self.momorymonitor.getMemory()
@@ -354,6 +372,13 @@ class Window:
             
             for index, label in enumerate(text_lines):
                 self.drawText(label, Vec2(0, index*padding), debug_only=True)
+        elif self.debugmenu == 2 and debug:
+            self.drawText(f"FPS: {self.fps}", Vec2(0, 0), debug_only=True)
+        
+        # CHECK UPDATE FUNCTION
+
+        if update:
+            update()
         
         # WINDOW PROCESS
         
@@ -371,29 +396,26 @@ class Window:
 
     def winProcess(self, update=None, fps: int | None = None):
         try:
-            log_system.addInfo(f"Create winprocess, Update:{update.__name__}, FPS:{fps}") # type: ignore
+            log_system.addInfo(f"Create winprocess, Update:{update.__name__}, FPS:{fps}")
         except:
             log_system.addInfo(f"Create winprocess, Update:{update}, FPS:{fps}")
 
-        # CHECK FPS
-
-        if fps is not None:
-            frame_time = 1.0 / fps
-            last_time = time.time()
-        
-        # RENDER LOOP
+        last_time = time.time()
 
         while not glfw.window_should_close(self.window):
+            current_time = time.time()
+            elapsed = current_time - last_time
+
             if fps is not None:
-                current_time = time.time()
-                elapsed = current_time - last_time
+                frame_time = 1.0 / fps
 
                 if elapsed >= frame_time:
                     self._render_frame(update)
                     last_time = current_time
                 else:
-                    time.sleep(frame_time - elapsed)
+                    time.sleep(max(0, frame_time - elapsed - 0.001))
             else:
                 self._render_frame(update)
-
+                last_time = current_time
+        
         glfw.terminate()
