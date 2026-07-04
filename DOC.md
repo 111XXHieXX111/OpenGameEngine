@@ -107,6 +107,8 @@ window has methods enableEventsByIconify/disableEventsByIconify
 + window.enableEventsByIconify - Enable events when window is minimized
 + window.disableEventsByIconify - Disable events when window is minimized
 
+**Cyrillic is not supported in the drawText function!**
+
 ### Graphics
 
 #### Load texture
