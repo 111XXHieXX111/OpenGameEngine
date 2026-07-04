@@ -2,7 +2,7 @@
 [![Github](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/111XXHieXX111)
 ![OpenGL](https://img.shields.io/badge/OpenGL-4.6-5586A4?logo=opengl&logoColor=white)
 ![GLFW](https://img.shields.io/badge/GLFW-3.4-865500?logo=glfw&logoColor=white)
-<img src="Icons/OGE.png" alt="Logo">
+<img src="Engine/Icons/OGE.png" alt="Logo">
 
 # OpenGameEngine
 Game engine maded on OpenGL, Python 3.12
