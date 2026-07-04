@@ -12,38 +12,37 @@ IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
 from OpenGameEngine import *
 ```
 
-### Base Classes & Functions
+### Compontents
+
+#### Vectors
+
 ```python
-# Vectors, vectors has method "getVectors"
+vec1 = Vec1(0.0, 0.0)
+vec2 = Vec2(0.0, 0.0)
+```
 
-vec1 = Vec1(0)
-vec2 = Vec2(0, 0)
+#### Graphics
 
-# Colors
+```python
 
-color3 = Color3(0, 0, 0)    # RGB
-color4 = Color4(0, 0, 0, 0) # RGBA
-color256 = c256(128)        # Convert 0-255 to 0-1
+# COLORS
 
-# Binds
+color3 = Color3(0.0, 0.0, 0.0)
+color4 = Color4(0.0, 0.0, 0.0, 0.0)
+color256 = c256(0)
 
-key = Key("space") # Key has method "getKey"
+# OTHER
 
-# Drawing
-
-drawmode = drawMode.FILL # drawMode has: POINTS, LOOP, FORM, FILL, RECT
-
-# Textures
-
-textype = textureType.LINEAR # textureType has: LINEAR, NEAREST
-
-# Window stretching
-
+drawmode = drawMode.FILL        # drawMode has: POINTS, LOOP, FORM, FILL, RECT
+textype = textureType.LINEAR    # textureType has: LINEAR, NEAREST
 stype = stretchType.KEEP_ASPECT # stretchType has: EXPAND, RELATIVELY, KEEP_ASPECT
-
-# Batch
-
 bdrawing = batchDrawing.STATIC # batchDrawing has: STATIC, DYNAMIC
+```
+
+#### Control
+
+```python
+key = Key("space")
 ```
 
 ### Window

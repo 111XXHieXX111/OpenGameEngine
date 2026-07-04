@@ -57,4 +57,6 @@ added **fonts**
 
 # 4.07.26 
 
-updated **Structure**
+updated **Structure** + **DOC**
+
+added **Uniforms**

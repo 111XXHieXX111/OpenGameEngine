@@ -64,6 +64,7 @@ class Rectangle(Base):
         
         if self.shader:
             GL.glUseProgram(self.shader.program)
+            self.shader._apply_uniforms()
 
         polygon = Polygon(self.vertexes)
         polygon.setColor(self.color)

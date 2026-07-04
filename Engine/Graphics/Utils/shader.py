@@ -5,9 +5,33 @@ class Shader:
     frag = None
     vert = None
     program = None
+    uniforms = []
+    
+    def _apply_uniforms(self):
+        for uniform in self.uniforms:
+            loc = GL.glGetUniformLocation(self.program, uniform[0])
+            if loc == -1:
+                return
+
+            value = uniform[1]
+            
+            if isinstance(value, (int, float)):
+                if isinstance(value, int):
+                    GL.glUniform1i(loc, value)
+                else:
+                    GL.glUniform1f(loc, value)
+            elif isinstance(value, (list, tuple)):
+                if len(value) == 1:
+                    GL.glUniform1f(loc, value[0])
+                elif len(value) == 2:
+                    GL.glUniform2f(loc, value[0], value[1])
+                elif len(value) == 3:
+                    GL.glUniform3f(loc, value[0], value[1], value[2])
+                elif len(value) == 4:
+                    GL.glUniform4f(loc, value[0], value[1], value[2], value[3])
 
 @logWrapper
-def loadShader(path:str):
+def loadShader(path:str, uniforms:list[list]=[]):
     import lzma
     import base64
     
@@ -74,5 +98,6 @@ def loadShader(path:str):
     shader.frag = frag_shader
     shader.vert = vert_shader
     shader.program = program
+    shader.uniforms = uniforms
     
     return shader
