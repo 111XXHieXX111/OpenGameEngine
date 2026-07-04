@@ -147,8 +147,14 @@ polygon.drawPolygon(drawMode.FILL)           # arg1 - drawMode
 
 **Important! draw** must be placed in the function specified by **Window** in **winProcess**
 
-There is also a **checkcollision** function, it checks whether the first primitive touches the second one. 
+There is also a **checkCollision** function, it checks whether the first primitive touches the second one. 
 **Note:** This function uses AABB (Axis-Aligned Bounding Box). It creates an axis-aligned rectangle around each shape, so for rotated objects the collision area will be larger than the actual shape. For non-rotated objects it works perfectly.
+
+```python
+if checkCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
+```
+
 Primitives such as **Rectangle**, **Triangle**, **Circle** need to call the calculateSize function in order to calculate the size, and it is called **BEFORE draw**
 
 Draw modes:
