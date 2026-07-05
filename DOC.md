@@ -190,7 +190,8 @@ particles.setRandomSize(Vec2(0.0, 0.0), None) # Set particles random size, arg1 
 particles.setRandomDirectionX(Vec2(0.0, 0.0)) # Set particles random direction, arg1 - Vec2 (value1 - minimum posX, value2 - maximum)
 particles.setMaxParticles(0)                  # Set max drawing particles, arg1 - int
 particles.setRandomColor(False)               # Set random color, arg1 - bool (if True - enabled else disabled random)
-particles.setTimerType(Timer)                  # Set timer type, arg1 - Timer | frameTimer
+particles.setTimerType(Timer)                 # Set timer type, arg1 - Timer | frameTimer
+particles.drawParticles()                     # Draw particles, arg1 - dt (Optional), arg2 - Window (if timerType == Timer: required, else: dont't)
 ```
 
 #### Sprite
@@ -207,8 +208,8 @@ sprite.spriteProcess() # Drawing sprite
 ### Control
 ```python
 # Keyboard
-Keyboard.KeyPressed(Key("space"), Window)        # Return bool value, if key is pressed - True else False. arg1 - Key, arg2 - Window (optional)
-Keyboard.KeyJustPressed(Key("space"), Window)    # Return bool value, if key is just pressed - True else False, arg1 - Key, arg2 - Window (optional)
+Keyboard.KeyPressed(Key("space"), Window)        # Return bool value, if key is pressed - True else False. arg1 - Key, arg2 - Window
+Keyboard.KeyJustPressed(Key("space"), Window)    # Return bool value, if key is just pressed - True else False, arg1 - Key, arg2 - Window
 
 # Mouse:
 Mouse.getPosition(Window)                        # Return position in Vec2, arg1 - Window

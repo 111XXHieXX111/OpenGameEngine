@@ -27,12 +27,15 @@ class Particle:
     def destroyParticle(self):
         self.particlelist.remove(self)
     
-    def physicsProcess(self, delta):
+    def physicsProcess(self, delta, window):
         self.surface.position.y += self.gravity.x * delta
         self.surface.position.x += self.direction.x * delta
         self.surface.calculateSize()
         
-        self.lifetime_timer.timerProcess()
+        if isinstance(self.lifetime_timer, Timer):
+            self.lifetime_timer.timerProcess(window)
+        elif isinstance(self.lifetime_timer, frameTimer):
+            self.lifetime_timer.timerProcess()
         
     def drawParticle(self):
         self.surface.drawRectangle(drawMode.FILL)
@@ -196,9 +199,9 @@ class simpleParticles:
             )
         )
     
-    def drawParticles(self, delta=1):
+    def drawParticles(self, delta=1, window=None):
         self.addParticle()
         
         for particle in self.particles:
-            particle.physicsProcess(delta)
+            particle.physicsProcess(delta, window)
             particle.drawParticle()
