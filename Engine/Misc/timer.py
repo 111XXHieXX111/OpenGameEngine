@@ -6,7 +6,7 @@ class Timer:
     def __init__(self, target_sec:int=0, func=None):
         self.target = target_sec
         self.func = func
-        self.last_trigger = 0
+        self.last_trigger = time.time()
         self.triggered = False
 
     def timerProcess(self, window):
