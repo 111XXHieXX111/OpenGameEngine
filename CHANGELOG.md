@@ -65,4 +65,4 @@ added **Uniforms**
 
 updated **Debug menu**
 
-added **Delta**
+added **Delta** + **Timer**

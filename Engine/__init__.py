@@ -32,6 +32,7 @@ from .Physics.collision_check import checkCollision
 # MISC
 
 from .Misc.frametimer import frameTimer
+from .Misc.timer import Timer
 from .Misc.saver import saveData, loadData
 from .Misc.trace import checkInDebbuger
 from .Misc.crypto import genKey

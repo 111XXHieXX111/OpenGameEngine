@@ -176,13 +176,13 @@ render.renderPrimitives()                 # Draw primitives, place in update
 #### SimpleParticles
 
 ```python
-particles = Graphics.simpleParticles()
+particles = Graphics.simpleParticles()        # arg1 - window (optional) (for optimization)
 particles.setPosition(Vec2(0.0, 0.0))         # Set particles position, arg1 - Vec2
 particles.setColor(Color3(0.0, 0.0, 0.0))     # Set particles color, arg1 - Color3 | Color4
 particles.setSize(Vec2(0.0, 0.0))             # Set particles size, arg1 - Vec2
 particles.setGravity(Vec1(0.0))               # Set particles gravity, arg1 - Vec1
 particles.setSpawnRadius(Vec2(0.0, 0.0))      # Set particles spawn radius (box shape), arg1 - Vec2
-particles.setLifetime(0.0)                    # Set particles life time, arg1 - int
+particles.setLifetime(0.0)                    # Set particles life time, arg1 - int | float (if timer type == Timer: float | int, else: int)
 particles.setTexture(None)                    # Set particles texture, arg1 - loaded texture
 particles.setDirectionX(Vec1(0.0))            # Set particles direction in axis X (offset), arg1 - Vec1 (-1 left, 1 right, you can have any values)
 particles.setRandomRotation(Vec1(0.0))        # Set particles random rotation, arg1 - Vec1 (max rotation)
@@ -190,6 +190,7 @@ particles.setRandomSize(Vec2(0.0, 0.0), None) # Set particles random size, arg1 
 particles.setRandomDirectionX(Vec2(0.0, 0.0)) # Set particles random direction, arg1 - Vec2 (value1 - minimum posX, value2 - maximum)
 particles.setMaxParticles(0)                  # Set max drawing particles, arg1 - int
 particles.setRandomColor(False)               # Set random color, arg1 - bool (if True - enabled else disabled random)
+particles.setTimerType(Timer)                  # Set timer type, arg1 - Timer | frameTimer
 ```
 
 #### Sprite
@@ -231,6 +232,18 @@ def update():
 ```
 
 The function is triggered when the current frame is the same in count as the number of the target. When the goal is reached, the timer is reset and so on in a circle.
+
+#### Timer
+
+```python
+def test_func():
+    print("Hello, World!")
+
+timer = Timer(2, test_func)    # arg1 - target sec, arg2 - func
+
+def update():
+    timer.timerProcess(window) # arg1 - window
+```
 
 #### dataSave
 

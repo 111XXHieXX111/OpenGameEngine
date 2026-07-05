@@ -4,12 +4,13 @@ from ...Kernel.Components.system import System
 from ...Kernel.modules import random
 from ...Kernel.kernel import classWrapper
 from ...Misc.frametimer import frameTimer
+from ...Misc.timer import Timer
 from ..Primitives.rectangle import Rectangle
 from ..Random.randomcolor import randomColor4
 
 @classWrapper
 class Particle:
-    def __init__(self, window, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction):
+    def __init__(self, window, lifetime, gravity, color, size, position, particlelist, texture, rotation, direction, timer_type):
         self.surface = Rectangle(window)
         self.surface.setColor(color)
         self.surface.setSize(size)
@@ -21,14 +22,14 @@ class Particle:
         self.direction = direction
         self.particlelist = particlelist
         
-        self.lifetime_timer = frameTimer(lifetime, self.destroyParticle)
+        self.lifetime_timer = timer_type(lifetime, self.destroyParticle)
     
     def destroyParticle(self):
         self.particlelist.remove(self)
     
-    def physicsProcess(self):
-        self.surface.position.y += self.gravity.x
-        self.surface.position.x += self.direction.x
+    def physicsProcess(self, delta):
+        self.surface.position.y += self.gravity.x * delta
+        self.surface.position.x += self.direction.x * delta
         self.surface.calculateSize()
         
         self.lifetime_timer.timerProcess()
@@ -73,10 +74,11 @@ class simpleParticles:
         # PHYSICS
         
         self.gravity = Vec1(0.0)
-        
+
         # PROCESS
         
         self.lifetime = 0
+        self.timer_type = frameTimer
         
         # DIRECTION
         
@@ -129,6 +131,9 @@ class simpleParticles:
     
     def clearParticles(self):
         self.particles.clear()
+    
+    def setTimerType(self, timer:Timer | frameTimer):
+        self.timer_type = timer
     
     def addParticle(self):
         
@@ -186,13 +191,14 @@ class simpleParticles:
                 self.particles,
                 self.texture,
                 self.rotation+random_rotate,
-                self.directionX+random_directionX
+                self.directionX+random_directionX,
+                self.timer_type
             )
         )
     
-    def drawParticles(self):
+    def drawParticles(self, delta=1):
         self.addParticle()
         
         for particle in self.particles:
-            particle.physicsProcess()
+            particle.physicsProcess(delta)
             particle.drawParticle()

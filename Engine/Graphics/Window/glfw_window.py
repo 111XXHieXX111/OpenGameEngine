@@ -5,6 +5,7 @@ from ...Kernel.Components.control import Key
 from ...Kernel.Components.graphics import Color3, Color4, stretchType
 from ...Kernel.Components.system import System
 from ...Misc.memory import memoryMonitor, memoryClean
+from ...Misc.timer import Timer
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
 from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox
@@ -46,6 +47,9 @@ class Window:
         self.debugmenu = 0
         
         self.selected_keyboard = None
+        
+        self.upd_fps_timer = Timer(1, self._set_upd_fps)
+        self.upd_fps = 0
 
         # CURRENT SIZES
 
@@ -67,6 +71,9 @@ class Window:
 
     def _iconify_callback(self, window, iconified):
         self.iconified = iconified
+
+    def _set_upd_fps(self):
+        self.upd_fps = self.fps
 
     def initWindow(self):
         log_system.addInfo("Init window")
@@ -357,6 +364,8 @@ class Window:
                 element._draw(self)
         
         # DEBUG SHOW
+        
+        self.upd_fps_timer.timerProcess(self)
         
         if self.debugmenu == 1 and debug:
             padding = 14
