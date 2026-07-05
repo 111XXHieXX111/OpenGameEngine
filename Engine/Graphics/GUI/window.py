@@ -1,6 +1,6 @@
 from ...Kernel.modules import GL, threading, keyboard, time, glutBitmapCharacter
 from ...Kernel.Components.vectors import Vec2
-from ...Kernel.Components.graphics  import Color3, Color4, drawMode
+from ...Kernel.Components.graphics  import Color3, Color4
 from ...Kernel.Components.control import MouseButton
 from ...Kernel.Components.system import System
 from ...Kernel.kernel import classWrapper, logWrapper, fonts
@@ -119,6 +119,8 @@ class SimpleButton:
 
     def _draw(self, window):
         
+        GL.glDisable(GL.GL_TEXTURE_2D)
+        
         # DRAWING BG
         
         if self.clicked:
@@ -186,6 +188,8 @@ class textInput:
         self.keypressed = ""
         self.keylasttime = 0
         self.window = None
+        
+        keyboard.on_press(self._key_pressed)
 
     def getValue(self):
         return self.value
@@ -216,11 +220,10 @@ class textInput:
         
         if not self.window:
             self.window = window
-        
-        if self.selected:
-            keyboard.on_press(self._key_pressed)
-    
+
     def _key_pressed(self, event):
+        if not self.selected:
+            return
         key = event.name
         if len(key) == 1 and key.isalpha() or key in ["backspace", "enter"] or key in "1234567890":
             if key == self.keypressed:
@@ -248,6 +251,8 @@ class textInput:
     def _draw(self, window):
         
         # DRAWING BG
+        
+        GL.glDisable(GL.GL_TEXTURE_2D)
         
         if self.selected:
             bgframe(self.position, self.size, self.selectedColor)

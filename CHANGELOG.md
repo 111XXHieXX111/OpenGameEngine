@@ -63,6 +63,6 @@ added **Uniforms**
 
 # 5.07.26
 
-updated **Debug menu**
+updated **Debug menu** + **Primitives**
 
-added **Delta** + **Timer**
+added **Delta** + **Timer** **More info in window debug menu**

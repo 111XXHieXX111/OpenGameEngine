@@ -1,4 +1,4 @@
-from ...Kernel.kernel import classWrapper
+from ...Kernel.kernel import classWrapper, render_vertexes
 from ...Kernel.Components.system import System
 from .modules import *
 
@@ -41,3 +41,7 @@ class Vertex:
 
         if end:
             GL.glEnd()
+        
+        try:
+            render_vertexes.append(f"{self.position.x}/{self.position.y}")
+        except:...

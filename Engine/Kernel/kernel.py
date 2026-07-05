@@ -35,6 +35,7 @@ log_system.addInfo("Logging system connected!")
 
 debug = True
 render_items = []
+render_vertexes = []
 textures = []
 
 log_system.addInfo("Loading icons path's")

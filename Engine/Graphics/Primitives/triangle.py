@@ -54,12 +54,12 @@ class Triangle(Base):
         
         # Optimization
         
-        if self.position.x+self.size.x < 0 or self.position.y+self.size.y < 0:
-            return
-
         if self.window:
-            if self.position.x-self.size.x > self.window.current_window_sizes[0] or self.position.y-self.size.y > self.window.current_window_sizes[1]:
+            if self.position.x+self.size.x < 0 or self.position.y+self.size.y < 0:
                 return
+            
+            if self.position.x-self.size.x > self.window.current_window_sizes[0] or self.position.y-self.size.y > self.window.current_window_sizes[1]:
+                    return
         
         self._draw("Triangle")
         

@@ -1,5 +1,5 @@
-from ...Kernel.modules import glfw, GL, time, glutInit
-from ...Kernel.kernel import log_system, debug, render_items, classWrapper, fonts
+from ...Kernel.modules import glfw, GL, time, glutInit, threading
+from ...Kernel.kernel import log_system, debug, render_items, classWrapper, fonts, render_vertexes
 from ...Kernel.Components.vectors import Vec2
 from ...Kernel.Components.control import Key
 from ...Kernel.Components.graphics import Color3, Color4, stretchType
@@ -279,6 +279,10 @@ class Window:
         # CLEAR RENDER ITEMS
         
         render_items.clear()
+        
+        # CLEAR VERTEXES
+        
+        render_vertexes.clear()
 
         # CLEAR SCREEN
 
@@ -381,7 +385,9 @@ class Window:
                 f"Render objects:{len(render_items)}",
                 f"RSS:{memory_info['rss']:.2f}MB",
                 f"VMS:{memory_info['vms']:.2f}MB",
-                f"Memory peak:{memory_info['peak']:.2f}MB"
+                f"Memory peak:{memory_info['peak']:.2f}MB",
+                f"Threads:{threading.active_count()}",
+                f"Vertexes:{len(render_vertexes)}"
             ]
             
             for index, label in enumerate(text_lines):

@@ -1,7 +1,7 @@
 from ..Primitives.rectangle import Rectangle
 from ..Primitives.triangle import Triangle
 from ...Kernel.Components.graphics import drawMode, batchDrawing
-from ...Kernel.kernel import render_items, classWrapper
+from ...Kernel.kernel import render_items, classWrapper, render_vertexes
 from ...Kernel.modules import GL
 
 @classWrapper
@@ -46,6 +46,9 @@ class batchRender:
             c = self.colors[i]
             GL.glColor4f(c.r, c.g, c.b, c.a)
             GL.glVertex2f(v.x, v.y)
+            try:
+                render_vertexes.append(f"{v.x}/{v.y}")
+            except:...
         GL.glEnd()
         
         # BATCH MODES
