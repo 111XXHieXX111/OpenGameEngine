@@ -328,6 +328,11 @@ class Window:
 
         GL.glEnable(GL.GL_TEXTURE_2D)
         
+        # CHECK UPDATE FUNCTION
+
+        if update:
+            update()
+        
         # DEBUG ON/OFF
         
         if Keyboard.KeyPressed(Key("shift"), self) and Keyboard.KeyJustPressed(Key("f12"), self) and debug:
@@ -374,11 +379,6 @@ class Window:
                 self.drawText(label, Vec2(0, index*padding), debug_only=True)
         elif self.debugmenu == 2 and debug:
             self.drawText(f"FPS: {self.fps}", Vec2(0, 0), debug_only=True)
-        
-        # CHECK UPDATE FUNCTION
-
-        if update:
-            update()
         
         # WINDOW PROCESS
         
