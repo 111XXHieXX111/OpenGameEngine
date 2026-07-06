@@ -135,7 +135,7 @@ class SimpleButton:
         _drawText(window, self.text, self.position, self.fgcolor, self.font, False, True)
     
     def _process(self, window):
-        mousePos = Mouse.getPosition(window)
+        mousePos = Mouse.getMouseWorld(window)
         
         # HOVER
         
@@ -198,7 +198,7 @@ class textInput:
         self.value = text
 
     def _process(self, window):
-        mousePos = Mouse.getPosition(window)
+        mousePos = Mouse.getMouseWorld(window)
         
         # SELECT
         

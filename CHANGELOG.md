@@ -66,3 +66,9 @@ added **Uniforms**
 updated **Debug menu** + **Primitives**
 
 added **Delta** + **Timer** **More info in window debug menu**
+
+# 6.07.26
+
+updated **GUI**
+
+added **getMouseWorld**
