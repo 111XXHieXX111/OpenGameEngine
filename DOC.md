@@ -96,7 +96,7 @@ window.addElement(inp)                                                 # Renderi
 ```
 
 Window has method drawText
-+ drawText - drawing any text in window, arg1 - text, arg2 - position, arg3 - text color (fg), arg4 - fonts (optional)
++ drawText - drawing any text in window, arg1 - text, arg2 - position, arg3 - text color (fg), arg4 - fonts (optional), arg5 - bool (if True - Stick to the window, else - Stay in place)
 
 ```python
 def update(): # Function in winProcess

@@ -6,6 +6,24 @@ from ...Kernel.Components.system import System
 from ...Kernel.kernel import classWrapper, logWrapper, fonts
 from ...Control.mouse import Mouse
 
+def _resetMatrix(self):
+    GL.glMatrixMode(GL.GL_PROJECTION)
+    GL.glPushMatrix()
+    GL.glLoadIdentity()
+    width, height = self.current_window_sizes
+    GL.glOrtho(0, width, height, 0, -1, 1)
+    
+    GL.glMatrixMode(GL.GL_MODELVIEW)
+    GL.glPushMatrix()
+    GL.glLoadIdentity()
+
+def _recoveryMatrix():
+    GL.glMatrixMode(GL.GL_MODELVIEW)
+    GL.glPopMatrix()
+    GL.glMatrixMode(GL.GL_PROJECTION)
+    GL.glPopMatrix()
+    GL.glMatrixMode(GL.GL_MODELVIEW)
+
 def bgframe(position, size, addcolor):
     color1 = addcolor + Color4(0.3, 0.3, 0.3, 1)
     color2 = addcolor + Color4(0.2, 0.2, 0.2, 1)
@@ -19,7 +37,7 @@ def bgframe(position, size, addcolor):
     GL.glEnd()
 
 @logWrapper
-def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
+def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False, screen_space=True):
     
     # DISABLE TEXT
     if not donthide:
@@ -42,6 +60,9 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
         else:
             return
     
+    if screen_space:
+        _resetMatrix(self)
+    
     GL.glDisable(GL.GL_TEXTURE_2D)
     
     GL.glColor3f(color.r, color.g, color.b)
@@ -51,9 +72,12 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
         glutBitmapCharacter(font, ord(char))
     
     GL.glEnable(GL.GL_TEXTURE_2D)
+    
+    if screen_space:
+        _recoveryMatrix()
 
 @logWrapper
-def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
+def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False, screen_space=False):
     
     # DISABLE TEXT
     
@@ -82,10 +106,16 @@ def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Colo
     
     chunks = [text[i:i+charslen] for i in range(0, len(text), charslen)]
     
+    if screen_space:
+        _resetMatrix(self)
+    
     bgframe(position, Vec2(char_size.x*charslen, char_size.y*len(chunks)), bgcolor)
     
     for index, chunk in enumerate(chunks):
         _drawText(self, chunk, Vec2(position.x, position.y+index*12), color, font, debug_only)
+    
+    if screen_space:
+        _recoveryMatrix()
 
 @classWrapper
 class SimpleButton:
@@ -132,7 +162,7 @@ class SimpleButton:
 
         # DRAW TEXT
 
-        _drawText(window, self.text, self.position, self.fgcolor, self.font, False, True)
+        _drawText(window, self.text, self.position, self.fgcolor, self.font, False, True, False)
     
     def _process(self, window):
         mousePos = Mouse.getMouseWorld(window)

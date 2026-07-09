@@ -226,11 +226,11 @@ class Window:
         log_system.addInfo("Iconified work:Disabled")
         self.iconifiedwork = False
 
-    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], *, debug_only=False):
-        _drawText(self, text, position, color, font, debug_only)
+    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], static_text=True, *, debug_only=False):
+        _drawText(self, text, position, color, font, debug_only, False, static_text)
     
-    def drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), charslen:int=0, color:Color3=Color3(1.0, 0.0, 0.0), bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), *, debug_only=False):
-        _drawTextBox(self, text, position, color, charslen, bgcolor, debug_only)
+    def drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), charslen:int=0, color:Color3=Color3(1.0, 0.0, 0.0), bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), static_text=True, *, debug_only=False):
+        _drawTextBox(self, text, position, color, charslen, bgcolor, debug_only, False, False, static_text)
     
     def addElement(self, element:SimpleButton | textInput):
         self.elements.append(element)

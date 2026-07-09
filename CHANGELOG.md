@@ -72,3 +72,7 @@ added **Delta** + **Timer** **More info in window debug menu**
 updated **GUI**
 
 added **getMouseWorld**
+
+# 09.07.26
+
+updated **GUI**
