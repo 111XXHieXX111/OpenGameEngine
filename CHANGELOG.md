@@ -76,3 +76,7 @@ added **getMouseWorld**
 # 09.07.26
 
 updated **GUI**
+
+# 10.07.26
+
+updated **optimization** + **examples**

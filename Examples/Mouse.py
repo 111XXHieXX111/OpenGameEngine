@@ -10,12 +10,12 @@ window.initWindow()
 window.setBG(Color3(0, 0.5, 0))
 window.setTitle("Dragging")
 
-rect = Rectangle()
+rect = Graphics.Rectangle(window)
 rect.setPosition(Vec2(20, 20))
 rect.setSize(Vec2(40, 40))
 rect.setColor(Color3(0, 0, 0))
 
-mouserect = Rectangle()
+mouserect = Graphics.Rectangle(window)
 mouserect.setSize(Vec2(10, 10))
 
 def update():

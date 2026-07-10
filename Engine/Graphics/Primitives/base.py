@@ -1,6 +1,7 @@
 from .modules import *
 from ...Kernel.kernel import log_system, render_items, classWrapper
 from ...Kernel.Components.system import System
+from ...Kernel.Components.graphics import stretchType
 from ...Graphics.Utils.shader import Shader
 
 @classWrapper
@@ -106,3 +107,17 @@ class Base:
 
     def _draw(self, name:str):
         render_items.append(name)
+
+    def _in_window(self):
+        if self.window:
+            if not self.window.camera["enabled"]:
+                if self.window.window_settings["stretch"] != stretchType.RELATIVELY:
+                    winsize = [self.window.window_settings["width"], self.window.window_settings["height"]]
+                else:
+                    winsize = self.window.current_window_sizes
+                
+                if self.position.x + self.size.x <= 0 or self.position.y + self.size.y <= 0:
+                    return False
+                if self.position.x >= winsize[0] or self.position.y >= winsize[1]:
+                    return False
+        return True

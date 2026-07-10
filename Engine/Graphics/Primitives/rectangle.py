@@ -50,12 +50,8 @@ class Rectangle(Base):
         
         # Optimization
         
-        if self.window:
-            if self.position.x+self.size.x < 0 or self.position.y+self.size.y < 0:
-                return
-
-            if self.position.x-self.size.x > self.window.current_window_sizes[0] or self.position.y-self.size.y > self.window.current_window_sizes[1]:
-                return
+        if not self._in_window():
+            return
         
         self._draw("Rectangle")
         

@@ -10,7 +10,7 @@ window.initWindow()
 window.setBG(Color3(1, 1, 1))
 window.setStretch(stretchType.EXPAND)
 
-particles = Graphics.simpleParticles()
+particles = Graphics.simpleParticles(window)
 particles.setPosition(Vec2(100, 100))
 particles.setColor(Color3(0.0, 0.0, 0.0))
 particles.setSize(Vec2(20.0, 20.0))

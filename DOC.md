@@ -125,6 +125,9 @@ circle = Graphics.Circle() # arg1 - int, number of segments (default 8), arg2 - 
 vertex = Graphics.Vertex()
 polygon = Graphics.Polygon([]) # Arg is vertexes list
 ```
+
+If you write **window** as the 1st argument, then if a **primitive** goes outside the visible area (does not work with the **camera**), it will not be rendered.
+
 **ALL primitives** have functions such as:
 + setWidthLines - setting the line width;
 + setSize - setting the size of the primitive;
