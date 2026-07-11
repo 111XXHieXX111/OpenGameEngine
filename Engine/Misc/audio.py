@@ -7,12 +7,12 @@ class loadSound:
     def __init__(self, path:str, audiotype:str="float32"):
         import soundfile as sf
         """audiotypes:float64, float32, int32, int16"""
+        log_system.addInfo("Loading sound")
         self.path = path
         self.audiotype = audiotype
         self._playing = False
         self._volume = 1.0
         self.data, self.fs = sf.read(self.path, dtype=self.audiotype)
-        log_system.addInfo("Sound loaded")
     
     def play(self, loop:bool=False):
         import sounddevice as sd

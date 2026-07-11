@@ -57,7 +57,3 @@ def classWrapper(cls):
         if callable(method):
             setattr(cls, name, logWrapper(method))
     return cls
-
-log_system.addInfo("Loading OpenGL fonts")
-
-
