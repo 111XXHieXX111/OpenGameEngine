@@ -3,7 +3,8 @@ from ...Kernel.Components.vectors import Vec2
 from ...Kernel.Components.graphics  import Color3, Color4
 from ...Kernel.Components.control import MouseButton
 from ...Kernel.Components.system import System
-from ...Kernel.kernel import classWrapper, logWrapper, fonts
+from ...Kernel.kernel import classWrapper, logWrapper
+from ...Kernel.fonts import fonts
 from ...Control.mouse import Mouse
 
 def _resetMatrix(self):

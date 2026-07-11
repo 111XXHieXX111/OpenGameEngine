@@ -1,9 +1,10 @@
 from ...Kernel.modules import glfw, GL, time, glutInit, threading
-from ...Kernel.kernel import log_system, debug, render_items, classWrapper, fonts, render_vertexes
+from ...Kernel.kernel import log_system, debug, render_items, classWrapper, render_vertexes
 from ...Kernel.Components.vectors import Vec2
 from ...Kernel.Components.control import Key
 from ...Kernel.Components.graphics import Color3, Color4, stretchType
 from ...Kernel.Components.system import System
+from ...Kernel.fonts import fonts
 from ...Misc.memory import memoryMonitor, memoryClean
 from ...Misc.timer import Timer
 from ...Control.keyboard import Keyboard

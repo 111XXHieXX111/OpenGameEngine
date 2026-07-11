@@ -80,3 +80,7 @@ updated **GUI**
 # 10.07.26
 
 updated **optimization** + **examples**
+
+# 11.07.26
+
+updated **kernel** + **logging**
