@@ -81,7 +81,7 @@ class Logging:
         if self.colored:
             pre = '<\033[31m\033[1mCRITICAL\033[0m> '
         else:
-            pre = '<ERROR> '
+            pre = '<CRITICAL> '
         
         if self.calledfile:
             if self.colored:
