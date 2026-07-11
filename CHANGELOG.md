@@ -16,7 +16,7 @@ added **randomColor3** + **randomColor4** + **genKey** + **saveData** + **loadDa
 
 updated **utils structure**
 
-added **checkInDebbuger** + **requirements.txt** + **builtin icons** + **loadSound** + **soundManager** + **sceneManager**
+added **checkInDebugger** + **requirements.txt** + **builtin icons** + **loadSound** + **soundManager** + **sceneManager**
 
 # 26.06.26
 
