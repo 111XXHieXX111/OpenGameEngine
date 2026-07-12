@@ -71,3 +71,12 @@ class Color4:
     
     def __truediv__(self, scalar):
         return Color4(self.r / scalar.r, self.g / scalar.g, self.b / scalar.b, self.a / scalar.a)
+
+# ANIMATIONS
+
+class Animation:
+    def __init__(self, name:str, frames:list[int] | tuple[int], interval:int | float, loop:bool):
+        self.name = name
+        self.frames = frames
+        self.interval = 0.0
+        self.loop = loop

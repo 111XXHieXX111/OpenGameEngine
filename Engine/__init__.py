@@ -2,7 +2,7 @@
 
 from .Kernel.Components.vectors import Vec1, Vec2
 from .Kernel.Components.graphics import Color3, Color4, c256
-from .Kernel.Components.graphics import drawMode, shaderType, textureType, stretchType, batchDrawing
+from .Kernel.Components.graphics import drawMode, shaderType, textureType, stretchType, batchDrawing, Animation
 from .Kernel.Components.control import Key, MouseButton
 from .Kernel.kernel import log_system
 from .Kernel.fonts import fonts
@@ -16,6 +16,7 @@ from .Control.mouse import Mouse
 # GRAPHICS
 
 from .Graphics.Sprites.sprite import Sprite
+from .Graphics.Sprites.animated_sprite import animatedSprite
 from .Graphics.Render.batchrender import batchRender
 from .Graphics.Random.randomcolor import randomColor3, randomColor4
 from .Graphics.Utils.texture import loadTexture
