@@ -1,27 +1,27 @@
-## Tutorial
-### Run
+# Tutorial
+## Run
 **IF YOU ARE USING LINUX - RUN AS ROOT!!!**
 
 IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
 
 **MACOS NOT SUPPORTED!!!**
 
-### Import
+## Import
 ```python
 # Import game lib
 from OpenGameEngine import *
 ```
 
-### Compontents
+## Compontents
 
-#### Vectors
+### Vectors
 
 ```python
 vec1 = Vec1(0.0, 0.0)
 vec2 = Vec2(0.0, 0.0)
 ```
 
-#### Graphics
+### Graphics
 
 ```python
 
@@ -39,13 +39,13 @@ stype = stretchType.KEEP_ASPECT # stretchType has: EXPAND, RELATIVELY, KEEP_ASPE
 bdrawing = batchDrawing.STATIC # batchDrawing has: STATIC, DYNAMIC
 ```
 
-#### Control
+### Control
 
 ```python
 key = Key("space")
 ```
 
-### Window
+## Window
 ```python
 # Creating window
 window = Window()
@@ -109,14 +109,14 @@ window has methods enableEventsByIconify/disableEventsByIconify
 
 **Cyrillic is not supported in the drawText function!**
 
-### Graphics
+## Graphics
 
-#### Load texture
+### Load texture
 ```python
 loadTexture("texturepath/texture.png", textureType.LINEAR) # Load texture, arg1 - path, arg2 - textureType
 ```
 
-#### Primitives
+### Primitives
 ```python
 rectangle = Graphics.Rectangle() # arg1 - window (optional) (for optimization)
 triangle = Graphics.Triangle() # arg1 - window (optional) (for optimization)
@@ -167,7 +167,7 @@ Draw modes:
 + FILL
 + RECT
 
-#### Batch
+### Batch
 
 ```python
 render = batchRender(batchDrawing.STATIC) # batchDrawing (STATIC - for static primitives, add it once. DYNAMIC - for dynamic primitives and are added to update.)
@@ -176,7 +176,7 @@ render.setDrawMode(drawMode.FILL)        # Set drawMode for primitives
 render.renderPrimitives()                 # Draw primitives, place in update
 ```
 
-#### SimpleParticles
+### SimpleParticles
 
 ```python
 particles = Graphics.simpleParticles()        # arg1 - window (optional) (for optimization)
@@ -197,7 +197,7 @@ particles.setTimerType(Timer)                 # Set timer type, arg1 - Timer | f
 particles.drawParticles()                     # Draw particles, arg1 - dt (Optional), arg2 - Window (if timerType == Timer: required, else: dont't)
 ```
 
-#### Sprite
+### Sprite
 
 ```python
 sprite = Sprite(None, None) # arg1 - Window, arg2 - Update function
@@ -208,7 +208,7 @@ sprite.customData.update({"Data":None}) # add custom data
 sprite.spriteProcess() # Drawing sprite
 ```
 
-### Control
+## Control
 ```python
 # Keyboard
 Keyboard.KeyPressed(Key("space"), Window)        # Return bool value, if key is pressed - True else False. arg1 - Key, arg2 - Window
@@ -221,9 +221,9 @@ Mouse.MouseKeyReleased(Window, MouseButton.LEFT) # Return bool value, if key is 
 Mouse.setVisibility(Window, True)                # Sets the mouse visibility, arg1 - Window, arg2 - Bool If set to True, it is visible, if set to False, it is invisible but not captured.
 ```
 
-### Other
+## Other
 
-#### frameTimer
+### frameTimer
 
 ```python
 def test_func():
@@ -237,7 +237,7 @@ def update():
 
 The function is triggered when the current frame is the same in count as the number of the target. When the goal is reached, the timer is reset and so on in a circle.
 
-#### Timer
+### Timer
 
 ```python
 def test_func():
@@ -249,7 +249,7 @@ def update():
     timer.timerProcess(window) # arg1 - window
 ```
 
-#### dataSave
+### dataSave
 
 ```python
 
@@ -267,7 +267,7 @@ print(loaded)
 
 ```
 
-#### sceneManager
+### sceneManager
 
 **Scene manager:**
 
@@ -290,7 +290,7 @@ class scene:
         pass # Update your scene
 ```
 
-#### logSystem
+### logSystem
 
 ```python
 log_system.addInfo("Info message")                   # Add info log, arg1 - str
@@ -302,13 +302,13 @@ log_system.getLog()                                  # Print all logs
 log_system.saveLog()                                 # Save logs to timestamp_log.txt
 ```
 
-#### checkInDebbuger
+### checkInDebbuger
 
 ```python
 checkInDebbuger() # Return True if running under debugger, False otherwise
 ```
 
-#### icons
+### icons
 
 ```python
 icons["Icon"]    # png icon
@@ -316,7 +316,7 @@ icons["HRIcon"]  # high resoultion png icon
 icons["IcoIcon"] # ico icon
 ```
 
-#### fonts
+### fonts
 
 ```python
 fonts["HELVETICA 10"]
@@ -326,9 +326,9 @@ fonts["ROMAN 10"]
 fonts["ROMAN 24"]
 ```
 
-### Sound
+## Sound
 
-#### loadSound
+### loadSound
 
 ```python
 sound = loadSound("sound.wav", "float32") # Load sound, arg1 - audio file, arg2 - type (optional)
@@ -339,7 +339,7 @@ sound.getVolume()                         # Return sound volume
 sound.setVolume(0.0)                      # Set sound volume
 ```
 
-#### soundManager
+### soundManager
 
 ```python
 manager = soundManager()
