@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from OpenGameEngine import *
 
-window = Window()
+window = Window(0)
 window.initWindow()
 window.setTitle("Collision game")
 window.setSize(640, 480)
@@ -13,7 +13,7 @@ window.setStretch(stretchType.EXPAND)
 window.setBG(Color3(0, 0, 0))
 
 collide = Graphics.Rectangle(window)
-rect = .Rectangle(window)
+rect = Graphics.Rectangle(window)
 rect.setPosition(Vec2(60, 60))
 rect.setSize(Vec2(20, 20))
 rect.setColor(Color3(1, 1, 1))

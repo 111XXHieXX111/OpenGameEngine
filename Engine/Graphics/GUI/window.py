@@ -45,6 +45,10 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
         if self.debugmenu in (1, 2) and not debug_only:
             return
     
+    # DISABLE SHADERS
+
+    GL.glUseProgram(0)
+
     # CHECK TYPES
     if not isinstance(text, str):
         return

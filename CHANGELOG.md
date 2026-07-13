@@ -86,3 +86,7 @@ updated **optimization** + **examples**
 updated **kernel** + **logging**
 
 added **animatedSprite**
+
+# 14.07.26
+
+added **New render**

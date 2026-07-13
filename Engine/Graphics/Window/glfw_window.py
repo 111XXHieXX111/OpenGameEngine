@@ -1,5 +1,5 @@
 from ...Kernel.modules import glfw, GL, time, glutInit, threading
-from ...Kernel.kernel import log_system, debug, render_items, classWrapper, render_vertexes
+from ...Kernel.kernel import log_system, debug, render_items, classWrapper, render_vertexes, initGFX
 from ...Kernel.Components.vectors import Vec2
 from ...Kernel.Components.control import Key
 from ...Kernel.Components.graphics import Color3, Color4, stretchType
@@ -13,7 +13,7 @@ from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox
 
 @classWrapper
 class Window:
-    def __init__(self):
+    def __init__(self, render_type=1):
 
         # CHECK INIT
 
@@ -51,6 +51,8 @@ class Window:
         
         self.upd_fps_timer = Timer(1, self._set_upd_fps)
         self.upd_fps = 0
+
+        self.render_type = render_type
 
         # CURRENT SIZES
 
@@ -121,6 +123,12 @@ class Window:
             log_system.addInfo(f"Render:{GL.glGetString(GL.GL_RENDERER).decode()}")
         except Exception as ex:
             log_system.addError(f"Information could not be retrieved:{ex}")
+        
+        # GFX INIT
+
+        if self.render_type == 0:
+            log_system.addInfo(f"Init GFX ({self.render_type}) (experemental)")
+            initGFX()
 
         # VSYNC
 
@@ -320,12 +328,7 @@ class Window:
             GL.glScalef(1.0 / self.camera["zoom"], 1.0 / self.camera["zoom"], 1.0)
             
             GL.glTranslatef(-self.camera["x"] + width/2, -self.camera["y"] + height/2, 0)
-    
-        # MODELVIEW MATRIX
-    
-        GL.glMatrixMode(GL.GL_MODELVIEW)
-        GL.glLoadIdentity()
-
+        
         # SCALE
 
         if self.window_settings["stretch"] == stretchType.EXPAND:

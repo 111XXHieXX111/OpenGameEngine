@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from OpenGameEngine import *
 
-window = Window()
+window = Window(0)
 window.initWindow()
 window.setBG(Color3(1, 1, 1))
 window.setStretch(stretchType.EXPAND)

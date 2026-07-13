@@ -48,7 +48,7 @@ key = Key("space")
 ## Window
 ```python
 # Creating window
-window = Window()
+window = Window(0)
 
 # Init window
 window.initWindow()
@@ -108,6 +108,8 @@ window has methods enableEventsByIconify/disableEventsByIconify
 + window.disableEventsByIconify - Disable events when window is minimized
 
 **Cyrillic is not supported in the drawText function!**
+
+**Window** takes an **int** as the first argument; if 0, it uses the new rendering method (**VBO**, **VAO**); if 1, it uses the old **vertex**-based method.
 
 ## Graphics
 

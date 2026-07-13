@@ -1,3 +1,4 @@
+from ..modules import ctypes
 from .graphics import Color3, Color4, c256
 from .vectors import Vec2
 
@@ -25,3 +26,14 @@ class System:
     def cltv2(l:list|tuple):
         if len(l) > 1:
             return Vec2(l[0], l[1])
+
+    @staticmethod
+    def pxtondc(coords:Vec2, window):
+        winsizes = window.current_window_sizes
+        ndc_x = (coords.x / winsizes[0]) * 2.0 - 1.0
+        ndc_y = -((coords.y / winsizes[1]) * 2.0 - 1.0)
+        return Vec2(ndc_x, ndc_y)
+
+    @staticmethod
+    def arraytocarrayf(array:list | tuple):
+        return (ctypes.c_float * len(array))(*tuple(array))

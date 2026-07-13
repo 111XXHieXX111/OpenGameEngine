@@ -1,4 +1,4 @@
-from .polygon import Polygon
+from .polygon import PolygonLegacy, Polygon
 from .base import Base
 from .modules import *
 
@@ -62,13 +62,20 @@ class Rectangle(Base):
             GL.glUseProgram(self.shader.program)
             self.shader._apply_uniforms()
 
-        polygon = Polygon(self.vertexes)
-        polygon.setColor(self.color)
-        polygon.setWidthLines(self.widthlines)
-        polygon.setPointSize(self.pointsize)
-        polygon.setTexCoords(self.uv)
-        polygon.setTexture(self.texture)
-        polygon.drawPolygon(mode)
+        if self.window.render_type == 1:
+            polygon = PolygonLegacy(self.vertexes)
+            polygon.setColor(self.color)
+            polygon.setWidthLines(self.widthlines)
+            polygon.setPointSize(self.pointsize)
+            polygon.setTexCoords(self.uv)
+            polygon.setTexture(self.texture)
+            polygon.drawPolygon(mode)
+        elif self.window.render_type == 0:
+            polygon = Polygon(self.vertexes.copy(), self.window)
+            polygon.setColor(self.color)
+            polygon.setTexCoords(self.uv)
+            polygon.setTexture(self.texture)
+            polygon.drawPolygon(mode)
         
         if self.shader:
             GL.glUseProgram(0)
