@@ -6,6 +6,7 @@ from .modules import *
 @classWrapper
 class Triangle(Base):
     def __init__(self, window=None):
+        super().__init__()
         self.vertexes = [Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0)]
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)

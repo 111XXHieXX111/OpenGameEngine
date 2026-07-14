@@ -5,6 +5,7 @@ from .modules import *
 @classWrapper
 class Circle(Base):
     def __init__(self, segments=8, window=None):
+        super().__init__()
         self.segments = segments
         self.vertexes = [Vec2(0.0, 0.0) for _ in range(segments)]
         self.position = Vec2(0.0, 0.0)

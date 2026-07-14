@@ -89,4 +89,4 @@ added **animatedSprite**
 
 # 14.07.26
 
-added **New render**
+added **New render** + **GFX Id's**

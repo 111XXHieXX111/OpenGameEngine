@@ -3,11 +3,15 @@ from ...Kernel.kernel import log_system, render_items, classWrapper
 from ...Kernel.Components.system import System
 from ...Kernel.Components.graphics import stretchType
 from ...Graphics.Utils.shader import Shader
+from .object import GFXObject
 
 @classWrapper
-class Base:
+class Base(GFXObject):
     __slots__ = ("vertexes", "position", "size", "rotation", "color", "widthlines", "pointsize", "uv", "texture", "calculated", "window", "shader", "segments", "_dirty", "_cached_vertices")
     
+    def __init__(self):
+        super().__init__()
+
     def setPointSize(self, new_size:Vec1):
         
         # CHECK

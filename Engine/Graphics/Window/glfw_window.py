@@ -351,12 +351,17 @@ class Window:
         # DEBUG ON/OFF
         
         if Keyboard.KeyPressed(Key("shift"), self) and Keyboard.KeyJustPressed(Key("f12"), self) and debug:
-            if self.debugmenu == 2:
+            if self.debugmenu in (2, 3):
                 self.debugmenu = 0
             else:
                 self.debugmenu = 2
+        elif Keyboard.KeyPressed(Key("control"), self) and Keyboard.KeyJustPressed(Key("f12"), self) and debug:
+            if self.debugmenu in (1, 2):
+                self.debugmenu = 0
+            else:
+                self.debugmenu = 3
         elif Keyboard.KeyJustPressed(Key("f12"), self) and debug:
-            if self.debugmenu == 1:
+            if self.debugmenu in (1, 3):
                 self.debugmenu = 0
             else:
                 self.debugmenu = 1

@@ -5,6 +5,7 @@ from .modules import *
 @classWrapper
 class Rectangle(Base):
     def __init__(self, window=None):
+        super().__init__()
         self.vertexes = [Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0), Vec2(0.0, 0.0)]
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)
@@ -79,3 +80,7 @@ class Rectangle(Base):
         
         if self.shader:
             GL.glUseProgram(0)
+
+        if self.window:
+            if self.window.debugmenu == 3:
+                self.window.drawText(f"ID:{self.id}", self.position)
