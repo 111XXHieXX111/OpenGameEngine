@@ -90,3 +90,9 @@ added **animatedSprite**
 # 14.07.26
 
 added **New render** + **GFX Id's**
+
+# 15.07.26
+
+updated **GUI**
+
+added **Console**

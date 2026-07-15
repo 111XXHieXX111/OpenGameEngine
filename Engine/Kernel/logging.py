@@ -10,7 +10,7 @@ class Logging:
         self.log = []
 
     def getfile(self):
-        frame = inspect.currentframe().f_back.f_back.f_back
+        frame = inspect.currentframe().f_back.f_back
         caller_file = os.path.basename(frame.f_code.co_filename)
         return caller_file
     
