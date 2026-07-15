@@ -9,7 +9,10 @@ from ...Misc.memory import memoryMonitor, memoryClean
 from ...Misc.timer import Timer
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
-from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox
+from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox, bgframe
+from .console import consoleHandler
+
+#_drawText
 
 @classWrapper
 class Window:
@@ -53,6 +56,10 @@ class Window:
         self.upd_fps = 0
 
         self.render_type = render_type
+
+        self.console = consoleHandler(self)
+        self.console_input = textInput(Vec2(0, 240), Vec2(235, 12), Color3(1, 1, 1))
+        self.console_button = SimpleButton("Send", Vec2(240, 240), Vec2(40, 12), Color3(1, 1, 1), self.consoleCommand)
 
         # CURRENT SIZES
 
@@ -235,11 +242,11 @@ class Window:
         log_system.addInfo("Iconified work:Disabled")
         self.iconifiedwork = False
 
-    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], static_text=True, *, debug_only=False):
-        _drawText(self, text, position, color, font, debug_only, False, static_text)
+    def drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], *, debug_only=False):
+        _drawText(self, text, position, color, font, debug_only, False)
     
-    def drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), charslen:int=0, color:Color3=Color3(1.0, 0.0, 0.0), bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), static_text=True, *, debug_only=False):
-        _drawTextBox(self, text, position, color, charslen, bgcolor, debug_only, False, False, static_text)
+    def drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), charslen:int=0, color:Color3=Color3(1.0, 0.0, 0.0), bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), *, debug_only=False):
+        _drawTextBox(self, text, position, color, charslen, bgcolor, fonts["HELVETICA 12"], debug_only, False)
     
     def addElement(self, element:SimpleButton | textInput):
         self.elements.append(element)
@@ -264,6 +271,12 @@ class Window:
     def setCameraEnabled(self, enabled:bool):
         self.camera["enabled"] = enabled
     
+    def consoleCommand(self):
+        cmd = self.console_input.getValue()
+        self.console_input.setValue("")
+        self.console.handleCommand(str(cmd))
+
+
     def _render_frame(self, update=None):
         
         # GET CURRENT WINDOW SIZES
@@ -366,6 +379,15 @@ class Window:
             else:
                 self.debugmenu = 1
         
+        # GUI
+
+        GL.glMatrixMode(GL.GL_PROJECTION)
+        GL.glLoadIdentity()
+        GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
+
+        GL.glMatrixMode(GL.GL_MODELVIEW)
+        GL.glLoadIdentity()
+
         # DRAW ELEMENTS
         
         for element in self.elements:
@@ -403,7 +425,14 @@ class Window:
                 self.drawText(label, Vec2(0, index*padding), debug_only=True)
         elif self.debugmenu == 2 and debug:
             self.drawText(f"FPS: {self.fps}", Vec2(0, 0), debug_only=True)
-        
+        elif self.debugmenu == 3 and debug:
+            bgframe(Vec2(0, 0), Vec2(280, 228), Color4(0, 0, 0, -0.5))
+            self.drawTextBox(self.console.output, charslen=46, debug_only=True, color=Color3(1, 1, 1))
+            self.console_input._process(self)
+            self.console_input._draw(self)
+            self.console_button._process(self)
+            self.console_button._draw(self)
+
         # WINDOW PROCESS
         
         glfw.swap_buffers(self.window)

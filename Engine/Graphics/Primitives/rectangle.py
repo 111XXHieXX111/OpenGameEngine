@@ -83,4 +83,4 @@ class Rectangle(Base):
 
         if self.window:
             if self.window.debugmenu == 3:
-                self.window.drawText(f"ID:{self.id}", self.position)
+                self.window.drawText(f"ID:{self.id}", self.position, debug_only=True)

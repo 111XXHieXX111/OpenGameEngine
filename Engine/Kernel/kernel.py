@@ -39,17 +39,18 @@ textures = []
 
 def logWrapper(func):
     def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except KeyboardInterrupt:
-            log_system.addWarn("KeyboardInterrupt, undo action.")
-            return None
-        except PermissionError:
-            log_system.addError("Not enough rights!")
-            return None
-        except Exception as ex:
-            log_system.addError(f"{ex}")
-            return None
+        #try:
+        #    return func(*args, **kwargs)
+        #except KeyboardInterrupt:
+        #    log_system.addWarn("KeyboardInterrupt, undo action.")
+        #    return None
+        #except PermissionError:
+        #    log_system.addError("Not enough rights!")
+        #    return None
+        #except Exception as ex:
+        #    log_system.addError(f"{ex}")
+        #    return None
+        return func(*args, **kwargs)
     return wrapper
 
 def classWrapper(cls):

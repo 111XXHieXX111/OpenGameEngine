@@ -7,24 +7,6 @@ from ...Kernel.kernel import classWrapper, logWrapper
 from ...Kernel.fonts import fonts
 from ...Control.mouse import Mouse
 
-def _resetMatrix(self):
-    GL.glMatrixMode(GL.GL_PROJECTION)
-    GL.glPushMatrix()
-    GL.glLoadIdentity()
-    width, height = self.current_window_sizes
-    GL.glOrtho(0, width, height, 0, -1, 1)
-    
-    GL.glMatrixMode(GL.GL_MODELVIEW)
-    GL.glPushMatrix()
-    GL.glLoadIdentity()
-
-def _recoveryMatrix():
-    GL.glMatrixMode(GL.GL_MODELVIEW)
-    GL.glPopMatrix()
-    GL.glMatrixMode(GL.GL_PROJECTION)
-    GL.glPopMatrix()
-    GL.glMatrixMode(GL.GL_MODELVIEW)
-
 def bgframe(position, size, addcolor):
     color1 = addcolor + Color4(0.3, 0.3, 0.3, 1)
     color2 = addcolor + Color4(0.2, 0.2, 0.2, 1)
@@ -38,9 +20,10 @@ def bgframe(position, size, addcolor):
     GL.glEnd()
 
 @logWrapper
-def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False, screen_space=True):
+def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
     
     # DISABLE TEXT
+
     if not donthide:
         if self.debugmenu in (1, 2) and not debug_only:
             return
@@ -50,6 +33,7 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
     GL.glUseProgram(0)
 
     # CHECK TYPES
+
     if not isinstance(text, str):
         return
     
@@ -65,9 +49,6 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
         else:
             return
     
-    if screen_space:
-        _resetMatrix(self)
-    
     GL.glDisable(GL.GL_TEXTURE_2D)
     
     GL.glColor3f(color.r, color.g, color.b)
@@ -77,18 +58,18 @@ def _drawText(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(
         glutBitmapCharacter(font, ord(char))
     
     GL.glEnable(GL.GL_TEXTURE_2D)
-    
-    if screen_space:
-        _recoveryMatrix()
 
 @logWrapper
-def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False, screen_space=False):
+def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Color3(1.0, 0.0, 0.0), charslen:int=0, bgcolor:Color4=Color4(0.0, 0.0, 0.0, 0.0), font=fonts["HELVETICA 12"], debug_only=False, donthide=False):
     
     # DISABLE TEXT
     
     if not donthide:
         if self.debugmenu in (1, 2) and not debug_only:
             return
+
+    if not text or not isinstance(text, str):
+        return
     
     # CHECK TYPES
     
@@ -109,18 +90,27 @@ def _drawTextBox(self, text:str, position:Vec2=Vec2(0.0, 0.0), color:Color3=Colo
     
     char_size = Vec2(6, 12)
     
-    chunks = [text[i:i+charslen] for i in range(0, len(text), charslen)]
+    lines = text.split("\n")
+
+    if charslen > 0:
+        result = []
+        for line in lines:
+            if len(line) <= charslen:
+                result.append(line)
+            else:
+                chunks = [line[i:i+charslen] for i in range(0, len(line), charslen)]
+                result.extend(chunks)
+        lines = result
     
-    if screen_space:
-        _resetMatrix(self)
+    GL.glDisable(GL.GL_TEXTURE_2D)
+    GL.glColor3f(color.r, color.g, color.b)
     
-    bgframe(position, Vec2(char_size.x*charslen, char_size.y*len(chunks)), bgcolor)
+    for i, line in enumerate(lines):
+        GL.glRasterPos2f(position.x, position.y + 10 + i * char_size.y)
+        for char in str(line):
+            glutBitmapCharacter(font, ord(char))
     
-    for index, chunk in enumerate(chunks):
-        _drawText(self, chunk, Vec2(position.x, position.y+index*12), color, font, debug_only)
-    
-    if screen_space:
-        _recoveryMatrix()
+    GL.glEnable(GL.GL_TEXTURE_2D)
 
 @classWrapper
 class SimpleButton:
@@ -167,7 +157,7 @@ class SimpleButton:
 
         # DRAW TEXT
 
-        _drawText(window, self.text, self.position, self.fgcolor, self.font, False, True, False)
+        _drawText(window, self.text, self.position, self.fgcolor, self.font, False, True)
     
     def _process(self, window):
         mousePos = Mouse.getMouseWorld(window)
