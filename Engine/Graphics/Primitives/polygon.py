@@ -64,17 +64,34 @@ class Polygon:
         self._vbo = None
         self._dirty = True
 
+    def cleanup(self):
+        if self._vao is not None:
+            GL.glDeleteVertexArrays(1, [self._vao])
+            self._vao = None
+        if self._vbo is not None:
+            GL.glDeleteBuffers(1, [self._vbo])
+            self._vbo = None
+
     def setTexture(self, texture):
         self.texture = texture
+        self._dirty = True
 
     def setTexCoords(self, coords:list[Vec2] | tuple[Vec2]):
         self.texcoords = list(coords)
+        self._dirty = True
 
     def setColor(self, color:Color3 | Color4):
         self.color = System.c3toc4(color)
+        self._dirty = True
+
+    def setVertexes(self, vertexes):
+        self.vertexes = vertexes
+        self._dirty = True
 
     def drawPolygon(self, mode:drawMode):
         if self._dirty:
+            self.cleanup()
+
             if isinstance(self.vertexes, list):
             
                 # CONVERT LIST VEC2S TO ARRAY

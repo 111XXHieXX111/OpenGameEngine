@@ -93,6 +93,6 @@ added **New render** + **GFX Id's**
 
 # 15.07.26
 
-updated **GUI**
+updated **GUI** + **Polygon (memory leak fix)**
 
 added **Console**

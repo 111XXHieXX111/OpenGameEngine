@@ -19,6 +19,10 @@ class Triangle(Base):
         self.calculated = False
         self.window = window
         self.shader = None
+        if self.window.render_type == 0:
+            self.polygon = Polygon(self.vertexes, self.window)
+        else:
+            self.polygon = PolygonLegacy(self.vertexes)
 
     def calculateSize(self):
         center = Vec2(
@@ -49,6 +53,8 @@ class Triangle(Base):
         for i in range(3):
             self.vertexes[i] += center
 
+        self.polygon.setVertexes(self.vertexes)
+
         self.calculated = True
     
     def drawTriangle(self, mode:drawMode):
@@ -68,19 +74,18 @@ class Triangle(Base):
             self.shader._apply_uniforms()
         
         if self.window.render_type == 1:
-            polygon = PolygonLegacy(self.vertexes)
-            polygon.setColor(self.color)
-            polygon.setWidthLines(self.widthlines)
-            polygon.setPointSize(self.pointsize)
-            polygon.setTexCoords(self.uv)
-            polygon.setTexture(self.texture)
-            polygon.drawPolygon(mode)
-        elif self.window.render_type == 0:
-            polygon = Polygon(self.vertexes.copy(), self.window)
-            polygon.setColor(self.color)
-            polygon.setTexCoords(self.uv)
-            polygon.setTexture(self.texture)
-            polygon.drawPolygon(mode)
+            self.polygon.setColor(self.color)
+            self.polygon.setWidthLines(self.widthlines)
+            self.polygon.setPointSize(self.pointsize)
+            self.polygon.setTexCoords(self.uv)
+            self.polygon.setTexture(self.texture)
+            self.polygon.drawPolygon(mode)
+        else:
+            self.polygon.vertexes = self.vertexes
+            self.polygon.setColor(self.color)
+            self.polygon.setTexCoords(self.uv)
+            self.polygon.setTexture(self.texture)
+            self.polygon.drawPolygon(mode)
         
         if self.shader:
             GL.glUseProgram(0)
