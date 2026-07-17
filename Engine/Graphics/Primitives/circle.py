@@ -49,7 +49,8 @@ class Circle(Base):
         self._cached_vertices = self.vertexes.copy()
         self._dirty = False
 
-        self.polygon.setVertexes(self.vertexes)
+        if self.window.render_type == 0:
+            self.polygon.setVertexes(self.vertexes)
 
     def drawCircle(self, mode:drawMode):
         

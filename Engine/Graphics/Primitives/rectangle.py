@@ -49,7 +49,8 @@ class Rectangle(Base):
             y_new = corners[i].x * sin_angle + corners[i].y * cos_angle
             self.vertexes[i] = Vec2(x_new + center.x, y_new + center.y)
 
-        self.polygon.setVertexes(self.vertexes)
+        if self.window.render_type == 0:
+            self.polygon.setVertexes(self.vertexes)
 
         self.calculated = True
     

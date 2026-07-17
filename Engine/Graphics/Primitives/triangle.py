@@ -53,7 +53,8 @@ class Triangle(Base):
         for i in range(3):
             self.vertexes[i] += center
 
-        self.polygon.setVertexes(self.vertexes)
+        if self.window.render_type == 0:
+            self.polygon.setVertexes(self.vertexes)
 
         self.calculated = True
     
