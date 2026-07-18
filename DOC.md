@@ -19,7 +19,7 @@ Not supported:
 from OpenGameEngine import *
 ```
 
-## Compontents
+## Components
 
 ### Vectors
 
