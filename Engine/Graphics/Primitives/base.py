@@ -27,6 +27,7 @@ class Base(GFXObject):
         # APPLY
         
         self.pointsize = new_size
+        self.calculated = False
 
     def setWidthLines(self, new_width:Vec1):
         
@@ -43,6 +44,7 @@ class Base(GFXObject):
         # APPLY
         
         self.widthlines = new_width
+        self.calculated = False
     
     def setSize(self, new_size:Vec2):
         
@@ -92,15 +94,19 @@ class Base(GFXObject):
     
     def setColor(self, new_color:Color3 | Color4):
         self.color = System.c3toc4(new_color)
+        self.calculated = False
     
     def setUV(self, uv:list[Vec2] | tuple[Vec2]):
         self.uv = uv
+        self.calculated = False
     
     def setTexture(self, texture):
         self.texture = texture
+        self.calculated = False
     
     def setShader(self, shader:Shader):
         self.shader = shader
+        self.calculated = False
     
     def getCenter(self):
         xs, ys = [], []

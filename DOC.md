@@ -1,10 +1,17 @@
 # Tutorial
 ## Run
-**IF YOU ARE USING LINUX - RUN AS ROOT!!!**
+Supported:
++ Windows (7+)
++ Linux (Not mobile)
++ Unix-like
++ MacOS (Maybe)
++ ReactOS (Not stable (Problems are not on the side of the engine))
 
-IF YOU ARE USING WINDOWS, JUST RUN THE PYTHON FILE AS USUAL.
-
-**MACOS NOT SUPPORTED!!!**
+Not supported:
++ Android
++ iOS
++ Haiku
++ KolibriOS
 
 ## Import
 ```python
@@ -125,21 +132,21 @@ triangle = Graphics.Triangle() # arg1 - window (optional) (for optimization)
 circle = Graphics.Circle() # arg1 - int, number of segments (default 8), arg2 - window (optional) (for optimization)
 
 vertex = Graphics.Vertex()
-polygon = Graphics.Polygon([]) # Arg is vertexes list
+polygon = Graphics.Polygon([]) # Arg is vertexes list (Vec2s)
 ```
 
 If you write **window** as the 1st argument, then if a **primitive** goes outside the visible area (does not work with the **camera**), it will not be rendered.
 
 **ALL primitives** have functions such as:
-+ setWidthLines - setting the line width;
-+ setSize - setting the size of the primitive;
-+ setPosition - setting the position of the primitive;
-+ setRotation - setting the rotation of the primitive;
-+ setColor - setting the color of the primitive;
-+ setUV - setting the UV mapping position;
-+ setTexture - setting the texture;
++ setWidthLines - setting the line width; (Vec1)
++ setSize - setting the size of the primitive; (Vec2)
++ setPosition - setting the position of the primitive; (Vec2)
++ setRotation - setting the rotation of the primitive; (Vec1)
++ setColor - setting the color of the primitive; (Color3 | Color4)
++ setUV - setting the UV mapping position; (List Vec2s)
++ setTexture - setting the texture; (Texture)
 + getCenter - getting the center of the primitive;
-+ setPointSize - setting the vertex size.
++ setPointSize - setting the vertex size. (Vec1)
 
 There is one more very important function: **draw**, only it is not in the usual form, the formula is as follows: **draw** + the name of the primitive with a capital letter. Examples:
 ```python
@@ -168,6 +175,24 @@ Draw modes:
 + FORM
 + FILL
 + RECT
++ LINE
+
+#### Line
+```python
+line = Graphics.Line() # arg1 - window (optional)
+```
+
+Line have functions such as:
++ setPointSize - setting the line width; (Vec1)
++ setWidthLines - setting the vertex size; (Vec1)
++ setColor - setting the color; (Color3 | Color4)
++ setPoint1 - settings point1 position; (Vec2)
++ setPoint2 - settings point2 position; (Vec2)
++ drawLine - draw line;
+
+```python
+line.drawLine()
+```
 
 ### Batch
 

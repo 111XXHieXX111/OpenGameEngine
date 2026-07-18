@@ -96,3 +96,9 @@ added **New render** + **GFX Id's**
 updated **GUI** + **Polygon (memory leak fix)**
 
 added **Console**
+
+# 18.07.26
+
+updated **Base (for primitives)** + **Examples**
+
+added **Line**

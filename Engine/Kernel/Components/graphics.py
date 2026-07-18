@@ -23,6 +23,7 @@ class drawMode:
     FORM = GL.GL_TRIANGLE_STRIP
     FILL = GL.GL_POLYGON
     RECT = GL.GL_QUADS
+    LINES = GL.GL_LINES
 
 # COLORS
 
