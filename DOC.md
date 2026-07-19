@@ -146,7 +146,8 @@ If you write **window** as the 1st argument, then if a **primitive** goes outsid
 + setUV - setting the UV mapping position; (List Vec2s)
 + setTexture - setting the texture; (Texture)
 + getCenter - getting the center of the primitive;
-+ setPointSize - setting the vertex size. (Vec1)
++ setPointSize - setting the vertex size. (Vec1);
++ setShader - settings the shader of the primitive (Shader);
 
 There is one more very important function: **draw**, only it is not in the usual form, the formula is as follows: **draw** + the name of the primitive with a capital letter. Examples:
 ```python
@@ -177,21 +178,27 @@ Draw modes:
 + RECT
 + LINE
 
-#### Line
-```python
-line = Graphics.Line() # arg1 - window (optional)
-```
+#### Lined
 
-Line have functions such as:
+Lined objs have functions such as:
 + setPointSize - setting the line width; (Vec1)
 + setWidthLines - setting the vertex size; (Vec1)
 + setColor - setting the color; (Color3 | Color4)
++ setShader - setting the shader; (Shader)
 + setPoint1 - settings point1 position; (Vec2)
 + setPoint2 - settings point2 position; (Vec2)
 + drawLine - draw line;
 
+##### Line
 ```python
+line = Graphics.Line() # arg1 - window (optional)
 line.drawLine()
+```
+
+##### Arrow
+```python
+arrow = Graphics.Arrow() # arg1 - window (optional)
+arrow.drawArrow()
 ```
 
 ### Batch

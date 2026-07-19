@@ -131,3 +131,70 @@ class Base(GFXObject):
                 if self.position.x >= winsize[0] or self.position.y >= winsize[1]:
                     return False
         return True
+
+class linedBase(GFXObject):
+    def __init__(self):
+        super().__init__()
+
+    def setPointSize(self, new_size:Vec1):
+        
+        # CHECK
+        
+        if isinstance(new_size, int) or isinstance(new_size, float):
+            log_system.addWarn("Use Vec1 in setPointSize")
+            new_size = Vec1(new_size)
+        else:
+            if not isinstance(new_size, Vec1):
+                log_system.addError("Use Vec1 in setPointSize")
+                return
+        
+        # APPLY
+        
+        self.pointsize = new_size
+        self.calculated = False
+
+    def setWidthLines(self, new_width:Vec1):
+        
+        # CHECK
+        
+        if isinstance(new_width, int) or isinstance(new_width, float):
+            log_system.addWarn("Use Vec1 in setWidthLines")
+            new_width = Vec1(new_width)
+        else:
+            if not isinstance(new_width, Vec1):
+                log_system.addError("Use Vec1 in setWidthLines")
+                return
+        
+        # APPLY
+        
+        self.widthlines = new_width
+        self.calculated = False
+    
+    def setColor(self, new_color:Color3 | Color4):
+        self.color = System.c3toc4(new_color)
+        self.calculated = False
+
+    def setShader(self, shader:Shader):
+        self.shader = shader
+        self.calculated = False
+
+class Pointed:
+    def setPoint1(self, new_position:Vec2):
+        if isinstance(new_position, list) or isinstance(new_position, tuple):
+            new_position = System.cltv2(new_position)
+        else:
+            if not isinstance(new_position, Vec2):
+                return
+        
+        self.point_1 = new_position
+        self.calculated = False
+    
+    def setPoint2(self, new_position:Vec2):
+        if isinstance(new_position, list) or isinstance(new_position, tuple):
+            new_position = System.cltv2(new_position)
+        else:
+            if not isinstance(new_position, Vec2):
+                return
+        
+        self.point_2 = new_position
+        self.calculated = False

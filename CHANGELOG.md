@@ -102,3 +102,7 @@ added **Console**
 updated **Base (for primitives)** + **Examples**
 
 added **Line**
+
+# 19.07.26
+
+added **linedBase** + **Pointed** + **Arrow**
