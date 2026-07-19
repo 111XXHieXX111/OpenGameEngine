@@ -7,3 +7,4 @@ class GFXObject:
         global _counter
         self.id = _counter
         _counter += 1
+        super().__init__()

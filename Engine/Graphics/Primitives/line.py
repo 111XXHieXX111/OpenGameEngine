@@ -4,6 +4,7 @@ from .polygon import PolygonLegacy
 from .modules import *
 from .base import linedBase, Pointed
 
+@classWrapper
 class Line(linedBase, Pointed):
     def __init__(self, window=None):
         super().__init__()
@@ -25,7 +26,7 @@ class Line(linedBase, Pointed):
         self.calculated = True
 
     def drawLine(self):
-        render_items.append("Line")
+        self._draw("Line")
 
         if not self.calculated:
             self.calculateSize()

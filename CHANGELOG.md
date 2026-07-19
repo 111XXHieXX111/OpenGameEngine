@@ -105,4 +105,4 @@ added **Line**
 
 # 19.07.26
 
-added **linedBase** + **Pointed** + **Arrow**
+added **linedBase** + **Pointed** + **Arrow** + **Parents & Childs** + **More examples**

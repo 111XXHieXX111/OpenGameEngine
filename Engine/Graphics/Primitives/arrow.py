@@ -3,8 +3,8 @@ from ...Kernel.Components.system import System
 from .line import Line
 from .modules import *
 from .base import linedBase, Pointed
-import math
 
+@classWrapper
 class Arrow(linedBase, Pointed):
     def __init__(self, window=None):
         super().__init__()
@@ -49,7 +49,7 @@ class Arrow(linedBase, Pointed):
         self.calculated = True
 
     def drawArrow(self):
-        render_items.append("Arrow")
+        self._draw("Arrow")
 
         if not self.calculated:
             self.calculateSize()

@@ -201,6 +201,14 @@ arrow = Graphics.Arrow() # arg1 - window (optional)
 arrow.drawArrow()
 ```
 
+#### Parents & Childs
+```python
+obj1.addChild("Object", obj2) # arg1 - child name, arg2 - another primitive (only Rectangle, Circle, Triangle)
+obj1.removeChild("Object") # arg1 - child name
+obj1.getChildrens() # Return all childrens
+obj1.getChild("Object") # arg1 - child name, return child by name
+```
+
 ### Batch
 
 ```python

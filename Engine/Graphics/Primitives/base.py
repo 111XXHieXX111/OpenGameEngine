@@ -3,12 +3,64 @@ from ...Kernel.kernel import log_system, render_items, classWrapper
 from ...Kernel.Components.system import System
 from ...Kernel.Components.graphics import stretchType
 from ...Graphics.Utils.shader import Shader
+from ...Misc.manager import Manager
+from ...Kernel.math import cos, sin, radians
 from .object import GFXObject
 
 @classWrapper
-class Base(GFXObject):
-    __slots__ = ("vertexes", "position", "size", "rotation", "color", "widthlines", "pointsize", "uv", "texture", "calculated", "window", "shader", "segments", "_dirty", "_cached_vertices")
+class canParent(Manager):
+    def __init__(self):
+        self.objs = []
+
+    def getChildrens(self):
+        return self.objs
+
+    def getChild(self, name:str):
+        index, child = self._find(name)
+        if child:
+            return child
+
+        log_system.addError(f"Children:{name} is not found!")
+        return None
+
+    def addChild(self, name:str, obj):
+        index, child = self._find(name)
+        if child:
+            log_system.addError(f"Children:{name} with this name already exists")
+            return
+
+        self.objs.append([name, obj, Vec2((obj.position.x - self.position.x) / self.size.x, (obj.position.y - self.position.y) / self.size.y), Vec2(obj.size.x / self.size.x, obj.size.y / self.size.y), obj.rotation])
+            
+    def removeChild(self, name:str):
+        index, child = self._find(name)
+        if index and child:
+            self.objs.remove(self.objs[index])
+        else:
+            log_system.addError(f"Child:{name} is not found!")
     
+    def childrensProcess(self):
+        if not self.objs:
+            return
+
+        angle = radians(self.rotation.x)
+        cos_a = cos(angle)
+        sin_a = sin(angle)
+
+        for child in self.objs:
+            lx, ly = child[2].x, child[2].y
+            
+            scaled_lx = lx * self.size.x
+            scaled_ly = ly * self.size.y
+            
+            rx = scaled_lx * cos_a - scaled_ly * sin_a
+            ry = scaled_lx * sin_a + scaled_ly * cos_a
+
+            child[1].setPosition(self.position + Vec2(rx, ry))
+            child[1].setSize(Vec2(self.size.x * child[3].x, self.size.y * child[3].y))
+            child[1].setRotation(self.rotation + child[4])
+
+@classWrapper
+class Base(GFXObject, canParent):
     def __init__(self):
         super().__init__()
 
@@ -116,6 +168,7 @@ class Base(GFXObject):
         return Vec2(sum(xs) / len(xs), sum(ys) / len(ys))
 
     def _draw(self, name:str):
+        self.childrensProcess()
         render_items.append(name)
 
     def _in_window(self):
@@ -132,7 +185,8 @@ class Base(GFXObject):
                     return False
         return True
 
-class linedBase(GFXObject):
+@classWrapper
+class linedBase(GFXObject, canParent):
     def __init__(self):
         super().__init__()
 
@@ -178,6 +232,11 @@ class linedBase(GFXObject):
         self.shader = shader
         self.calculated = False
 
+    def _draw(self, name:str):
+        self.childrensProcess()
+        render_items.append(name)
+
+@classWrapper
 class Pointed:
     def setPoint1(self, new_position:Vec2):
         if isinstance(new_position, list) or isinstance(new_position, tuple):
