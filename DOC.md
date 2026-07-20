@@ -125,6 +125,17 @@ window has methods enableEventsByIconify/disableEventsByIconify
 loadTexture("texturepath/texture.png", textureType.LINEAR) # Load texture, arg1 - path, arg2 - textureType
 ```
 
+### Load shader
+```python
+loadShader("shaderpath/shader.oshader") # Load shader, arg1 - path, arg2 - uniforms list, function returning Shader (class)
+```
+
+Shader values:
++ frag
++ vert
++ program
++ uniforms
+
 ### Primitives
 ```python
 rectangle = Graphics.Rectangle() # arg1 - window (optional) (for optimization)
@@ -137,7 +148,7 @@ polygon = Graphics.Polygon([]) # Arg is vertexes list (Vec2s)
 
 If you write **window** as the 1st argument, then if a **primitive** goes outside the visible area (does not work with the **camera**), it will not be rendered.
 
-**ALL primitives** have functions such as:
+Primitives (Rectangle, Triangle, Circle) have functions such as:
 + setWidthLines - setting the line width; (Vec1)
 + setSize - setting the size of the primitive; (Vec2)
 + setPosition - setting the position of the primitive; (Vec2)
@@ -146,8 +157,13 @@ If you write **window** as the 1st argument, then if a **primitive** goes outsid
 + setUV - setting the UV mapping position; (List Vec2s)
 + setTexture - setting the texture; (Texture)
 + getCenter - getting the center of the primitive;
-+ setPointSize - setting the vertex size. (Vec1);
-+ setShader - settings the shader of the primitive (Shader);
++ setPointSize - setting the vertex size; (Vec1)
++ setShader - settings the shader of the primitive; (Shader)
+And have values:
++ position; (Vec2)
++ size; (Vec2)
++ rotation; (Vec1)
++ color; (Color4, **NOT** Color3)
 
 There is one more very important function: **draw**, only it is not in the usual form, the formula is as follows: **draw** + the name of the primitive with a capital letter. Examples:
 ```python
@@ -168,7 +184,7 @@ if checkCollision(rect1.vertexes, rect2.vertexes):
     print("Colliding")
 ```
 
-Primitives such as **Rectangle**, **Triangle**, **Circle** need to call the calculateSize function in order to calculate the size, and it is called **BEFORE draw**
+For **ALL Primitives**, you need to call the calculateSize function before rendering if you change the value without using the built-in function!
 
 Draw modes:
 + POINTS
@@ -178,24 +194,44 @@ Draw modes:
 + RECT
 + LINE
 
-#### Lined
+Primitives who may have childrens:
++ Rectangle
++ Triangle
++ Circle
 
+Primitives that have children have features such as:
++ addChild - Add child, arg1 - name, arg2 - Supported primitive;
++ removeChild - Remove child, arg1 - name;
++ getChild - Return child by name, arg1 - name;
++ getChildrens - Return childrens list;
+
+#### Lined
 Lined objs have functions such as:
 + setPointSize - setting the line width; (Vec1)
 + setWidthLines - setting the vertex size; (Vec1)
 + setColor - setting the color; (Color3 | Color4)
 + setShader - setting the shader; (Shader)
+Lined objs have values such as:
++ color; (Color4, **NOT** Color3)
++ widthlines; (Vec1)
++ pointsize; (Vec1)
++ shader; (Shader)
+
+#### Pointed
+Pointed objs have function such as:
 + setPoint1 - settings point1 position; (Vec2)
 + setPoint2 - settings point2 position; (Vec2)
-+ drawLine - draw line;
+Pointed objs have values such as:
++ point_1; (Vec2)
++ point_2; (Vec2)
 
-##### Line
+#### Line (Lined) (Pointed)
 ```python
 line = Graphics.Line() # arg1 - window (optional)
 line.drawLine()
 ```
 
-##### Arrow
+#### Arrow (Lined) (Pointed)
 ```python
 arrow = Graphics.Arrow() # arg1 - window (optional)
 arrow.drawArrow()
@@ -204,9 +240,9 @@ arrow.drawArrow()
 #### Parents & Childs
 ```python
 obj1.addChild("Object", obj2) # arg1 - child name, arg2 - another primitive (only Rectangle, Circle, Triangle)
-obj1.removeChild("Object") # arg1 - child name
-obj1.getChildrens() # Return all childrens
-obj1.getChild("Object") # arg1 - child name, return child by name
+obj1.removeChild("Object")    # arg1 - child name
+obj1.getChildrens()           # Return all childrens
+obj1.getChild("Object")       # arg1 - child name, return child by name
 ```
 
 ### Batch
@@ -214,7 +250,7 @@ obj1.getChild("Object") # arg1 - child name, return child by name
 ```python
 render = batchRender(batchDrawing.STATIC) # batchDrawing (STATIC - for static primitives, add it once. DYNAMIC - for dynamic primitives and are added to update.)
 render.addPrimitive(rect)                 # Add primitive (Only Rectangle, Triangle. Textures not supported!!! Don't use draw for batch)
-render.setDrawMode(drawMode.FILL)        # Set drawMode for primitives
+render.setDrawMode(drawMode.FILL)         # Set drawMode for primitives
 render.renderPrimitives()                 # Draw primitives, place in update
 ```
 
@@ -242,13 +278,48 @@ particles.drawParticles()                     # Draw particles, arg1 - dt (Optio
 ### Sprite
 
 ```python
-sprite = Sprite(None, None) # arg1 - Window, arg2 - Update function
-sprite.setPosition(Vec2(0.0, 0.0)) # arg1 - Vec2
-sprite.setSize(Vec2(0.0, 0.0)) # arg2 - Vec2
+sprite = Sprite(None, None)                 # arg1 - Window, arg2 - Update function
+sprite.setPosition(Vec2(0.0, 0.0))          # arg1 - Vec2
+sprite.setSize(Vec2(0.0, 0.0))              # arg2 - Vec2
 sprite.setColor(Color4(0.0, 0.0, 0.0, 0.0)) # arg1 - Color3 | Color4
-sprite.customData.update({"Data":None}) # add custom data
-sprite.spriteProcess() # Drawing sprite
+sprite.customData.update({"Data":None})     # add custom data
+sprite.spriteProcess()                      # Drawing sprite
 ```
+
+Sprite has values such as:
++ surface; (Rectangle)
++ updateFunction; (function)
++ position; (Vec2)
++ size; (Vec2)
++ color; (Color3 | Color4)
++ customData; (dict)
+
+#### animatedSprite
+
+**animatedSprite** has the same features as **Sprite**
+
+```python
+animation = Animation("Anim", [0, 0], 0.0, None)        # arg1 - Name, arg2 - List of frames, arg3 - interval, arg4 - Loop (bool)
+
+sprite = animatedSprite(None, None)                     # arg1 - Window, arg2 - Update function
+sprite.loadFrame("tex", textureType.LINEAR)             # Load texture, arg1 - path, arg2 - textureType
+sprite.loadFrames(["tex1", "tex2"], textureType.LINEAR) # Load textures, arg1 - list of paths, arg2 - textureType
+sprite.setFrame(0)                                      # Set frame by id, arg1 - id frame
+sprite.addAnimation(animation)                          # Add animation, arg1 - Animation
+sprite.removeAnimation("Anim")                          # Remove animation, arg1 - Name
+sprite.setAnimation("Anim")                             # Sets the animation as current, arg1 - Name
+sprite.playAnimation(None)                              # Play setted animation, arg1 - from start (bool)
+sprite.stopAnimation()                                  # Stop current animation
+```
+
+animatedSprite has values such as:
++ frames; (list)
++ frame; (int)
++ animations; (list)
++ animation; (Animation)
++ animtimer; (Timer)
++ user_update_function; (function)
++ playing; (bool)
 
 ## Control
 ```python
