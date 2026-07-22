@@ -110,3 +110,7 @@ added **linedBase** + **Pointed** + **Arrow** + **Parents & Childs** + **More ex
 # 20.07.26
 
 updated **Doc**
+
+# 22.07.26
+
+added **Deleting shaders when leaving**

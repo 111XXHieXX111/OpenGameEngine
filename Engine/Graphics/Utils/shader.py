@@ -1,5 +1,5 @@
 from ...Kernel.modules import json, GL, compileShader
-from ...Kernel.kernel import logWrapper, log_system
+from ...Kernel.kernel import logWrapper, log_system, programs
 
 class Shader:
     frag = None
@@ -100,4 +100,8 @@ def loadShader(path:str, uniforms:list[list]=[]):
     shader.program = program
     shader.uniforms = uniforms
     
+    # ADD TO SHADER LIST
+
+    programs.append(program)
+
     return shader

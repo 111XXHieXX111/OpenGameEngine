@@ -36,6 +36,7 @@ debug = True
 render_items = []
 render_vertexes = []
 textures = []
+programs = []
 
 def logWrapper(func):
     def wrapper(*args, **kwargs):
@@ -125,6 +126,8 @@ void main() {
     log_system.addInfo("Set render type to 0")
     render_type = 0
     
+    programs.append(programShader)
+
     shader = programShader
 
 def getShader():

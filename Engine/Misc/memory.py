@@ -1,4 +1,4 @@
-from ..Kernel.kernel import debug, textures, log_system, classWrapper, logWrapper
+from ..Kernel.kernel import debug, textures, log_system, classWrapper, logWrapper, programs
 from ..Kernel.modules import GL, os
 
 @classWrapper
@@ -29,6 +29,21 @@ class memoryMonitor:
 def memoryClean():
     log_system.addInfo(f"Deleting {len(textures)} textures")
     
-    GL.glDeleteTextures(len(textures), textures)
+    deleted = 0
+    try:
+        GL.glDeleteTextures(len(textures), textures)
+        deleted += len(textures)
+    except Exception as ex:
+        log_system.addError(f"An error occurred while deleting textures: {ex}")
+
+    log_system.addInfo(f"Deleting {len(programs)} programs")
+
     
-    textures.clear()
+    for program in programs:
+        try:
+            GL.glDeleteProgram(program)
+            deleted += 1
+        except Exception as ex:
+            log_system.addError(f"An error occurred while deleting the shader: {ex}")
+    
+    log_system.addInfo(f"Deleted {deleted} objects")
