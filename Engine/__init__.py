@@ -17,7 +17,7 @@ from .Control.mouse import Mouse
 
 from .Graphics.Sprites.sprite import Sprite
 from .Graphics.Sprites.animated_sprite import animatedSprite
-from .Graphics.Render.batchrender import batchRender
+from .Graphics.Render.batch_render import batchRender
 from .Graphics.Random.randomcolor import randomColor3, randomColor4
 from .Graphics.Utils.texture import loadTexture
 from .Graphics.Utils.shader import loadShader, Shader

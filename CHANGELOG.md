@@ -114,3 +114,7 @@ updated **Doc**
 # 22.07.26
 
 added **Deleting shaders when leaving**
+
+# 23.07.26
+
+updated **Import batchRender fix**
