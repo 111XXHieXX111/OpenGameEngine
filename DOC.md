@@ -74,6 +74,7 @@ window.setBG(Color3(0, 0.5, 1))
 def update():
     # Get window fps
     fps = window.getFPS()
+    dt = window.getDelta()
     
     # Show fps
     window.drawText(str(fps), Vec2(0, 0), Color3(1, 0, 0)) # arg1 - text, arg2 - position, arg3 - color
