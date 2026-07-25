@@ -43,7 +43,8 @@ color256 = c256(0)
 drawmode = drawMode.FILL        # drawMode has: POINTS, LOOP, FORM, FILL, RECT
 textype = textureType.LINEAR    # textureType has: LINEAR, NEAREST
 stype = stretchType.KEEP_ASPECT # stretchType has: EXPAND, RELATIVELY, KEEP_ASPECT
-bdrawing = batchDrawing.STATIC # batchDrawing has: STATIC, DYNAMIC
+bdrawing = batchDrawing.STATIC  # batchDrawing has: STATIC, DYNAMIC
+tmrender = tileMapRender.RECTS  # tileMapRender has: RECTS, BATCH
 ```
 
 ### Control
@@ -320,6 +321,27 @@ animatedSprite has values such as:
 + animtimer; (Timer)
 + user_update_function; (function)
 + playing; (bool)
+
+### tileMap
+
+```python
+tilemap = tileMap(tileMapRender.RECTS, window)                         # arg1 - tileMapRender, arg2 - window
+tilemap.setPosition(Vec2(0.0, 0.0))                                    # arg1 - Vec2
+tilemap.setTileSize(Vec2(0.0, 0.0))                                    # arg1 - Vec2
+tilemap.addTexture(texture, "texture")                                 # arg1 - texture, arg2 - name
+tilemap.removeTexture("texture")                                       # arg1 - name
+tilemap.addTile(Vec2(0.0, 0.0), "texture", Color3(0.0, 0.0, 0.0, None) # arg1 - position, arg2 - texture name, arg3 - Color (Color3 | Color4), arg4 - skiperrors (bool)
+tilemap.removeTile(Vec2(0.0, 0.0), None)                               # arg1 - position, arg2 - skiperrors (bool)
+tilemap.drawTileMap(drawMode.FILL)                                     # arg1 - drawMode
+```
+
+tileMap has values such as:
++ tiles; (list)
++ tilesize; (Vec2)
++ textures; (list)
++ window; (window)
++ position; (Vec2)
++ batch; (batchRender)
 
 ## Control
 ```python

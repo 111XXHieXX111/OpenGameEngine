@@ -81,3 +81,9 @@ class Animation:
         self.frames = frames
         self.interval = 0.0
         self.loop = loop
+
+# TILEMAP
+
+class tileMapRender(Enum):
+    BATCH = "TMR-B"
+    RECTS = "TMR-R"
