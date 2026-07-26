@@ -490,3 +490,52 @@ manager.stopSounds()                              # Stop all sounds
 manager.getSound("sound")                         # Return sound, arg1 - name
 manager.removeSound("sound")                      # Remove sound, arg1 - name
 ```
+
+## Direct import
+
+You can use libraries like glfw and PyOpenGL right in the game, just use:
+
+```python
+OpenGL
+glfw
+```
+
+**OpenGL is a GL from the PyOpenGL library!**
+
+## Problems
+
+### Import in engine
+
+#### batchRender
+
+If you are using a version prior to the 26.1.1.7R release, there may be problems with importing **batchRender**. Solution:
+
+Open __init__.py in folder Engine and edit:
+
+```python
+
+# BEFORE:
+
+from .Graphics.Render.batchrender import batchRender
+
+# AFTER:
+
+from .Graphics.Render.batchRender import batchRender
+```
+
+### Render
+
+#### If you can't see anything
+
+Some graphics objects cannot be drawn in the new render. Solution:
+
+```python
+
+# BEFORE:
+
+window = Window(0)
+
+# AFTER
+
+window = Window()
+```
