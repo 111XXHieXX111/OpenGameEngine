@@ -61,6 +61,9 @@ class Window:
         self.console_input = textInput(Vec2(0, 240), Vec2(235, 12), Color3(1, 1, 1))
         self.console_button = SimpleButton("Send", Vec2(240, 240), Vec2(40, 12), Color3(1, 1, 1), self.consoleCommand)
 
+        self.fullscreen = False
+        self.fullscreen_switching = True
+
         # CURRENT SIZES
 
         log_system.addInfo("Create current win sizes")
@@ -104,6 +107,24 @@ class Window:
             glfw.terminate()
             return
 
+        # GET PRIMARY MONITOR
+
+        log_system.addInfo("Get primary monitor")
+
+        self.monitor = glfw.get_primary_monitor()
+
+        # GET VIDEO MODE
+
+        log_system.addInfo("Get video mode")
+
+        self.mode = glfw.get_video_mode(self.monitor)
+
+        # GET WINDOW POSITIONA
+
+        log_system.addInfo("Get window position")
+
+        self.winpos = glfw.get_window_pos(self.window)
+
         # INIT GLUT
         
         log_system.addInfo("Glut init")
@@ -130,7 +151,20 @@ class Window:
             log_system.addInfo(f"Render:{GL.glGetString(GL.GL_RENDERER).decode()}")
         except Exception as ex:
             log_system.addError(f"Information could not be retrieved:{ex}")
+
+        try:
+            resolution = self.mode.size
+
+            log_system.addInfo(f"Selected monitor:{glfw.get_monitor_name(self.monitor).decode("utf-8")}")
+            log_system.addInfo(f"Resolution:{resolution.width}x{resolution.height}, {self.mode.refresh_rate}GHz")
+        except Exception as ex:
+            log_system.addError(f"Information could not be retrieved:{ex}")
         
+        try:
+            log_system.addInfo(f"Window position:{self.winpos[0]}, {self.winpos[1]}")
+        except Exception as ex:
+            log_system.addError(f"Information could not be retrieved:{ex}")
+
         # GFX INIT
 
         if self.render_type == 0:
@@ -153,6 +187,13 @@ class Window:
         
         glfw.set_window_iconify_callback(self.window, self._iconify_callback)
         glfw.set_window_close_callback(self.window, self._on_close_callback)
+
+    def setFullscreen(self, fullscreen:bool=True):
+        self.fullscreen = fullscreen
+        self._fullscreen_handler()
+
+    def setFullscreenSwitching(self, switching:bool=True):
+        self.fullscreen_switching = switching
 
     def setStretch(self, stretch:stretchType):
         log_system.addInfo("Setting stretch")
@@ -433,6 +474,12 @@ class Window:
             self.console_button._process(self)
             self.console_button._draw(self)
 
+        # FULL SCREEN
+
+        if Keyboard.KeyJustPressed(Key("f11"), self) and self.fullscreen_switching:
+            self.fullscreen = not self.fullscreen
+            self._fullscreen_handler()
+
         # WINDOW PROCESS
         
         glfw.swap_buffers(self.window)
@@ -446,6 +493,29 @@ class Window:
             self.fps = self.frame_count
             self.frame_count = 0
             self.last_fps_time = current_time
+    
+    def _fullscreen_handler(self):
+        if not self.fullscreen:
+            log_system.addInfo("Set window to window mode")
+
+            glfw.set_window_monitor(
+                self.window, 
+                None,
+                self.winpos[0], self.winpos[1],
+                self.window_settings["width"], self.window_settings["height"],
+                0
+            )
+        else:
+            log_system.addInfo("Set window to fullscreen mode")
+
+            glfw.set_window_monitor(
+                self.window,
+                self.monitor,
+                0, 0,
+                self.mode.size.width,
+                self.mode.size.height,
+                self.mode.refresh_rate
+            )
 
     def winProcess(self, update=None, fps: int | None = None):
         try:

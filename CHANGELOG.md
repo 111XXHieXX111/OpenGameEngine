@@ -121,4 +121,4 @@ added **tileMap**
 
 # 26.07.26
 
-added **Direct import**
+added **Direct import** + **fullscreen**

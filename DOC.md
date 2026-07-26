@@ -70,6 +70,14 @@ window.setSize(640, 480)
 # Set window back color
 window.setBG(Color3(0, 0.5, 1))
 
+# Quit window fullscreen (default not in fullscreen)
+
+window.setFullscreen(False)
+
+# Disable fullscreen switch (default True)
+
+window.setFullscreenSwitching(False)
+
 # Update function
 def update():
     # Get window fps
