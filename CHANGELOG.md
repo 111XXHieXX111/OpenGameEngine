@@ -122,3 +122,7 @@ updated **Import batchRender fix**
 # 25.07.26
 
 added **tileMap**
+
+# 26.07.26
+
+added **Direct import**

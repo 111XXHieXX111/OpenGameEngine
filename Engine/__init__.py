@@ -43,3 +43,7 @@ from .Misc.crypto import genKey
 from .Misc.audio import loadSound, soundManager
 from .Misc.scenes import sceneManager
 from .Misc.memory import memoryClean
+
+# MODULES
+
+from .Kernel.modules import glfw, GL as OpenGL
