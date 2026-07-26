@@ -25,6 +25,9 @@ Developed with ❤️ by **XXHieXX**
 
 [Discord](https://discord.gg/PHpD3HzwBJ)
 
+## What engine did I want to make my engine similar to?
+I wanted to make my engine similar to the LÖVE engine - the same camelCase style, primitive names, and other things.
+
 ## Documentation
 The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [DOC](DOC.md)
 
