@@ -14,9 +14,9 @@ class Line(linedBase, Pointed):
         self.widthlines = Vec1(1.0)
         self.pointsize = Vec1(1.0)
         self.shader = None
-        self.polygon = PolygonLegacy([Vec2(0.0, 0.0), Vec2(0.0, 0.0)])
-        self.calculated = False
         self.window = window
+        self.polygon = PolygonLegacy([Vec2(0.0, 0.0), Vec2(0.0, 0.0)], self.window)
+        self.calculated = False
 
     def calculateSize(self):
         self.polygon.vertexes = [self.point_1, self.point_2]

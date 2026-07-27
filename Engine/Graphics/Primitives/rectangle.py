@@ -21,7 +21,7 @@ class Rectangle(Base):
         if self.window.render_type == 0:
             self.polygon = Polygon(self.vertexes, self.window)
         else:
-            self.polygon = PolygonLegacy(self.vertexes)
+            self.polygon = PolygonLegacy(self.vertexes, self.window)
 
     def calculateSize(self):
         center = Vec2(

@@ -7,6 +7,7 @@ from ...Kernel.Components.system import System
 from ...Kernel.fonts import fonts
 from ...Misc.memory import memoryMonitor, memoryClean
 from ...Misc.timer import Timer
+from ...Misc.debugger import Debugger
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
 from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox, bgframe
@@ -64,6 +65,13 @@ class Window:
         self.fullscreen = False
         self.fullscreen_switching = True
 
+        self.render = {
+            "screen_clear":True,
+            "GUIDraw":True,
+            "Viewpost":True,
+            "Ortho":True
+        }
+
         # CURRENT SIZES
 
         log_system.addInfo("Create current win sizes")
@@ -79,6 +87,10 @@ class Window:
             "enabled":False
         }
 
+        # DEBUGGER
+
+        self.debugger = None
+
     def _on_close_callback(self, window):
         memoryClean()
 
@@ -87,7 +99,7 @@ class Window:
 
     def _set_upd_fps(self):
         self.upd_fps = self.fps
-
+        
     def initWindow(self):
         log_system.addInfo("Init window")
         
@@ -194,6 +206,13 @@ class Window:
 
     def setFullscreenSwitching(self, switching:bool=True):
         self.fullscreen_switching = switching
+
+    def connectDebugger(self, debugger:Debugger):
+        self.debugger = debugger
+        self.debugger._debugger_connected(self)
+
+    def disconnectDebugger(self):
+        self.debugger = None
 
     def setStretch(self, stretch:stretchType):
         log_system.addInfo("Setting stretch")
@@ -348,30 +367,33 @@ class Window:
         render_vertexes.clear()
 
         # CLEAR SCREEN
-
-        GL.glClear(GL.GL_COLOR_BUFFER_BIT)
+        
+        if self.render["screen_clear"]:
+            GL.glClear(GL.GL_COLOR_BUFFER_BIT)
 
         # VIEWING AREA
 
-        if self.window_settings["stretch"] == stretchType.KEEP_ASPECT:
-            scale = min(self.current_window_sizes[0] / self.window_settings["width"], self.current_window_sizes[1] / self.window_settings["height"])
-            new_w = int(self.window_settings["width"] * scale)
-            new_h = int(self.window_settings["height"] * scale)
-            offset_x = (self.current_window_sizes[0] - new_w) // 2
-            offset_y = (self.current_window_sizes[1] - new_h) // 2
-            GL.glViewport(offset_x, offset_y, new_w, new_h)
-        else:
-            GL.glViewport(0, 0, self.current_window_sizes[0], self.current_window_sizes[1])
+        if self.render["Viewpost"]:
+            if self.window_settings["stretch"] == stretchType.KEEP_ASPECT:
+                scale = min(self.current_window_sizes[0] / self.window_settings["width"], self.current_window_sizes[1] / self.window_settings["height"])
+                new_w = int(self.window_settings["width"] * scale)
+                new_h = int(self.window_settings["height"] * scale)
+                offset_x = (self.current_window_sizes[0] - new_w) // 2
+                offset_y = (self.current_window_sizes[1] - new_h) // 2
+                GL.glViewport(offset_x, offset_y, new_w, new_h)
+            else:
+                GL.glViewport(0, 0, self.current_window_sizes[0], self.current_window_sizes[1])
 
         # PROJECTION MATRIX
 
         GL.glMatrixMode(GL.GL_PROJECTION)
         GL.glLoadIdentity()
         
-        if self.window_settings["stretch"] == stretchType.KEEP_ASPECT:
-            GL.glOrtho(0, self.window_settings["width"], self.window_settings["height"], 0, -1, 1)
-        else:
-            GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
+        if self.render["Ortho"]:
+            if self.window_settings["stretch"] == stretchType.KEEP_ASPECT:
+                GL.glOrtho(0, self.window_settings["width"], self.window_settings["height"], 0, -1, 1)
+            else:
+                GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
 
         # CAMERA
 
@@ -420,65 +442,72 @@ class Window:
             else:
                 self.debugmenu = 1
         
-        # GUI
+        if self.render["GUIDraw"]:
 
-        GL.glMatrixMode(GL.GL_PROJECTION)
-        GL.glLoadIdentity()
-        GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
+            # GUI
 
-        GL.glMatrixMode(GL.GL_MODELVIEW)
-        GL.glLoadIdentity()
+            GL.glMatrixMode(GL.GL_PROJECTION)
+            GL.glLoadIdentity()
+            GL.glOrtho(0, self.current_window_sizes[0], self.current_window_sizes[1], 0, -1, 1)
 
-        # DRAW ELEMENTS
+            GL.glMatrixMode(GL.GL_MODELVIEW)
+            GL.glLoadIdentity()
+
+            # DRAW ELEMENTS
         
-        for element in self.elements:
-            if isinstance(element, SimpleButton):
-                element._process(self)
-                element._draw(self)
-            elif isinstance(element, textInput):
-                element._process(self)
-                element._draw(self)
+            for element in self.elements:
+                if isinstance(element, SimpleButton):
+                    element._process(self)
+                    element._draw(self)
+                elif isinstance(element, textInput):
+                    element._process(self)
+                    element._draw(self)
         
-        # DEBUG SHOW
+            # DEBUG SHOW
         
-        self.upd_fps_timer.timerProcess(self)
+            self.upd_fps_timer.timerProcess(self)
         
-        if self.debugmenu == 1 and debug:
-            padding = 14
+            if self.debugmenu == 1 and debug:
+                padding = 14
             
-            memory_info = self.memorymonitor.getMemory()
-            mouse_pos = Mouse.getPosition(self)
+                memory_info = self.memorymonitor.getMemory()
+                mouse_pos = Mouse.getPosition(self)
             
-            text_lines = [
-                "===OGE DEBUG===",
-                f"FPS:{self.getFPS()}",
-                f"Window size:{self.current_window_sizes}",
-                f"Mouse pos:{int(mouse_pos.x)} {int(mouse_pos.y)}",
-                f"Render objects:{len(render_items)}",
-                f"RSS:{memory_info['rss']:.2f}MB",
-                f"VMS:{memory_info['vms']:.2f}MB",
-                f"Memory peak:{memory_info['peak']:.2f}MB",
-                f"Threads:{threading.active_count()}",
-                f"Vertexes:{len(render_vertexes)}"
-            ]
+                text_lines = [
+                    "===OGE DEBUG===",
+                    f"FPS:{self.getFPS()}",
+                    f"Window size:{self.current_window_sizes}",
+                    f"Mouse pos:{int(mouse_pos.x)} {int(mouse_pos.y)}",
+                    f"Render objects:{len(render_items)}",
+                    f"RSS:{memory_info['rss']:.2f}MB",
+                    f"VMS:{memory_info['vms']:.2f}MB",
+                    f"Memory peak:{memory_info['peak']:.2f}MB",
+                    f"Threads:{threading.active_count()}",
+                    f"Vertexes:{len(render_vertexes)}"
+                ]
             
-            for index, label in enumerate(text_lines):
-                self.drawText(label, Vec2(0, index*padding), debug_only=True)
-        elif self.debugmenu == 2 and debug:
-            self.drawText(f"FPS: {self.fps}", Vec2(0, 0), debug_only=True)
-        elif self.debugmenu == 3 and debug:
-            bgframe(Vec2(0, 0), Vec2(280, 228), Color4(0, 0, 0, -0.5))
-            self.drawTextBox(self.console.output, charslen=46, debug_only=True, color=Color3(1, 1, 1))
-            self.console_input._process(self)
-            self.console_input._draw(self)
-            self.console_button._process(self)
-            self.console_button._draw(self)
+                for index, label in enumerate(text_lines):
+                    self.drawText(label, Vec2(0, index*padding), debug_only=True)
+            elif self.debugmenu == 2 and debug:
+                self.drawText(f"FPS: {self.fps}", Vec2(0, 0), debug_only=True)
+            elif self.debugmenu == 3 and debug:
+                bgframe(Vec2(0, 0), Vec2(280, 228), Color4(0, 0, 0, -0.5))
+                self.drawTextBox(self.console.output, charslen=46, debug_only=True, color=Color3(1, 1, 1))
+                self.console_input._process(self)
+                self.console_input._draw(self)
+                self.console_button._process(self)
+                self.console_button._draw(self)
 
         # FULL SCREEN
 
         if Keyboard.KeyJustPressed(Key("f11"), self) and self.fullscreen_switching:
             self.fullscreen = not self.fullscreen
             self._fullscreen_handler()
+
+        # DEBUGGER
+
+        if self.debugger:
+            self.debugger._debugger_work()
 
         # WINDOW PROCESS
         

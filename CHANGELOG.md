@@ -122,3 +122,7 @@ added **tileMap**
 # 26.07.26
 
 added **Direct import** + **fullscreen**
+
+# 27.07.27
+
+added **Debugger**

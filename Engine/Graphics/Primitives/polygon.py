@@ -6,13 +6,14 @@ from .modules import *
 
 @classWrapper
 class PolygonLegacy:
-    def __init__(self, vertexes:list[Vec2] | tuple[Vec2]):
+    def __init__(self, vertexes:list[Vec2] | tuple[Vec2], window=None):
         self.vertexes = vertexes
         self.widthlines = Vec1(0.0)
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
         self.texcoords = [Vec2(0,0)] * len(vertexes)
         self.pointsize = Vec1(1.0)
         self.texture = None
+        self.window = window
     
     def setTexture(self, texture):
         self.texture = texture
@@ -36,6 +37,12 @@ class PolygonLegacy:
         else:
             GL.glDisable(GL.GL_TEXTURE_2D)
 
+        real_mode = mode
+        if self.window:
+            if self.window.debugger:
+                if self.window.debugger.drawmode:
+                    real_mode = self.window.debugger.drawmode
+
         for i, v in enumerate(self.vertexes):
             vertex = Vertex()
             vertex.setPosition(v)
@@ -51,7 +58,7 @@ class PolygonLegacy:
             elif i == len(self.vertexes) - 1:
                 end = True
             
-            vertex.drawVertex(begin, end, mode)
+            vertex.drawVertex(begin, end, real_mode)
 
 class Polygon:
     def __init__(self, vertexes, window=None):
@@ -161,4 +168,10 @@ class Polygon:
 
         GL.glBindVertexArray(self._vao)
       
-        GL.glDrawArrays(mode, 0, len(self.vertexes) // 8)
+        real_mode = mode
+        if self.window:
+            if self.window.debugger:
+                if self.window.debugger.drawmode:
+                    real_mode = self.window.debugger.drawmode
+
+        GL.glDrawArrays(real_mode, 0, len(self.vertexes) // 8)

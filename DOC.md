@@ -367,6 +367,16 @@ Mouse.setVisibility(Window, True)                # Sets the mouse visibility, ar
 
 ## Other
 
+### Debugger
+
+```python
+debugger = Debugger()
+window.connectDebugger(debugger) # Connect debugger, arg1 - Debugger
+window.disconnectDebugger()      # Disconnect debugger
+debugger.debugDraw(None)         # Draw all objects in LOOP draw mode, arg1 - bool
+debugger.showMouseClicks(None)   # Show Pressed, Released, Position cursor and  arrow from 1 point to 2 point, arg1 - bool
+```
+
 ### frameTimer
 
 ```python

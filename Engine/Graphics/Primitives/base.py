@@ -127,6 +127,7 @@ class Base(GFXObject, canParent):
         # APPLY
         
         self.position = new_position
+        self._dirty = True
         self.calculated = False
     
     def setRotation(self, new_rotation:Vec1):
@@ -142,6 +143,7 @@ class Base(GFXObject, canParent):
         # APPLY
         
         self.rotation = new_rotation
+        self._dirty = True
         self.calculated = False
     
     def setColor(self, new_color:Color3 | Color4):

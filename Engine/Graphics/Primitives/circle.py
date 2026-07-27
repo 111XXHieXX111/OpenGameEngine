@@ -23,7 +23,7 @@ class Circle(Base):
         if self.window.render_type == 0:
             self.polygon = Polygon(self.vertexes, self.window)
         else:
-            self.polygon = PolygonLegacy(self.vertexes)
+            self.polygon = PolygonLegacy(self.vertexes, self.window)
     
     def calculateSize(self):
         if not self._dirty and self._cached_vertices is not None:
