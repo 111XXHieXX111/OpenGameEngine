@@ -186,14 +186,6 @@ polygon.drawPolygon(drawMode.FILL)           # arg1 - drawMode
 
 **Important! draw** must be placed in the function specified by **Window** in **winProcess**
 
-There is also a **checkCollision** function, it checks whether the first primitive touches the second one. 
-**Note:** This function uses AABB (Axis-Aligned Bounding Box). It creates an axis-aligned rectangle around each shape, so for rotated objects the collision area will be larger than the actual shape. For non-rotated objects it works perfectly.
-
-```python
-if checkCollision(rect1.vertexes, rect2.vertexes):
-    print("Colliding")
-```
-
 For **ALL Primitives**, you need to call the calculateSize function before rendering if you change the value without using the built-in function!
 
 Draw modes:
@@ -253,6 +245,31 @@ obj1.addChild("Object", obj2) # arg1 - child name, arg2 - another primitive (onl
 obj1.removeChild("Object")    # arg1 - child name
 obj1.getChildrens()           # Return all childrens
 obj1.getChild("Object")       # arg1 - child name, return child by name
+```
+
+### Physics
+
+#### Collision
+
+##### AABB
+
+```python
+if checkCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
+```
+
+**OR**
+
+```python
+if AABBCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
+```
+
+##### SAT
+
+```python
+if SATCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
 ```
 
 ### Batch

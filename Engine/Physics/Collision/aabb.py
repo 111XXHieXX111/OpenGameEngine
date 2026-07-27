@@ -1,8 +1,7 @@
-from ..Kernel.kernel import logWrapper
-from ..Kernel.Components.vectors import Vec2
+from .modules import *
 
 @logWrapper
-def checkCollision(verts1:list[Vec2] | tuple[Vec2], verts2:list[Vec2] | tuple[Vec2]):
+def _AABB(verts1:list[Vec2] | tuple[Vec2], verts2:list[Vec2] | tuple[Vec2]):
     min_x1 = min(v.x for v in verts1)
     max_x1 = max(v.x for v in verts1)
     min_y1 = min(v.y for v in verts1)

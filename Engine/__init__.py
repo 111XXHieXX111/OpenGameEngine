@@ -31,7 +31,8 @@ from .Graphics.GUI.window import SimpleButton, textInput
 
 # PHYSICS
 
-from .Physics.collision_check import checkCollision
+from .Physics.Collision.aabb import _AABB as AABBCollision, _AABB as checkCollision
+from .Physics.Collision.sat import _SAT as SATCollision
 
 # MISC
 

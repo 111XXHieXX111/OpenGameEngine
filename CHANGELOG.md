@@ -125,4 +125,4 @@ added **Direct import** + **fullscreen**
 
 # 27.07.27
 
-added **Debugger**
+added **Debugger** + **New collision**
