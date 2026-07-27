@@ -24,7 +24,7 @@ from OpenGameEngine import *
 ### Vectors
 
 ```python
-vec1 = Vec1(0.0, 0.0)
+vec1 = Vec1(0.0)
 vec2 = Vec2(0.0, 0.0)
 ```
 
