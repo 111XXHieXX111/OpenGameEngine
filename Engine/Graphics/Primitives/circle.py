@@ -20,6 +20,7 @@ class Circle(Base):
         self._cached_vertices = None
         self.window = window
         self.shader = None
+        self.connected = []
         if self.window.render_type == 0:
             self.polygon = Polygon(self.vertexes, self.window)
         else:

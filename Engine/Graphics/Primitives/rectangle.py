@@ -18,6 +18,7 @@ class Rectangle(Base):
         self.calculated = False
         self.window = window
         self.shader = None
+        self.connected = []
         if self.window.render_type == 0:
             self.polygon = Polygon(self.vertexes, self.window)
         else:
