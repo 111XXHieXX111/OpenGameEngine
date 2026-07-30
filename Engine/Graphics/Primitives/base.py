@@ -185,10 +185,8 @@ class Base(GFXObject, canParent, canConnect):
     def _draw(self, name:str):
         self.childrensProcess()
         render_items.append(name)
-
-    def _process(self):
         self._connected_work()
-
+    
     def _in_window(self):
         if self.window:
             if not self.window.camera["enabled"]:
