@@ -195,7 +195,7 @@ Draw modes:
 + FORM
 + FILL
 + RECT
-+ LINE
++ LINES
 
 Primitives who may have childrens:
 + Rectangle
