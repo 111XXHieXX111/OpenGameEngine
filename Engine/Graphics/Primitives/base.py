@@ -59,8 +59,20 @@ class canParent(Manager):
             child[1].setSize(Vec2(self.size.x * child[3].x, self.size.y * child[3].y))
             child[1].setRotation(self.rotation + child[4])
 
+class canConnect:
+    def __init__(self):
+        self.connected = []
+
+    def connectModule(self, module):
+        module.window = self.window
+        self.connected.append(module)
+
+    def _connected_work(self):
+        for connect in self.connected:
+            connect._work()
+
 @classWrapper
-class Base(GFXObject, canParent):
+class Base(GFXObject, canParent, canConnect):
     def __init__(self):
         super().__init__()
 
@@ -172,6 +184,9 @@ class Base(GFXObject, canParent):
     def _draw(self, name:str):
         self.childrensProcess()
         render_items.append(name)
+
+    def _process(self):
+        self._connected_work()
 
     def _in_window(self):
         if self.window:

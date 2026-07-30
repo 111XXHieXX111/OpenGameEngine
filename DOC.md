@@ -148,12 +148,13 @@ Shader values:
 
 ### Primitives
 ```python
-rectangle = Graphics.Rectangle() # arg1 - window (optional) (for optimization)
-triangle = Graphics.Triangle() # arg1 - window (optional) (for optimization)
-circle = Graphics.Circle() # arg1 - int, number of segments (default 8), arg2 - window (optional) (for optimization)
+rectangle = Graphics.Rectangle(window) # arg1 - window (for optimization) (for new render)
+triangle = Graphics.Triangle(window) # arg1 - window (for optimization) (for new render)
+circle = Graphics.Circle(window) # arg1 - int, number of segments (default 8), arg2 - window (for optimization) (for new render)
 
 vertex = Graphics.Vertex()
-polygon = Graphics.Polygon([]) # Arg is vertexes list (Vec2s)
+polygon = Graphics.Polygon([]) # arg1 - vertexes list (Vec2s), arg2 - window (NewRender)
+polygon = Graphics.PolygonLegacy([]) # Arg is vertexes list (Vec2s) (OldRender)
 ```
 
 If you write **window** as the 1st argument, then if a **primitive** goes outside the visible area (does not work with the **camera**), it will not be rendered.

@@ -123,6 +123,10 @@ added **tileMap**
 
 added **Direct import** + **fullscreen**
 
-# 27.07.27
+# 27.07.26
 
 added **Debugger** + **New collision**
+
+# 30.07.26
+
+add **canConnected for Base**
