@@ -70,7 +70,7 @@ class canConnect:
 
     def _connected_work(self):
         for connect in self.connected:
-            connect._work()
+            connect._work(self)
 
 @classWrapper
 class Base(GFXObject, canParent, canConnect):
