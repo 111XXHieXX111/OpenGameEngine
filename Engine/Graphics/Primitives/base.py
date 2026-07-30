@@ -65,6 +65,7 @@ class canConnect:
 
     def connectModule(self, module):
         module.window = self.window
+        module._inited()
         self.connected.append(module)
 
     def _connected_work(self):
