@@ -38,6 +38,11 @@ render_vertexes = []
 textures = []
 programs = []
 
+def setDebug(dbg:bool):
+    global debug
+    debug = dbg
+    log_system.consoleStream(dbg)
+
 def logWrapper(func):
     def wrapper(*args, **kwargs):
         try:

@@ -623,3 +623,9 @@ window = Window(0)
 
 window = Window()
 ```
+
+## Debug
+
+```
+setDebug(False) # on/off debug, True - log in chat, False - disable log in chat
+```

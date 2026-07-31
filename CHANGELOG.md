@@ -134,3 +134,7 @@ added **canConnected for Base**
 # 31.07.26
 
 added **collider4Body** + **Check in initGFX**
+
+# 01.08.26
+
+added **setDebug**

@@ -4,7 +4,7 @@ from .Kernel.Components.vectors import Vec1, Vec2
 from .Kernel.Components.graphics import Color3, Color4, c256
 from .Kernel.Components.graphics import drawMode, shaderType, textureType, stretchType, batchDrawing, Animation, tileMapRender
 from .Kernel.Components.control import Key, MouseButton
-from .Kernel.kernel import log_system
+from .Kernel.kernel import log_system, setDebug
 from .Kernel.fonts import fonts
 from .Kernel.icons import icons
 
