@@ -1,7 +1,7 @@
-from ..Graphics.Primitives.rectangle import Rectangle
-from ..Kernel.Components.graphics import drawMode, Color4
-from ..Kernel.Components.vectors import Vec2
-from .Collision.Globals.aabb import _GAABB
+from ...Graphics.Primitives.rectangle import Rectangle
+from ...Kernel.Components.graphics import drawMode, Color4
+from ...Kernel.Components.vectors import Vec2
+from ..Collision.Globals.aabb import _GAABB
 
 class collider4Body:
     def __init__(self):
