@@ -538,7 +538,7 @@ if GlobalAABBCollision(rect1):
 #### GlobalSATCollision
 
 ```python
-if GlobalAABBCollision(rect1):
+if GlobalSATCollision(rect1):
     print("Colliding")
 ```
 
