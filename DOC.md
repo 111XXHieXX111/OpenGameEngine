@@ -556,7 +556,23 @@ Use:
 body = collider4Body()
 obj.addModule(body)
 
-body.getColliding(1) # Return if body colliding with other body, arg1 - side, sides: 1 - top, 2 - bottom, 3 - left, 4 - right
+body.getColliding(1) # Return if body colliding with other body, use after all drawing, arg1 - side, sides: 1 - top, 2 - bottom, 3 - left, 4 - right
+```
+
+### How to create my own module
+
+```python
+class yourModule:
+    def __init__(self):
+        pass
+
+    def _inited(self):
+        # <- YOUR INIT CODE HERE
+        pass
+
+    def _work(self, body): # BODY THIS IS RECTANGLE, TRIANGLE OR CIRCLE
+        # <- YOUR CODE HERE (UPDATE CODE WITH WINDOW)
+        pass
 ```
 
 ## Direct import
