@@ -49,7 +49,7 @@ class Arrow(linedBase, Pointed):
         self.calculated = True
 
     def drawArrow(self):
-        self._draw("Arrow")
+        self._draw(self)
 
         if not self.calculated:
             self.calculateSize()

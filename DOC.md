@@ -170,6 +170,7 @@ Primitives (Rectangle, Triangle, Circle) have functions such as:
 + getCenter - getting the center of the primitive;
 + setPointSize - setting the vertex size; (Vec1)
 + setShader - settings the shader of the primitive; (Shader)
++ addModule - add module to primitive;
 And have values:
 + position; (Vec2)
 + size; (Vec2)
@@ -246,31 +247,6 @@ obj1.addChild("Object", obj2) # arg1 - child name, arg2 - another primitive (onl
 obj1.removeChild("Object")    # arg1 - child name
 obj1.getChildrens()           # Return all childrens
 obj1.getChild("Object")       # arg1 - child name, return child by name
-```
-
-### Physics
-
-#### Collision
-
-##### AABB
-
-```python
-if checkCollision(rect1.vertexes, rect2.vertexes):
-    print("Colliding")
-```
-
-**OR**
-
-```python
-if AABBCollision(rect1.vertexes, rect2.vertexes):
-    print("Colliding")
-```
-
-##### SAT
-
-```python
-if SATCollision(rect1.vertexes, rect2.vertexes):
-    print("Colliding")
 ```
 
 ### Batch
@@ -525,6 +501,62 @@ manager.setGeneralVolume(0.0)                     # Set volume for alls sounds, 
 manager.stopSounds()                              # Stop all sounds
 manager.getSound("sound")                         # Return sound, arg1 - name
 manager.removeSound("sound")                      # Remove sound, arg1 - name
+```
+
+## Physics
+
+### Collision
+
+#### AABBCollision
+
+```python
+if checkCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
+```
+
+**OR**
+
+```python
+if AABBCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
+```
+
+#### SATCollision
+
+```python
+if SATCollision(rect1.vertexes, rect2.vertexes):
+    print("Colliding")
+```
+
+#### GlobalAABBCollision
+
+```python
+if GlobalAABBCollision(rect1):
+    print("Colliding")
+```
+
+#### GlobalSATCollision
+
+```python
+if GlobalAABBCollision(rect1):
+    print("Colliding")
+```
+
+#### Globals collision note!
+
+Use Global's collision after all draw!
+
+## Modules
+
+### collider4Body
+
+Use:
+
+```python
+body = collider4Body()
+obj.addModule(body)
+
+body.getColliding(1) # Return if body colliding with other body, arg1 - side, sides: 1 - top, 2 - bottom, 3 - left, 4 - right
 ```
 
 ## Direct import

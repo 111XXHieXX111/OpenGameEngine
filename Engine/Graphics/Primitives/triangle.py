@@ -66,7 +66,7 @@ class Triangle(Base):
         if not self._in_window():
             return
         
-        self._draw("Triangle")
+        self._draw(self)
         
         if not self.calculated:
             self.calculateSize()

@@ -182,7 +182,7 @@ class Base(GFXObject, canParent, canConnect):
             ys.append(v.y)
         return Vec2(sum(xs) / len(xs), sum(ys) / len(ys))
 
-    def _draw(self, name:str):
+    def _draw(self, name):
         self.childrensProcess()
         render_items.append(name)
         self._connected_work()

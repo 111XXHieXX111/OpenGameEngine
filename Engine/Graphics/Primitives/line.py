@@ -26,7 +26,7 @@ class Line(linedBase, Pointed):
         self.calculated = True
 
     def drawLine(self):
-        self._draw("Line")
+        self._draw(self)
 
         if not self.calculated:
             self.calculateSize()

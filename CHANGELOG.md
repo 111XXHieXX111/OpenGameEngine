@@ -129,4 +129,8 @@ added **Debugger** + **New collision**
 
 # 30.07.26
 
-add **canConnected for Base**
+added **canConnected for Base**
+
+# 31.07.26
+
+added **collider4Body** + **Check in initGFX**

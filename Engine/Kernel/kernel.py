@@ -64,71 +64,76 @@ shader = None
 def initGFX():
     global render_type, shader
 
-    VERTEX_SHADER_CODE = """#version 330 core
+    try:
+        VERTEX_SHADER_CODE = """#version 330 core
 
-layout (location = 0) in vec3 VertexPos;
-layout (location = 1) in vec3 VertexColor;
-layout (location = 2) in vec2 TexCoord;
+    layout (location = 0) in vec3 VertexPos;
+    layout (location = 1) in vec3 VertexColor;
+    layout (location = 2) in vec2 TexCoord;
 
-out vec3 Color;
-out vec2 TexCoordOut;
+    out vec3 Color;
+    out vec2 TexCoordOut;
 
-void main() {
-    gl_Position = vec4(VertexPos.xyz, 1.0);
-    Color = VertexColor;
-    TexCoordOut = TexCoord;
-}"""
+    void main() {
+        gl_Position = vec4(VertexPos.xyz, 1.0);
+        Color = VertexColor;
+        TexCoordOut = TexCoord;
+    }"""
 
-    FRAGMENT_SHADER_CODE = """#version 330 core
+        FRAGMENT_SHADER_CODE = """#version 330 core
 
-in vec3 Color;
-in vec2 TexCoordOut;
+    in vec3 Color;
+    in vec2 TexCoordOut;
 
-uniform sampler2D textureSampler;
-uniform int useTexture;
+    uniform sampler2D textureSampler;
+    uniform int useTexture;
 
-out vec4 FragColor;
+    out vec4 FragColor;
 
-void main() {
-    if (useTexture == 1) {
-        vec4 texColor = texture(textureSampler, TexCoordOut);
-        FragColor = texColor * vec4(Color, 1.0);
-    } else {
-        FragColor = vec4(Color, 1.0);
-    }
-}"""
+    void main() {
+        if (useTexture == 1) {
+            vec4 texColor = texture(textureSampler, TexCoordOut);
+            FragColor = texColor * vec4(Color, 1.0);
+        } else {
+            FragColor = vec4(Color, 1.0);
+        }
+    }"""
 
-    log_system.addInfo("Create shaders")
-    vertShader = GL.glCreateShader(GL.GL_VERTEX_SHADER)
-    GL.glShaderSource(vertShader, VERTEX_SHADER_CODE)
-    fragShader = GL.glCreateShader(GL.GL_FRAGMENT_SHADER)
-    GL.glShaderSource(fragShader, FRAGMENT_SHADER_CODE)
+        log_system.addInfo("Create shaders")
+        vertShader = GL.glCreateShader(GL.GL_VERTEX_SHADER)
+        GL.glShaderSource(vertShader, VERTEX_SHADER_CODE)
+        fragShader = GL.glCreateShader(GL.GL_FRAGMENT_SHADER)
+        GL.glShaderSource(fragShader, FRAGMENT_SHADER_CODE)
     
-    log_system.addInfo("Compiling shaders")
-    GL.glCompileShader(vertShader)
-    GL.glCompileShader(fragShader)
+        log_system.addInfo("Compiling shaders")
+        GL.glCompileShader(vertShader)
+        GL.glCompileShader(fragShader)
 
-    log_system.addInfo("Create shader program")
+        log_system.addInfo("Create shader program")
 
-    programShader = GL.glCreateProgram()
+        programShader = GL.glCreateProgram()
 
-    log_system.addInfo("Attach shaders")
-    GL.glAttachShader(programShader, vertShader)
-    GL.glAttachShader(programShader, fragShader)
+        log_system.addInfo("Attach shaders")
+        GL.glAttachShader(programShader, vertShader)
+        GL.glAttachShader(programShader, fragShader)
 
-    log_system.addInfo("Link program")
-    GL.glLinkProgram(programShader)
+        log_system.addInfo("Link program")
+        GL.glLinkProgram(programShader)
 
-    log_system.addInfo("Delete shaders")
-    GL.glDeleteShader(vertShader)
-    GL.glDeleteShader(fragShader)
+        log_system.addInfo("Delete shaders")
+        GL.glDeleteShader(vertShader)
+        GL.glDeleteShader(fragShader)
     
-    log_system.addInfo("Set render type to 0")
-    render_type = 0
+        log_system.addInfo("Set render type to 0")
+        render_type = 0
     
-    programs.append(programShader)
+        programs.append(programShader)
 
-    shader = programShader
+        shader = programShader
+    except Exception as ex:
+        log_system.addCritical(f"Error compiling shader:{ex}, use render mode 0!")
+        quit(1)
 
+@logWrapper
 def getShader():
     return shader

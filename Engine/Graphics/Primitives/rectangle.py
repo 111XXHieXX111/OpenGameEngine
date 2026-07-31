@@ -62,7 +62,7 @@ class Rectangle(Base):
         if not self._in_window():
             return
         
-        self._draw("Rectangle")
+        self._draw(self)
         
         if not self.calculated:
             self.calculateSize()
