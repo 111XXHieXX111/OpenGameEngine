@@ -87,3 +87,9 @@ class Animation:
 class tileMapRender(Enum):
     BATCH = "TMR-B"
     RECTS = "TMR-R"
+
+# TWEEN
+
+class tweenType(Enum):
+    LINEAR = "L"
+    EASE_IN_OUT = "EIO"
