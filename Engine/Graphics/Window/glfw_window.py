@@ -11,6 +11,7 @@ from ...Misc.debugger import Debugger
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
 from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox, bgframe
+from ..GUI.imgui import imguiInit, imguiInputs, imguiRender
 from .console import consoleHandler
 
 #_drawText
@@ -192,7 +193,13 @@ class Window:
         log_system.addInfo("Get current win sizes")
 
         self.current_window_sizes = glfw.get_framebuffer_size(self.window)
+
+        # INIT IMGUI
+
+        log_system.addInfo("ImGUI Create contex")
         
+        self.impl = imguiInit(self.window)
+
         # CONNECT CALLBACK(S)
         
         log_system.addInfo("Connect callback(s)")
@@ -371,6 +378,10 @@ class Window:
         if self.render["screen_clear"]:
             GL.glClear(GL.GL_COLOR_BUFFER_BIT)
 
+        # IMGUI INPUTS
+
+        imguiInputs(self.impl)
+
         # VIEWING AREA
 
         if self.render["Viewpost"]:
@@ -508,6 +519,10 @@ class Window:
 
         if self.debugger:
             self.debugger._debugger_work()
+        
+        # IMGUI RENDER
+
+        imguiRender(self.impl)
 
         # WINDOW PROCESS
         
@@ -570,4 +585,5 @@ class Window:
                 self._render_frame(update)
                 last_time = current_time
         
+        log_system.addInfo("GLFW Terminate")
         glfw.terminate()

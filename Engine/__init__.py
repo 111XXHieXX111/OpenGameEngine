@@ -23,10 +23,15 @@ from .Graphics.Utils.shader import loadShader, Shader
 from .Graphics.Utils.tilemap import tileMap
 from .Graphics import *
 
-# WINDOW + GUI
+# WINDOW
 
 from .Graphics.Window.glfw_window import Window
+
+# GUI
+
 from .Graphics.GUI.window import SimpleButton, textInput
+from .Graphics.GUI.imgui import GUIBegin, GUIEnd, GUIText, GUIBeginChild, GUIEndChild, GUIButton, GUISButton, GUIIButton, GUIInputText
+from .Graphics.GUI.imgui_flags import GUIFlags
 
 # PHYSICS
 
@@ -51,4 +56,4 @@ from .Misc.tween import Tween
 
 # MODULES
 
-from .Kernel.modules import glfw, GL as OpenGL
+from .Kernel.modules import glfw, GL as OpenGL, imgui
