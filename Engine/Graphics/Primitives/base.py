@@ -59,6 +59,7 @@ class canParent(Manager):
             child[1].setSize(Vec2(self.size.x * child[3].x, self.size.y * child[3].y))
             child[1].setRotation(self.rotation + child[4])
 
+@classWrapper
 class canConnect:
     def __init__(self):
         self.connected = []
@@ -71,6 +72,44 @@ class canConnect:
     def _connected_work(self):
         for connect in self.connected:
             connect._work(self)
+
+    def _connect_find(self, module_name:str):
+        module_class = None
+        for connect in self.connected:
+            if connect.__class__.__name__ == module_name:
+                module_class = connect
+                break
+        else:
+            log_system.addError(f"Module:{module_name} is not found!")
+            return
+
+        return module_class
+
+    def runModuleFunction(self, module_name:str, func_name:str, *arg, **kwargs):
+        module_class = self._connect_find(module_name)
+
+        if not hasattr(module_class, func_name):
+            log_system.addError(f"Function:{func_name} is not found in Module:{module_name}!")
+            return
+
+        func = getattr(module_class, func_name)
+        return func(*arg, **kwargs)
+
+    def setModuleValue(self, module_name:str, value_name:str, value):
+        module_class = self._connect_find(module_name)
+
+        if not hasattr(module_class, value_name):
+            log_system.addError(f"Value:{value_name} is not found in Module:{module_name}!")
+
+        setattr(module_class, value_name, value)
+
+    def getModuleValue(self, module_name:str, value_name:str):
+        module_class = self._connect_find(module_name)
+
+        if not hasattr(module_class, value_name):
+            log_system.addError(f"Value:{value_name} is not found in Module:{module_name}!")
+
+        return getattr(module_class, value_name)
 
 @classWrapper
 class Base(GFXObject, canParent, canConnect):

@@ -548,16 +548,33 @@ Use Global's collision after all draw!
 
 ## Modules
 
+### All module use
+
+```python
+obj.addModule(module)
+obj.runModuleFunction("module", "function", args) # arg1 - module name, arg2 - function name, arg3-inf - args
+obj.setModuleValue("module", "value", your_value) # arg1 - module name, arg2 - value name, arg3 - value
+obj.getModuleValue("module", "value")             # arg1 - module name, arg2 - value name
+```
+
 ### collider4Body
 
 Use:
 
 ```python
-body = collider4Body()
-obj.addModule(body)
-
-body.getColliding(1) # Return if body colliding with other body, use after all drawing, arg1 - side, sides: 1 - top, 2 - bottom, 3 - left, 4 - right
+obj.addModule(collider4Body())
 ```
+
+collider4Body() has function such as:
++ getColliding - Return if body colliding with other body, use after all drawing, arg1 - side, sides: 1 - top, 2 - bottom, 3 - left, 4 - ;right
+collider4Body() has values such as:
++ showcolliders (bool);
++ colliders (list 4 Rectangles);
++ current_body (any);
++ top (Rectangle);
++ bottom (Rectangle);
++ left (Rectangle);
++ right (Rectangle);
 
 ### How to create my own module
 

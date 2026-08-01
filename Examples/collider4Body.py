@@ -8,13 +8,11 @@ from OpenGameEngine import *
 window = Window()
 window.initWindow()
 
-body = collider4Body()
-
 rect = Graphics.Rectangle(window)
 rect.setPosition(Vec2(40, 40))
 rect.setSize(Vec2(40, 40))
 rect.setColor(Color3(1, 1, 1))
-rect.connectModule(body)
+rect.connectModule(collider4Body())
 
 speed = 240
 
@@ -61,13 +59,13 @@ def update():
     
     rect.drawRectangle(drawMode.FILL)
     
-    if body.getColliding(1):
+    if rect.runModuleFunction("collider4Body", "getColliding", 1):
         rect.position.y += dtspeed
-    if body.getColliding(2):
+    if rect.runModuleFunction("collider4Body", "getColliding", 2):
         rect.position.y -= dtspeed
-    if body.getColliding(3):
+    if rect.runModuleFunction("collider4Body", "getColliding", 3):
         rect.position.x += dtspeed
-    if body.getColliding(4):
+    if rect.runModuleFunction("collider4Body", "getColliding", 4):
         rect.position.x -= dtspeed
 
 window.winProcess(update)
