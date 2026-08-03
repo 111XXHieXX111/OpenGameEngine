@@ -6,6 +6,7 @@ from .Kernel.Components.control import Key, MouseButton
 from .Kernel.kernel import log_system, setDebug
 from .Kernel.fonts import fonts
 from .Kernel.icons import icons
+from .Kernel.math import Math
 
 # CONTROL
 

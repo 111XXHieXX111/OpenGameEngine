@@ -1,3 +1,5 @@
+from .Components.vectors import Vec2
+
 PI = 3.141592
 
 def sin(x):
@@ -26,3 +28,18 @@ def cos(x):
 
 def radians(degrees):
     return degrees * PI / 180
+
+class Math:
+    @staticmethod
+    def Clamp(x:int|float, y:int|float, value:int|float):
+        if value < x:
+            return x
+        elif value > y:
+            return y
+        return value
+
+    @staticmethod
+    def clampVec2(x:int|float, y:int|float, vector:Vec2):
+        x = Math.Clamp(x, y, vector.x)
+        y = Math.Clamp(x, y, vector.y)
+        return Vec2(x, y)

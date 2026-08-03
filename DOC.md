@@ -652,6 +652,20 @@ if GlobalSATCollision(rect1):
 
 Use Global's collision after all draw!
 
+## Math
+
+### Clamp
+
+```python
+Math.Clamp(x, y, value) # Limits the number, arg1 - minimum, arg2 - maximum, arg3 - current value. All values is float|int
+```
+
+### clampVec2
+
+```python
+Math.clampVec2(x, y, vector) # Limits Vec2 on two axes at once, arg1 - minimum (float|int), arg2 - maximum (float|int), arg3 - Vec2
+```
+
 ## Modules
 
 ### All module use
