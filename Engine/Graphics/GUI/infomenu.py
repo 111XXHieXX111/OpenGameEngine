@@ -1,4 +1,3 @@
-
 from .imgui import GUIBegin, GUIText, GUISameLine
 from ...Kernel.Components.vectors import Vec2
 from ...Kernel.kernel import render_items

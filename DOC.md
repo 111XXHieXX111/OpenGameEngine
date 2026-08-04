@@ -799,9 +799,11 @@ Press F12 to open debug menu
 window.setLegacyDebug(True) # Set old debug, arg1 - bool
 ```
 
-![Old:](https://i.ibb.co/21PXC9Hm/old.png)
+OLD:
+![Old](https://i.ibb.co/21PXC9Hm/old.png)
 
-![New:](https://i.ibb.co/GfV0tJnP/new.png)
+NEW:
+![New](https://i.ibb.co/GfV0tJnP/new.png)
 
 ## Note
 
