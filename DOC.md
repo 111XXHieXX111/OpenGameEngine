@@ -128,6 +128,14 @@ window has methods enableEventsByIconify/disableEventsByIconify
 
 **Window** takes an **int** as the first argument; if 0, it uses the new rendering method (**VBO**, **VAO**); if 1, it uses the old **vertex**-based method.
 
+```python
+window.setCameraPosition(Vec2(0.0, 0.0)) # arg1 - Vec2
+window.moveCamera(Vec2(0.0, 0.0))        # arg1 - Vec2
+window.setCameraZoom(0.0)                # arg1 - float
+window.getCameraPosition()               # Return Vec2
+window.setCameraEnabled(False)           # arg1 - bool (Default not enabled)
+```
+
 ## Graphics
 
 ### Load texture
@@ -686,7 +694,7 @@ Math.clampVec2(x, y, vector) # Limits Vec2 on two axes at once, arg1 - minimum (
 ### All module use
 
 ```python
-obj.addModule(module)
+obj.connectModule(module)
 obj.runModuleFunction("module", "function", args) # arg1 - module name, arg2 - function name, arg3-inf - args
 obj.setModuleValue("module", "value", your_value) # arg1 - module name, arg2 - value name, arg3 - value
 obj.getModuleValue("module", "value")             # arg1 - module name, arg2 - value name
@@ -697,7 +705,7 @@ obj.getModuleValue("module", "value")             # arg1 - module name, arg2 - v
 Use:
 
 ```python
-obj.addModule(collider4Body())
+obj.connectModule(collider4Body())
 ```
 
 collider4Body() has function such as:
