@@ -41,6 +41,7 @@ from .Physics.Collision.aabb import _AABB as AABBCollision, _AABB as checkCollis
 from .Physics.Collision.sat import _SAT as SATCollision
 from .Physics.Collision.Globals.aabb import _GAABB as globalAABBCollision
 from .Physics.Collision.Globals.sat import _GSAT as globalSATCollision
+from .Physics.Collision.raycast import rayCast
 from .Physics.Modules.Collider4 import collider4Body
 
 # MISC

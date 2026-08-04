@@ -652,6 +652,21 @@ if GlobalSATCollision(rect1):
 
 Use Global's collision after all draw!
 
+#### rayCast
+
+```python
+raycast = rayCast()                                  # arg1 - list of ignores bodyes
+raycast.setPositions(Vec2(0.0, 0.0), Vec2(0.0, 0.0)) # arg1 - first pos (Vec2), arg2 - second pos (Vec2)
+raycast.rayCastProcess()                             # A function that checks whether a raycast encounters an object
+raycast.rayCastDraw()                                # A function that renders raycast as a line
+```
+
+rayCast has values such as:
++ pos1 - Vec2;
++ pos2 - Vec2;
++ ignores - List;
++ colliding - bool;
+
 ## Math
 
 ### Clamp
