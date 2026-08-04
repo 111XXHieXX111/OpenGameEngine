@@ -588,6 +588,12 @@ fonts["ROMAN 10"]
 fonts["ROMAN 24"]
 ```
 
+### generateID
+
+```python
+generateID() # Return int, generate unique ID
+```
+
 ## Sound
 
 ### loadSound

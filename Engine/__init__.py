@@ -56,6 +56,7 @@ from .Misc.scenes import sceneManager
 from .Misc.memory import memoryClean
 from .Misc.debugger import Debugger
 from .Misc.tween import Tween
+from .Misc.idgenerator import generateID
 
 # MODULES
 
