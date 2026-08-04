@@ -2,8 +2,6 @@ from .logging import Logging
 from .modules import sys, os, GL, compileShader, compileProgram
 
 def colorSupportChecker():
-    log_system.addInfo(f"Platform:{sys.platform}")
-    
     if not sys.stdout.isatty():
         return False
     
@@ -27,6 +25,8 @@ def colorSupportChecker():
 
 log_system = Logging(True, True, True)
 log_system.consoleStream(True)
+
+log_system.addInfo(f"Platform:{sys.platform}")
 
 log_system.colored = colorSupportChecker()
 

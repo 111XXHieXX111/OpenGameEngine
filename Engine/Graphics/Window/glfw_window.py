@@ -10,9 +10,10 @@ from ...Misc.timer import Timer
 from ...Misc.debugger import Debugger
 from ...Control.keyboard import Keyboard
 from ...Control.mouse import Mouse
-from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox, bgframe
+from ..GUI.window import _drawText, SimpleButton, textInput, _drawTextBox
 from ..GUI.imgui import imguiInit, imguiInputs, imguiRender
 from ..GUI.console import Console
+from ..GUI.infomenu import infoMenu
 from .console import consoleHandler
 
 #_drawText
@@ -65,6 +66,8 @@ class Window:
 
         self.fullscreen = False
         self.fullscreen_switching = True
+
+        self.legacydebug = False
 
         self.render = {
             "screen_clear":True,
@@ -150,6 +153,12 @@ class Window:
         
         self.memorymonitor = memoryMonitor()
 
+        # INIT INFO MENU
+
+        log_system.addInfo("infoMenu init")
+
+        self.infomenu = infoMenu(self)
+
         # MOVE WINDOW TO THE CURRENT CONTEXT
 
         log_system.addInfo("Move window to the current context")
@@ -206,6 +215,9 @@ class Window:
         
         glfw.set_window_iconify_callback(self.window, self._iconify_callback)
         glfw.set_window_close_callback(self.window, self._on_close_callback)
+
+    def setLegacyDebug(self, legacy:bool):
+        self.legacydebug = legacy
 
     def setFullscreen(self, fullscreen:bool=True):
         self.fullscreen = fullscreen
@@ -477,7 +489,7 @@ class Window:
         
             self.upd_fps_timer.timerProcess(self)
         
-            if self.debugmenu == 1 and debug:
+            if self.debugmenu == 1 and debug and self.legacydebug:
                 padding = 14
             
                 memory_info = self.memorymonitor.getMemory()
@@ -498,7 +510,7 @@ class Window:
             
                 for index, label in enumerate(text_lines):
                     self.drawText(label, Vec2(0, index*padding), debug_only=True)
-            elif self.debugmenu == 2 and debug:
+            if self.debugmenu == 2 and debug:
                 self.drawText(f"FPS: {self.fps}", Vec2(0, 0), debug_only=True)
 
         # FULL SCREEN
@@ -516,6 +528,11 @@ class Window:
 
         if self.debugmenu == 3 and debug:
             self.console_gui.drawConsole()
+
+        # INFO MENU
+
+        if self.debugmenu == 1 and debug and not self.legacydebug:
+            self.infomenu.infoMenuDraw()
 
         # IMGUI RENDER
 

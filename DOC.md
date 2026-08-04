@@ -791,6 +791,18 @@ window = Window()
 setDebug(False) # on/off debug, True - log in chat, False - disable log in chat
 ```
 
+### F12 Debug
+
+Press F12 to open debug menu
+
+```python
+window.setLegacyDebug(True) # Set old debug, arg1 - bool
+```
+
+![Old:](https://i.ibb.co/21PXC9Hm/old.png)
+
+![New:](https://i.ibb.co/GfV0tJnP/new.png)
+
 ## Note
 
 See [examples](Examples)

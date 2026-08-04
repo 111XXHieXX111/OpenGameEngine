@@ -147,6 +147,6 @@ added **GUIArrowButton**
 
 # 04.08.26
 
-updated **imGUI** + **Console GUI**
+updated **imGUI** + **Console GUI** + **Debug GUI**
 
 added **rayCast**
