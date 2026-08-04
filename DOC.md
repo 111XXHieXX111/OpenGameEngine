@@ -719,6 +719,7 @@ You can use libraries like glfw and PyOpenGL right in the game, just use:
 ```python
 OpenGL
 glfw
+imgui
 ```
 
 **OpenGL is a GL from the PyOpenGL library!**
