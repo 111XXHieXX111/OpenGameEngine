@@ -31,7 +31,7 @@ from .Graphics.Window.glfw_window import Window
 # GUI
 
 from .Graphics.GUI.window import SimpleButton, textInput
-from .Graphics.GUI.imgui import GUIBegin, GUIEnd, GUIText, GUIBeginChild, GUIEndChild, GUIButton, GUISButton, GUIIButton, GUIInputText, GUIArrowButton
+from .Graphics.GUI.imgui import GUIBegin, GUIEnd, GUIText, GUIBeginChild, GUIEndChild, GUIButton, GUISButton, GUIIButton, GUIInputText, GUIArrowButton, GUIInputTextMultiline
 from .Graphics.GUI.imgui_flags import GUIFlags
 from .Graphics.GUI.imgui_other import arrowDirections
 

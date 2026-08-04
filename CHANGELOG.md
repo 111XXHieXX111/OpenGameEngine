@@ -144,3 +144,7 @@ added **setDebug** + **Tween** + **imgui**
 updated **Math**
 
 added **GUIArrowButton**
+
+# 04.08.26
+
+updated **GUI**
