@@ -54,11 +54,14 @@ def GUISButton(text:str="Button"):
 def GUIIButton(identifier:str="Button", size:Vec2=Vec2(800, 60), flags:GUIFlags=0):
     return imgui.invisible_button(identifier, width=size.x, height=size.y, flags=flags)
 
-def GUIInputText(text:str="InputText", value:str="", buffer_length:int=0, flags:GUIFlags=0, callback:callable=None, user_data=None):
+def GUIInputText(text:str="InputText", value:str="", buffer_length:int=256, flags:GUIFlags=0, callback:callable=None, user_data=None):
     return imgui.input_text(text, value=value, buffer_length=buffer_length, flags=flags, callback=callback, user_data=user_data)
 
 def GUIArrowButton(text:str="Button", direction:arrowDirections=arrowDirections.RIGHT):
     return imgui.arrow_button(text, direction)
 
-def GUIInputTextMultiline(text:str="InputTextMultiline", value:str="", size:Vec2=Vec2(280, 120), flags:GUIFlags=0, callback:callable=None, user_data=None):
-    return imgui.input_text_multiline(text, value=value, width=size.x, height=size.y, flags=flags, callback=callback, user_data=user_data)
+def GUIInputTextMultiline(text:str="InputTextMultiline", value:str="", buffer_length:int=256, size:Vec2=Vec2(280, 120), flags:GUIFlags=0, callback:callable=None, user_data=None):
+    return imgui.input_text_multiline(text, value=value, buffer_length=buffer_length, width=size.x, height=size.y, flags=flags, callback=callback, user_data=user_data)
+
+def GUISameLine(position:float=0.0, spacing:float=-1.0):
+    return imgui.same_line(position=position, spacing=spacing)
