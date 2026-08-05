@@ -93,3 +93,19 @@ class tileMapRender(Enum):
 class tweenType(Enum):
     LINEAR = "L"
     EASE_IN_OUT = "EIO"
+
+# COLORS
+
+class Colors:
+    RED = Color4(1.0, 0.0, 0.0, 1.0)
+    GREEN = Color4(0.0, 1.0, 0.0, 1.0)
+    BLUE = Color4(0.0, 0.0, 0.1, 1.0)
+
+    WHITE = Color4(1.0, 1.0, 1.0, 1.0)
+    BLACK = Color4(0.0, 0.0, 0.0, 1.0)
+
+    TRANSPARENT = Color4(1.0, 0.0, 0.0, 1.0)
+
+    YELLOW = Color4(1.0, 1.0, 0.0, 1.0)
+    CYAN = Color4(0.0, 1.0, 1.0, 1.0)
+    PURPULE = Color4(1.0, 0.0, 1.0, 1.0)

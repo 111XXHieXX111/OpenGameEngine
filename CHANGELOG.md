@@ -155,4 +155,4 @@ added **rayCast** + **generateID**
 
 updated **Vec2** + **Vec1** + **Math**
 
-added **layerSystem** + **Example for logSystem**
+added **layerSystem** + **Example for logSystem** + **Colors**

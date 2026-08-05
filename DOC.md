@@ -160,6 +160,23 @@ Shader values:
 + program
 + uniforms
 
+### Colors
+
+```python
+Colors. # <-COLOR
+```
+
+Colors:
++ RED         (1.0, 0.0, 0.0, 1.0)
++ GREEN       (0.0, 1.0, 0.0, 1.0)
++ BLUE        (0.0, 0.0, 1.0, 0.0)
++ WHITE       (1.0, 1.0, 1.0, 1.0)
++ BLACK       (0.0, 0.0, 0.0, 1.0)
++ TRANSPARENT (0.0, 0.0, 0.0, 0.0)
++ YELLOW      (1.0, 1.0, 0.0, 1.0)
++ CYAN        (0.0, 1.0, 1.0, 1.0)
++ PURPULE     (1.0, 0.0, 1.0, 1.0)
+
 ### Primitives
 ```python
 rectangle = Graphics.Rectangle(window) # arg1 - window (for optimization) (for new render)
