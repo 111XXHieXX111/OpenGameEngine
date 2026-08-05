@@ -549,6 +549,10 @@ manager.kEvent("space", kEvent.Pres)             # Return bool value, if key is 
 manager.mEvent(MouseButton.LEFT, mEvent.Pres)    # Return bool value, if key is pressed - True else False, arg1 - button (MouseButton), arg2 - mEvent
 ```
 
+inputManager have values such as:
++ active_events; (int)
++ window; (Window)
+
 ## Other
 
 ### Debugger
