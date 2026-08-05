@@ -257,6 +257,30 @@ obj1.getChildrens()           # Return all childrens
 obj1.getChild("Object")       # arg1 - child name, return child by name
 ```
 
+### layerSystem
+
+layerSystem support objects (primitives) such as:
++ Rectangle
++ Triangle
++ Circle
++ Line
++ Arrow
++ Polygon
++ PolygonLegacy
++ Sprite
++ animatedSprite
+
+```python
+layers = layerSystem()
+layers.addLayer()     # arg1 - layer name (str)
+layers.removeLayer()  # arg1 - layer name (str)
+layers.addObject()    # arg1 - layer name (str), arg2 - object, arg3 - mode (drawMode | None)
+layers.removeObject() # arg1 - layer name (str), arg2 - object, arg3 - mode (drawMode | None)
+layers.renderLayers() # Render all layers
+```
+
+If you have added an object to a layer, do not draw it separately, because the layers are rendered automatically. For objects that do not support drawMode, set drawMode to None instead.
+
 ### Batch
 
 ```python

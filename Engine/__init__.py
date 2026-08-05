@@ -22,6 +22,7 @@ from .Graphics.Random.randomcolor import randomColor3, randomColor4
 from .Graphics.Utils.texture import loadTexture
 from .Graphics.Utils.shader import loadShader, Shader
 from .Graphics.Utils.tilemap import tileMap
+from .Graphics.Utils.layers import layerSystem
 from .Graphics import *
 
 # WINDOW

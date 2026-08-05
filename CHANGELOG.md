@@ -150,3 +150,7 @@ added **GUIArrowButton**
 updated **imGUI** + **Console GUI** + **Debug GUI**
 
 added **rayCast** + **generateID**
+
+# 05.08.26
+
+added **layerSystem** + **Example for logSystem**
