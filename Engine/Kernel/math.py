@@ -43,3 +43,9 @@ class Math:
         x = Math.Clamp(x, y, vector.x)
         y = Math.Clamp(x, y, vector.y)
         return Vec2(x, y)
+
+    @staticmethod
+    def getDistanceVec2(x:Vec2, y:Vec2):
+        dx = x.x - y.x
+        dy = x.y - y.y
+        return (dx*dx + dy*dy)**0.5

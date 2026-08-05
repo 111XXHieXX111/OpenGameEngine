@@ -725,6 +725,12 @@ Math.Clamp(x, y, value) # Limits the number, arg1 - minimum, arg2 - maximum, arg
 Math.clampVec2(x, y, vector) # Limits Vec2 on two axes at once, arg1 - minimum (float|int), arg2 - maximum (float|int), arg3 - Vec2
 ```
 
+### getDistanceVec2
+
+```python
+Math.getDistanceVec2(x, y) # Get distance, arg1 - first vector (Vec2), arg2 - second vector (Vec2)
+```
+
 ## Modules
 
 ### All module use
