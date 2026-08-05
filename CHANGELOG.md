@@ -153,4 +153,6 @@ added **rayCast** + **generateID**
 
 # 05.08.26
 
+updated **Vec2** + **Vec1**
+
 added **layerSystem** + **Example for logSystem**

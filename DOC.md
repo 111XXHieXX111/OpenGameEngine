@@ -28,6 +28,12 @@ vec1 = Vec1(0.0)
 vec2 = Vec2(0.0, 0.0)
 ```
 
+Operations with Vectors:
++ Vector + Vector
++ Vector - Vector
++ Vector * Vector | float | int
++ Vector / Vector | float | int
+
 ### Graphics
 
 ```python
@@ -829,10 +835,12 @@ Press F12 to open debug menu
 window.setLegacyDebug(True) # Set old debug, arg1 - bool
 ```
 
-OLD:
+<p align="center">OLD:</p>
+
 ![Old](https://i.ibb.co/21PXC9Hm/old.png)
 
-NEW:
+<p align="center">NEW:</p>
+
 ![New](https://i.ibb.co/GfV0tJnP/new.png)
 
 ## Note
