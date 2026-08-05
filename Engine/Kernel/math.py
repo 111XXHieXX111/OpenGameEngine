@@ -49,3 +49,7 @@ class Math:
         dx = x.x - y.x
         dy = x.y - y.y
         return (dx*dx + dy*dy)**0.5
+
+    @staticmethod
+    def Lerp(a:str | float, b:str | float, t:int | float):
+        return a + (b - a) * t

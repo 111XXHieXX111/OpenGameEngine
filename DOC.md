@@ -800,6 +800,12 @@ Math.clampVec2(x, y, vector) # Limits Vec2 on two axes at once, arg1 - minimum (
 Math.getDistanceVec2(x, y) # Get distance, arg1 - first vector (Vec2), arg2 - second vector (Vec2)
 ```
 
+### Lerp
+
+```python
+lerp = Math.Lerp(0.0, 0.0, 0.0) # arg1 - Start pos (int | float), arg2 - End pos (int | float), arg3 - time (int | float)
+```
+
 ## Modules
 
 ### All module use
