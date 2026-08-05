@@ -26,3 +26,22 @@ class kEvent(Enum):
 class mEvent(Enum):
     Pres = "Pressed"
     Rel = "Released"
+
+class Keys:
+    W = Key("w")
+    S = Key("s")
+    A = Key("a")
+    D = Key("d")
+
+    UP = Key("up")
+    DOWN = Key("down")
+    LEFT = Key("left")
+    RIGHT = Key("right")
+
+    SPACE = Key("space")
+    ESC = Key("escape")
+    TAB = Key("tab")
+
+    SHIFT = Key("shift")
+    CONTROL = Key("control")
+    ALT = Key("alt")

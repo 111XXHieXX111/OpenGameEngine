@@ -2,7 +2,7 @@
 
 from .Kernel.Components.vectors import Vec1, Vec2
 from .Kernel.Components.graphics import drawMode, shaderType, textureType, stretchType, batchDrawing, Animation, tileMapRender, Color3, Color4, c256, tweenType
-from .Kernel.Components.control import Key, MouseButton, mEvent, kEvent
+from .Kernel.Components.control import Key, MouseButton, mEvent, kEvent, Keys
 from .Kernel.kernel import log_system, setDebug
 from .Kernel.fonts import fonts
 from .Kernel.icons import icons
@@ -55,7 +55,6 @@ from .Misc.trace import checkInDebugger
 from .Misc.crypto import genKey
 from .Misc.audio import loadSound, soundManager
 from .Misc.scenes import sceneManager
-from .Misc.memory import memoryClean
 from .Misc.debugger import Debugger
 from .Misc.tween import Tween
 from .Misc.idgenerator import generateID
