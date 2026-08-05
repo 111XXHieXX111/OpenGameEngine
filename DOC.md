@@ -175,7 +175,7 @@ Colors:
 + TRANSPARENT (0.0, 0.0, 0.0, 0.0)
 + YELLOW      (1.0, 1.0, 0.0, 1.0)
 + CYAN        (0.0, 1.0, 1.0, 1.0)
-+ PURPULE     (1.0, 0.0, 1.0, 1.0)
++ PURPLE      (1.0, 0.0, 1.0, 1.0)
 
 ### Primitives
 ```python
