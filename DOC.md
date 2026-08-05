@@ -564,7 +564,7 @@ Mouse.setVisibility(Window, True)                # Sets the mouse visibility, ar
 
 # inputManager
 manager = inputManager(window)                   # arg1 - window
-manager.kEvent("space", kEvent.Pres)             # Return bool value, if key is pressed - True else False, arg1 - button name (str), arg2 - kEvent
+manager.kEvent("space", kEvent.Pres)             # Return bool value, if key is pressed - True else False, arg1 - button name (str) USE NAME BUTTON, DON'T Key OR Keys, arg2 - kEvent
 manager.mEvent(MouseButton.LEFT, mEvent.Pres)    # Return bool value, if key is pressed - True else False, arg1 - button (MouseButton), arg2 - mEvent
 ```
 
