@@ -2,7 +2,7 @@
 
 from .Kernel.Components.vectors import Vec1, Vec2
 from .Kernel.Components.graphics import drawMode, shaderType, textureType, stretchType, batchDrawing, Animation, tileMapRender, Color3, Color4, c256, tweenType
-from .Kernel.Components.control import Key, MouseButton
+from .Kernel.Components.control import Key, MouseButton, mEvent, kEvent
 from .Kernel.kernel import log_system, setDebug
 from .Kernel.fonts import fonts
 from .Kernel.icons import icons
@@ -12,6 +12,7 @@ from .Kernel.math import Math
 
 from .Control.keyboard import Keyboard
 from .Control.mouse import Mouse
+from .Control.input import inputManager
 
 # GRAPHICS
 

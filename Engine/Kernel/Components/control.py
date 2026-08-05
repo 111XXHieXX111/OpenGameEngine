@@ -1,4 +1,4 @@
-from ..modules import glfw
+from ..modules import glfw, Enum
 
 class Key:
     __slots__ = ("key")
@@ -18,3 +18,11 @@ class MouseButton:
     BUTTON_6 = glfw.MOUSE_BUTTON_6
     BUTTON_7 = glfw.MOUSE_BUTTON_7
     BUTTON_8 = glfw.MOUSE_BUTTON_8
+
+class kEvent(Enum):
+    justP = "JustPressed"
+    Pres = "Pressed"
+
+class mEvent(Enum):
+    Pres = "Pressed"
+    Rel = "Released"

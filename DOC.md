@@ -57,7 +57,30 @@ tmrender = tileMapRender.RECTS  # tileMapRender has: RECTS, BATCH
 
 ```python
 key = Key("space")
+
+MouseButton. # <- BUTTON
+
+kEvent. # <- EVENT
+mEvent. # <- EVENT
 ```
+
+MouseButton has values such as:
++ LEFT
++ RIGHT
++ MIDDLE
++ BUTTON_4
++ BUTTON_5
++ BUTTON_6
++ BUTTON_7
++ BUTTON_8
+
+kEvent has values such as:
++ Pres - Keyboard.KeyPressed
++ justP - Keyboard.KeyJustPressed
+
+mEvent has values such as:
++ Pres - Mouse.MouseKeyPressed
++ Rel - Mouse.MouseKeyReleased
 
 ## Window
 ```python
@@ -518,6 +541,12 @@ Mouse.getPosition(Window)                        # Return position in Vec2, arg1
 Mouse.MouseKeyPressed(Window, MouseButton.LEFT)  # Return bool value, if key is pressed - True else False, arg1 - Window, arg2 - MouseButton
 Mouse.MouseKeyReleased(Window, MouseButton.LEFT) # Return bool value, if key is released - True else False, arg1 - Window, arg2 - MouseButton
 Mouse.setVisibility(Window, True)                # Sets the mouse visibility, arg1 - Window, arg2 - Bool If set to True, it is visible, if set to False, it is invisible but not captured.
+
+# inputManager
+
+manager = inputManager(window)                   # arg1 - window
+manager.kEvent("space", kEvent.Pres)             # Return bool value, if key is pressed - True else False, arg1 - button name (str), arg2 - kEvent
+manager.mEvent(MouseButton.LEFT, mEvent.Pres)    # Return bool value, if key is pressed - True else False, arg1 - button (MouseButton), arg2 - mEvent
 ```
 
 ## Other
