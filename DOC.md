@@ -398,10 +398,10 @@ Sprite has values such as:
 
 #### animatedSprite
 
-**animatedSprite** has the same features as **Sprite**
+**animatedSprite** has the same features as **Sprite**.
 
 ```python
-animation = Animation("Anim", [0, 0], 0.0, None)        # arg1 - Name, arg2 - List of frames, arg3 - interval, arg4 - Loop (bool)
+animation = Animation("Anim", [0, 0], 0.0, None)        # arg1 - Name (str), arg2 - List of frames (ints), arg3 - interval (int | float), arg4 - Loop (bool)
 
 sprite = animatedSprite(None, None)                     # arg1 - Window, arg2 - Update function
 sprite.loadFrame("tex", textureType.LINEAR)             # Load texture, arg1 - path, arg2 - textureType
@@ -422,6 +422,16 @@ animatedSprite has values such as:
 + animtimer; (Timer)
 + user_update_function; (function)
 + playing; (bool)
+
+#### loadSprite
+
+**loadSprite** has the same features as **Sprite**.
+
+**loadSprite** simply loads the texture when initializing.
+
+```python
+sprite = loadSprite(None, None, None) #arg1 - texture path (str), arg2 - texture type (textureType), arg3 - Window, arg4 - Update function
+```
 
 ### tileMap
 

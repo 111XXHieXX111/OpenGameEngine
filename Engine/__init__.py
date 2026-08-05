@@ -18,6 +18,7 @@ from .Control.input import inputManager
 
 from .Graphics.Sprites.sprite import Sprite
 from .Graphics.Sprites.animated_sprite import animatedSprite
+from .Graphics.Sprites.load_sprite import loadSprite
 from .Graphics.Render.batch_render import batchRender
 from .Graphics.Random.randomcolor import randomColor3, randomColor4
 from .Graphics.Utils.texture import loadTexture
