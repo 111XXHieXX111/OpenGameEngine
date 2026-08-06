@@ -826,6 +826,15 @@ Math.getDistanceVec2(x, y) # Get distance, arg1 - first vector (Vec2), arg2 - se
 lerp = Math.Lerp(0.0, 0.0, 0.0) # arg1 - Start pos (int | float), arg2 - End pos (int | float), arg3 - time (int | float)
 ```
 
+### Random
+
+#### randomNum
+
+```python
+random_float = randomNum(0.0, 0.0) # Return random float, arg1 - float, arg2 - float
+random_int = randomNum(0, 0)       # Return random int, arg1 - int, arg2 - int
+```
+
 ## Modules
 
 ### All module use

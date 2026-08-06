@@ -1,4 +1,5 @@
 from .Components.vectors import Vec2
+from .modules import overload, random
 
 PI = 3.141592
 
@@ -53,3 +54,17 @@ class Math:
     @staticmethod
     def Lerp(a:str | float, b:str | float, t:int | float):
         return a + (b - a) * t
+
+class Random:
+    @overload
+    def randomNum(x:int, y:int) -> int: ...
+
+    @overload
+    def randomNum(x:float, y:float) -> float: ...
+
+    @staticmethod
+    def randomNum(x, y):
+        if isinstance(x, int) and isinstance(y, int):
+            return random.randint(x, y)
+        elif isinstance(x, float) and isinstance(y, float):
+            return random.uniform(x, y)
