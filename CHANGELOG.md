@@ -2,161 +2,266 @@
 
 # Changelog
 
+## 06.08.26
+
+Updated:
++ **CHANGELOG**
+
+Added:
++ **inputManager**
++ **Keys**
++ **Lerp**
++ **loadSprite**
++ **isHovered and isPressed for Primitives**
++ **Random**
+
+## 05.08.26
+
+Updated:
++ **Vec2**
++ **Vec1**
++ **Math**
+
+Added:
++ **layerSystem**
++ **Example for logSystem**
++ **Colors**
+
+## 04.08.26
+
+Updated:
++ **imGUI**
++ **Console GUI**
++ **Debug GUI**
+
+Added:
++ **rayCast**
++ **generateID**
+
+## 03.08.26
+
+Updated:
++ **Math**
+
+Added:
++ **GUIArrowButton**
+
+## 01.08.26
+
+Added:
++ **setDebug**
++ **Tween**
++ **imgui**
+
+## 31.07.26
+
+Added:
++ **collider4Body**
++ **Check in initGFX**
+
+## 30.07.26
+
+Added:
++ **canConnected for Base**
+
+## 27.07.26
+
+Added:
++ **Debugger**
++ **New collision**
+
+## 26.07.26
+
+Added:
++ **Direct import**
++ **fullscreen**
+
+## 25.07.26
+
+Added:
++ **tileMap**
+
+## 23.07.26
+
+Updated:
++ **Import batchRender fix**
+
+## 22.07.26
+
+Added:
++ **Deleting shaders when leaving**
+
+## 20.07.26
+
+Updated:
++ **Doc**
+
+## 19.07.26
+
+Added:
++ **linedBase**
++ **Pointed**
++ **Arrow**
++ **Parents & Childs**
++ **More examples**
+
+## 18.07.26
+
+Updated:
++ **Base (for primitives)**
++ **Examples**
+
+Added:
++ **Line**
+
+## 15.07.26
+
+Updated:
++ **GUI**
++ **Polygon (memory leak fix)**
+
+Added:
++ **Console**
+
+## 14.07.26
+
+Added:
++ **New render**
++ **GFX Id's**
+
+## 11.07.26
+
+Updated:
++ **kernel**
++ **logging**
+
+Added:
++ **animatedSprite**
+
+## 10.07.26
+
+Updated:
++ **optimization**
++ **examples**
+
+## 09.07.26
+
+Updated:
++ **GUI**
+
+## 6.07.26
+
+Updated:
++ **GUI**
+
+Added:
++ **getMouseWorld**
+
+## 5.07.26
+
+Updated:
++ **Debug menu**
++ **Primitives**
+
+Added:
++ **Delta**
++ **Timer**
++ **More info in window debug menu**
+
+## 4.07.26 
+
+Updated:
++ **Structure**
++ **DOC**
+
+Added:
++ **Uniforms**
+
+## 3.07.26
+
+Updated:
++ **examples**
+
+Added:
++ **fonts**
+
+## 2.07.26
+
+Added:
++ **Sprite**
++ **optimization**
++ **Refactoring struct**
+
+## 1.07.26
+
+Added:
++ **shaders**
+
+## 30.06.26
+
+Updated:
++ **Color3**
++ **Color4**
+
+Added:
++ **gradient for gui**
+
+Removed:
++ **Frame**
+
+## 27.06.26
+
+Removed:
++ **version in glob**
+
+Added:
++ **textBox**
++ **Optimization**
++ **Redirecting errors to the log**
+
+## 26.06.26
+
+Updated:
++ **Window**
++ **README.md**
+
+Added:
++ **batchRender**
++ **Frame**
++ **textInput**
++ **memoryClean** (Clean memory before exit)
+
+## 25.06.26
+
+Updated:
++ **utils structure**
+
+Added:
++ **checkInDebugger**
++ **requirements.txt**
++ **builtin icons**
++ **loadSound**
++ **soundManager**
++ **sceneManager**
+
+## 24.06.26
+
+Updated:
++ **Simple particles**
++ **log_system**
+
+Added:
++ **randomColor3**
++ **randomColor4**
++ **genKey**
++ **saveData**
++ **loadData**
+
 ## 23.06.26
 
-added **frameTimer** + **Particle system** + **Update README.md** + **Improved work with Vec1** + **Fixed a bug with not displaying an object per frame**
-
-# 24.06.26
-
-updated **Simple particles**, **log_system**
-
-added **randomColor3** + **randomColor4** + **genKey** + **saveData** + **loadData**
-
-# 25.06.26
-
-updated **utils structure**
-
-added **checkInDebugger** + **requirements.txt** + **builtin icons** + **loadSound** + **soundManager** + **sceneManager**
-
-# 26.06.26
-
-updated **Window** + **README.md**
-
-added **batchRender** + **Frame** + **textInput** + **memoryClean** (Clean memory before exit)
-
-# 27.06.26
-
-removed **version in glob**
-added **textBox** + **Optimization** + **Redirecting errors to the log**
-
-# 30.06.26
-
-updated **Color3** + **Color4**
-
-added **gradient for gui**
-
-removed **Frame**
-
-# 1.07.26
-
-added **shaders**
-
-# 2.07.26
-
-added **Sprite** + **optimization** + **Refactoring struct**
-
-# 3.07.26
-
-updated **examples**
-
-added **fonts**
-
-# 4.07.26 
-
-updated **Structure** + **DOC**
-
-added **Uniforms**
-
-# 5.07.26
-
-updated **Debug menu** + **Primitives**
-
-added **Delta** + **Timer** **More info in window debug menu**
-
-# 6.07.26
-
-updated **GUI**
-
-added **getMouseWorld**
-
-# 09.07.26
-
-updated **GUI**
-
-# 10.07.26
-
-updated **optimization** + **examples**
-
-# 11.07.26
-
-updated **kernel** + **logging**
-
-added **animatedSprite**
-
-# 14.07.26
-
-added **New render** + **GFX Id's**
-
-# 15.07.26
-
-updated **GUI** + **Polygon (memory leak fix)**
-
-added **Console**
-
-# 18.07.26
-
-updated **Base (for primitives)** + **Examples**
-
-added **Line**
-
-# 19.07.26
-
-added **linedBase** + **Pointed** + **Arrow** + **Parents & Childs** + **More examples**
-
-# 20.07.26
-
-updated **Doc**
-
-# 22.07.26
-
-added **Deleting shaders when leaving**
-
-# 23.07.26
-
-updated **Import batchRender fix**
-
-# 25.07.26
-
-added **tileMap**
-
-# 26.07.26
-
-added **Direct import** + **fullscreen**
-
-# 27.07.26
-
-added **Debugger** + **New collision**
-
-# 30.07.26
-
-added **canConnected for Base**
-
-# 31.07.26
-
-added **collider4Body** + **Check in initGFX**
-
-# 01.08.26
-
-added **setDebug** + **Tween** + **imgui**
-
-# 03.08.26
-
-updated **Math**
-
-added **GUIArrowButton**
-
-# 04.08.26
-
-updated **imGUI** + **Console GUI** + **Debug GUI**
-
-added **rayCast** + **generateID**
-
-# 05.08.26
-
-updated **Vec2** + **Vec1** + **Math**
-
-added **layerSystem** + **Example for logSystem** + **Colors**
-
-# 06.28.26
-
-added **inputManager** + **Keys** + **Lerp** + **loadSprite** + **isHovered and isPressed for Primitives** + **Random**
+Added:
++ **frameTimer**
++ **Particle system**
++ **Update README.md**
++ **Improved work with Vec1**
++ **Fixed a bug with not displaying an object per frame**
