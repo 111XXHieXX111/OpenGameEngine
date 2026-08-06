@@ -51,6 +51,7 @@ textype = textureType.LINEAR    # textureType has: LINEAR, NEAREST
 stype = stretchType.KEEP_ASPECT # stretchType has: EXPAND, RELATIVELY, KEEP_ASPECT
 bdrawing = batchDrawing.STATIC  # batchDrawing has: STATIC, DYNAMIC
 tmrender = tileMapRender.RECTS  # tileMapRender has: RECTS, BATCH
+tween = tweenType.LINEAR        # tweenType has: LINEAR, EASE_IN_OUT
 ```
 
 ### Control
@@ -703,6 +704,13 @@ fonts["ROMAN 24"]
 
 ```python
 generateID() # Return int, generate unique ID
+```
+
+### Tween
+
+```python
+tween = Tween(0.0, 0.0, 0.0, None, tweenType.LINEAR) # arg1 - start point (float | int), arg2 - end point (float | int), arg3 - duration (float | int), arg4 - callback, arg5 - tweenType
+tween.tweenProcess()                                 # Place in update
 ```
 
 ## Sound
