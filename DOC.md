@@ -239,13 +239,13 @@ random_color4 = randomColor4() # arg1 - random alpha (bool) (optional) (default:
 
 ### Primitives
 ```python
-rectangle = Graphics.Rectangle(window) # arg1 - window (for optimization) (for new render)
-triangle = Graphics.Triangle(window) # arg1 - window (for optimization) (for new render)
-circle = Graphics.Circle(window) # arg1 - int, number of segments (default 8), arg2 - window (for optimization) (for new render)
+rectangle = gfx.Rectangle(window) # arg1 - window (for optimization) (for new render)
+triangle = gfx.Triangle(window) # arg1 - window (for optimization) (for new render)
+circle = gfx.Circle(window) # arg1 - int, number of segments (default 8), arg2 - window (for optimization) (for new render)
 
-vertex = Graphics.Vertex()
-polygon = Graphics.Polygon([]) # arg1 - vertexes list (Vec2s), arg2 - window (NewRender)
-polygon = Graphics.PolygonLegacy([]) # Arg is vertexes list (Vec2s) (OldRender)
+vertex = gfx.Vertex()
+polygon = gfx.Polygon([]) # arg1 - vertexes list (Vec2s), arg2 - window (NewRender)
+polygon = gfx.PolygonLegacy([]) # Arg is vertexes list (Vec2s) (OldRender)
 ```
 
 If you write **window** as the 1st argument, then if a **primitive** goes outside the visible area (does not work with the **camera**), it will not be rendered.
@@ -324,13 +324,13 @@ Pointed objs have values such as:
 
 #### Line (Lined) (Pointed)
 ```python
-line = Graphics.Line() # arg1 - window (optional)
+line = gfx.Line() # arg1 - window (optional)
 line.drawLine()
 ```
 
 #### Arrow (Lined) (Pointed)
 ```python
-arrow = Graphics.Arrow() # arg1 - window (optional)
+arrow = gfx.Arrow() # arg1 - window (optional)
 arrow.drawArrow()
 ```
 

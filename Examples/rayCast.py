@@ -11,7 +11,7 @@ window.initWindow()
 raycast = rayCast()
 raycast.setPositions(Vec2(320, 0), Vec2(320, 480))
 
-rect = Graphics.Rectangle(window)
+rect = gfx.Rectangle(window)
 rect.setPosition(Vec2(20, 220))
 rect.setSize(Vec2(40, 40))
 rect.setColor(Color3(1, 0, 0))

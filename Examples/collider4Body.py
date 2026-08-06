@@ -8,7 +8,7 @@ from OpenGameEngine import *
 window = Window()
 window.initWindow()
 
-rect = Graphics.Rectangle(window)
+rect = gfx.Rectangle(window)
 rect.setPosition(Vec2(40, 40))
 rect.setSize(Vec2(40, 40))
 rect.setColor(Color3(1, 1, 1))
@@ -16,10 +16,10 @@ rect.connectModule(collider4Body())
 
 speed = 240
 
-wall0 = Graphics.Rectangle(window)
-wall1 = Graphics.Rectangle(window)
-wall2 = Graphics.Rectangle(window)
-wall3 = Graphics.Rectangle(window)
+wall0 = gfx.Rectangle(window)
+wall1 = gfx.Rectangle(window)
+wall2 = gfx.Rectangle(window)
+wall3 = gfx.Rectangle(window)
 
 wall0.setPosition(Vec2(0, 0))
 wall1.setPosition(Vec2(0, 0))

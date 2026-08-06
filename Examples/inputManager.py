@@ -12,7 +12,7 @@ window.setSize(640, 480)
 window.setStretch(stretchType.KEEP_ASPECT)
 window.setBG(Color3(0, 0.5, 0))
 
-player = Graphics.Rectangle(window)
+player = gfx.Rectangle(window)
 player.setPosition(Vec2(20, 20))
 player.setSize(Vec2(60, 60))
 player.setColor(Color3(0, 0, 0))

@@ -14,6 +14,7 @@ Added:
 + **loadSprite**
 + **isHovered and isPressed for Primitives**
 + **Random**
++ **New graphics name (Before: Graphics. After: gfx. Old codes with Graphics. working!)**
 
 ## 05.08.26
 

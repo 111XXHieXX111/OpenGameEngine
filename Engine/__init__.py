@@ -26,6 +26,7 @@ from .Graphics.Utils.shader import loadShader, Shader
 from .Graphics.Utils.tilemap import tileMap
 from .Graphics.Utils.layers import layerSystem
 from .Graphics import *
+from . import Graphics as gfx
 
 # WINDOW
 

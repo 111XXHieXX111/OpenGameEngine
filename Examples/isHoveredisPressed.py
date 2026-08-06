@@ -8,7 +8,7 @@ from OpenGameEngine import *
 window = Window()
 window.initWindow()
 
-rect = Graphics.Rectangle(window)
+rect = gfx.Rectangle(window)
 rect.setPosition(Vec2(280, 200))
 rect.setSize(Vec2(80, 80))
 rect.setColor(Color3(1, 0, 0))
