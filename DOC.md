@@ -221,6 +221,11 @@ Colors:
 + CYAN        (0.0, 1.0, 1.0, 1.0)
 + PURPLE      (1.0, 0.0, 1.0, 1.0)
 
+```python
+random_color3 = randomColor3()
+random_color4 = randomColor4() # arg1 - random alpha (bool) (optional) (default:False)
+```
+
 ### Primitives
 ```python
 rectangle = Graphics.Rectangle(window) # arg1 - window (for optimization) (for new render)
