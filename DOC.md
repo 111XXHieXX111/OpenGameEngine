@@ -85,23 +85,34 @@ mEvent has values such as:
 + Rel - Mouse.MouseKeyReleased
 
 Keys has values such as:
-+ W - Key("w")
-+ S - Key("s")
-+ A - Key("a")
-+ D - Key("d")
++ W - Key("w");
++ S - Key("s");
++ A - Key("a");
++ D - Key("d");
 
-+ UP - Key("up")
-+ DOWN - Key("down")
-+ LEFT - Key("left")
-+ RIGHT - Key("right")
++ UP - Key("up");
++ DOWN - Key("down");
++ LEFT - Key("left");
++ RIGHT - Key("right");
 
-+ SPACE - Key("space")
-+ ESC - Key("escape")
-+ TAB - Key("tab")
++ SPACE - Key("space");
++ ESC - Key("escape");
++ TAB - Key("tab");
 
-+ SHIFT - Key("shift")
-+ CONTROL - Key("control")
-+ ALT - Key("alt")
++ SHIFT - Key("shift");
++ CONTROL - Key("control");
++ ALT - Key("alt");
+
++ K1 - Key("1");
++ K2 - Key("2");
++ K3 - Key("3");
++ K4 - Key("4");
++ K5 - Key("5");
++ K6 - Key("6");
++ K7 - Key("7");
++ K8 - Key("8");
++ K9 - Key("9");
++ K0 - Key("0");
 
 ## Window
 ```python

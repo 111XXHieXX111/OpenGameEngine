@@ -45,3 +45,15 @@ class Keys:
     SHIFT = Key("shift")
     CONTROL = Key("control")
     ALT = Key("alt")
+
+    K1 = Key("1")
+    K2 = Key("2")
+    K3 = Key("3")
+    K4 = Key("4")
+    K5 = Key("5")
+    K6 = Key("6")
+    K7 = Key("7")
+    K8 = Key("8")
+    K9 = Key("9")
+    K0 = Key("0")
+    
