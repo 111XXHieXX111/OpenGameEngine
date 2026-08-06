@@ -245,6 +245,8 @@ Primitives (Rectangle, Triangle, Circle) have functions such as:
 + setPointSize - setting the vertex size; (Vec1)
 + setShader - settings the shader of the primitive; (Shader)
 + addModule - add module to primitive;
++ isHovered - check if mouse hovered on primitive (You can use: isHovered or isHovered() );
++ isPressed - check if mouse button pressed on primitive; (MouseButton)
 And have values:
 + position; (Vec2)
 + size; (Vec2)

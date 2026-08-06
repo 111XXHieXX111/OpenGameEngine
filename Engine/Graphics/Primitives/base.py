@@ -2,9 +2,12 @@ from .modules import *
 from ...Kernel.kernel import log_system, render_items, classWrapper
 from ...Kernel.Components.system import System
 from ...Kernel.Components.graphics import stretchType
+from ...Kernel.Components.control import MouseButton
 from ...Graphics.Utils.shader import Shader
 from ...Misc.manager import Manager
 from ...Kernel.math import cos, sin, radians
+from ...Physics.Collision.aabb import _AABB
+from ...Control.mouse import Mouse
 from .object import GFXObject
 
 @classWrapper
@@ -60,6 +63,19 @@ class canParent(Manager):
             child[1].setRotation(self.rotation + child[4])
 
 @classWrapper
+class canHover:
+    def __init__(self):
+        pass
+    
+    @property
+    def isHovered(self):
+        mouse_pos = Mouse.getPosition(self.window)
+        return _AABB(self.vertexes, [mouse_pos,])
+    
+    def isPressed(self, button:MouseButton):
+        return self.isHovered and Mouse.MouseKeyPressed(self.window, button)
+
+@classWrapper
 class canConnect:
     def __init__(self):
         self.connected = []
@@ -112,7 +128,7 @@ class canConnect:
         return getattr(module_class, value_name)
 
 @classWrapper
-class Base(GFXObject, canParent, canConnect):
+class Base(GFXObject, canParent, canConnect, canHover):
     def __init__(self):
         super().__init__()
 

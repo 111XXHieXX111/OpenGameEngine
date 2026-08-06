@@ -159,4 +159,4 @@ added **layerSystem** + **Example for logSystem** + **Colors**
 
 # 06.28.26
 
-added **inputManager** + **Keys** + **Lerp** + **loadSprite**
+added **inputManager** + **Keys** + **Lerp** + **loadSprite** + **isHovered and isPressed for Primitives**
