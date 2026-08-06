@@ -127,6 +127,15 @@ class canConnect:
 
         return getattr(module_class, value_name)
 
+    def rMF(self, *args, **kwargs):
+        return self.runModuleFunction(*args, **kwargs)
+
+    def sMV(self, *args, **kwargs):
+        return self.runModuleFunction(*args, **kwargs)
+    
+    def gMV(self, *args, **kwargs):
+        return self.runModuleFunction(*args, **kwargs)
+
 @classWrapper
 class Base(GFXObject, canParent, canConnect, canHover):
     def __init__(self):

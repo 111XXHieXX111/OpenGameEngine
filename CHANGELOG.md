@@ -2,6 +2,14 @@
 
 # Changelog
 
+## 07.08.26
+
+Updated:
++ **Base (module aliases)**
+
+Added:
++ **gravityBody**
+
 ## 06.08.26
 
 Updated:
