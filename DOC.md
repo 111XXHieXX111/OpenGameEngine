@@ -840,6 +840,18 @@ random_float = randomNum(0.0, 0.0) # Return random float, arg1 - float, arg2 - f
 random_int = randomNum(0, 0)       # Return random int, arg1 - int, arg2 - int
 ```
 
+#### randomBool
+
+```python
+random_bool = randomBool() # Return True or False
+```
+
+#### randomChoce
+
+```python
+random_choice = randomChoice(list) # Return random element in list
+```
+
 ## Modules
 
 ### All module use

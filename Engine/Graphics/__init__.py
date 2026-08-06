@@ -6,3 +6,5 @@ from .Primitives.circle import Circle
 from .Primitives.line import Line
 from .Primitives.arrow import Arrow
 from .Particles.particles import simpleParticles
+
+__all__ = ["Vertex", "Polygon", "Rectangle", "Triangle", "Circle", "Line", "Arrow", "simpleParticles"]

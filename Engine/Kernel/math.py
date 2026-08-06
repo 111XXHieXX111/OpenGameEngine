@@ -68,3 +68,11 @@ class Random:
             return random.randint(x, y)
         elif isinstance(x, float) and isinstance(y, float):
             return random.uniform(x, y)
+    
+    @staticmethod
+    def randomBool():
+        return bool(Random.randomNum(0, 1))
+
+    @staticmethod
+    def randomChoice(x:list):
+        return random.choice(x)
