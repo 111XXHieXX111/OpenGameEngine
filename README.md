@@ -1,4 +1,4 @@
-<img src="https://i.ibb.co/k2NLnQtt/Open-Game-Engine-Logo-Space.png" alt="Open Game Engine Logo Space" border="0">
+<img src="https://i.ibb.co/k2NLnQtt/Open-Game-Engine-Logo-Space.png" alt="Open Game Engine Logo Space" border="0" style="width: 100%;">
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Github](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/111XXHieXX111)
