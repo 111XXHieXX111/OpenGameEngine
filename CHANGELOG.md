@@ -6,6 +6,7 @@
 
 Updated:
 + **Base (module aliases)**
++ **Logo**
 
 Added:
 + **gravityBody**

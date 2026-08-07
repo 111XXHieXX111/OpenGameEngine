@@ -10,23 +10,23 @@ window.initWindow()
 
 inputs = inputManager(window)
 
-player = Graphics.Rectangle(window)
+player = gfx.Rectangle(window)
 player.setPosition(Vec2(40, 40))
 player.setSize(Vec2(80, 80))
 player.setColor(Color3(1, 0, 0))
 player.connectModule(gravityBody())
 
-platform1 = Graphics.Rectangle(window)
+platform1 = gfx.Rectangle(window)
 platform1.setPosition(Vec2(0, 200))
 platform1.setSize(Vec2(120, 80))
 platform1.setColor(Color3(1, 1, 1))
 
-platform2 = Graphics.Rectangle(window)
+platform2 = gfx.Rectangle(window)
 platform2.setPosition(Vec2(200, 250))
 platform2.setSize(Vec2(120, 80))
 platform2.setColor(Color3(1, 1, 1))
 
-platform3 = Graphics.Rectangle(window)
+platform3 = gfx.Rectangle(window)
 platform3.setPosition(Vec2(400, 300))
 platform3.setSize(Vec2(220, 80))
 platform3.setColor(Color3(1, 1, 1))
