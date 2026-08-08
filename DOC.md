@@ -692,6 +692,9 @@ log_system.getLog()                                  # Print all logs
 log_system.saveLog()                                 # Save logs to timestamp_log.txt
 ```
 
+Log message:
+TAG|TIMESTAMP: Message
+
 ### checkInDebbuger
 
 ```python
