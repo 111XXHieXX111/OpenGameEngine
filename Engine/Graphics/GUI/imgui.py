@@ -12,10 +12,13 @@ def imguiRender(impl):
 
 def imguiInputs(impl):
     impl.process_inputs()
-    imgui.new_frame()
+    try:
+        imgui.new_frame()
+    except:...
 
 def imguiInit(window):
-    log_system.addInfo("Create imgui context")
+    log_system.addInfo("Init imgui")
+    log_system.addDInfo("Create imgui context")
     imgui.create_context()
     return GlfwRenderer(window)
 

@@ -1,5 +1,6 @@
-from ...Kernel.kernel import render_items
+from ...Kernel.kernel import render_items, log_system, classWrapper
 
+@classWrapper
 class consoleHandler:
     def __init__(self, window):
         self.output = ""
@@ -19,10 +20,11 @@ class consoleHandler:
 
             case "objlist":
                 for item in render_items:
-                    self.addOutput(item)
+                    self.addOutput(item.__class__.__name__)
 
             case "getfps":
                 self.addOutput(self.window.getFPS())
 
             case _:
                 self.addOutput(f"Command not found:{command}")
+                log_system.addWarn(f"Command not found:{command}")

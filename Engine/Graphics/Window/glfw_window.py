@@ -24,14 +24,14 @@ class Window:
 
         # CHECK INIT
 
-        log_system.addInfo("Check init")
+        log_system.addDInfo("Check init")
 
         if not glfw.init():
             return
 
         # WINDOW SETTINGS
 
-        log_system.addInfo("Create winsettings")
+        log_system.addDInfo("Create winsettings")
 
         self.window_settings = {
             "title":"Window",
@@ -78,7 +78,7 @@ class Window:
 
         # CURRENT SIZES
 
-        log_system.addInfo("Create current win sizes")
+        log_system.addDInfo("Create current win sizes")
 
         self.current_window_sizes = [640, 480]
         
@@ -109,7 +109,7 @@ class Window:
         
         # CREATE WINDOW
 
-        log_system.addInfo("Creating window")
+        log_system.addDInfo("Creating window")
         
         self.window = glfw.create_window(
             self.window_settings.get("width"),
@@ -125,43 +125,43 @@ class Window:
 
         # GET PRIMARY MONITOR
 
-        log_system.addInfo("Get primary monitor")
+        log_system.addDInfo("Get primary monitor")
 
         self.monitor = glfw.get_primary_monitor()
 
         # GET VIDEO MODE
 
-        log_system.addInfo("Get video mode")
+        log_system.addDInfo("Get video mode")
 
         self.mode = glfw.get_video_mode(self.monitor)
 
         # GET WINDOW POSITIONA
 
-        log_system.addInfo("Get window position")
+        log_system.addDInfo("Get window position")
 
         self.winpos = glfw.get_window_pos(self.window)
 
         # INIT GLUT
         
-        log_system.addInfo("Glut init")
+        log_system.addDInfo("Glut init")
         
         glutInit()
         
         # INIT MEMORY MANAGER
         
-        log_system.addInfo("Memory manager init")
+        log_system.addDInfo("Memory manager init")
         
         self.memorymonitor = memoryMonitor()
 
         # INIT INFO MENU
 
-        log_system.addInfo("infoMenu init")
+        log_system.addDInfo("infoMenu init")
 
         self.infomenu = infoMenu(self)
 
         # MOVE WINDOW TO THE CURRENT CONTEXT
 
-        log_system.addInfo("Move window to the current context")
+        log_system.addDInfo("Move window to the current context")
         
         glfw.make_context_current(self.window)
         
@@ -170,27 +170,27 @@ class Window:
         try:
             log_system.addInfo(f"OpenGL Version:{GL.glGetString(GL.GL_VERSION).decode()}")
             log_system.addInfo(f"GLSL Version:{GL.glGetString(GL.GL_SHADING_LANGUAGE_VERSION).decode()}")
-            log_system.addInfo(f"Render:{GL.glGetString(GL.GL_RENDERER).decode()}")
+            log_system.addDInfo(f"Render:{GL.glGetString(GL.GL_RENDERER).decode()}")
         except Exception as ex:
             log_system.addError(f"Information could not be retrieved:{ex}")
 
         try:
             resolution = self.mode.size
 
-            log_system.addInfo(f"Selected monitor:{glfw.get_monitor_name(self.monitor).decode("utf-8")}")
-            log_system.addInfo(f"Resolution:{resolution.width}x{resolution.height}, {self.mode.refresh_rate}GHz")
+            log_system.addDInfo(f"Selected monitor:{glfw.get_monitor_name(self.monitor).decode("utf-8")}")
+            log_system.addDInfo(f"Resolution:{resolution.width}x{resolution.height}, {self.mode.refresh_rate}GHz")
         except Exception as ex:
-            log_system.addError(f"Information could not be retrieved:{ex}")
+            log_system.addDWarn(f"Information could not be retrieved:{ex}")
         
         try:
-            log_system.addInfo(f"Window position:{self.winpos[0]}, {self.winpos[1]}")
+            log_system.addDInfo(f"Window position:{self.winpos[0]}, {self.winpos[1]}")
         except Exception as ex:
-            log_system.addError(f"Information could not be retrieved:{ex}")
+            log_system.addDWarn(f"Information could not be retrieved:{ex}")
 
         # GFX INIT
 
         if self.render_type == 0:
-            log_system.addInfo(f"Init GFX ({self.render_type}) (experemental)")
+            log_system.addDInfo(f"Init GFX ({self.render_type}) (experemental)")
             initGFX()
 
         # VSYNC
@@ -199,19 +199,19 @@ class Window:
 
         # GET CURRENT WINDOW SIZES
 
-        log_system.addInfo("Get current win sizes")
+        log_system.addDInfo("Get current win sizes")
 
         self.current_window_sizes = glfw.get_framebuffer_size(self.window)
 
         # INIT IMGUI
 
-        log_system.addInfo("ImGUI Create contex")
+        log_system.addDInfo("ImGUI Create contex")
         
         self.impl = imguiInit(self.window)
 
         # CONNECT CALLBACK(S)
         
-        log_system.addInfo("Connect callback(s)")
+        log_system.addDInfo("Connect callback(s)")
         
         glfw.set_window_iconify_callback(self.window, self._iconify_callback)
         glfw.set_window_close_callback(self.window, self._on_close_callback)
@@ -582,6 +582,8 @@ class Window:
             log_system.addInfo(f"Create winprocess, Update:{update}, FPS:{fps}")
 
         last_time = time.time()
+
+        log_system.addDInfo("")
 
         while not glfw.window_should_close(self.window):
             current_time = time.time()

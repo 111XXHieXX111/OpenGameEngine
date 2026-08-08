@@ -1,5 +1,6 @@
 from .Components.vectors import Vec2
 from .modules import overload, random
+from .kernel import classWrapper
 
 PI = 3.141592
 
@@ -30,6 +31,7 @@ def cos(x):
 def radians(degrees):
     return degrees * PI / 180
 
+@classWrapper
 class Math:
     @staticmethod
     def Clamp(x:int|float, y:int|float, value:int|float):
@@ -55,6 +57,7 @@ class Math:
     def Lerp(a:str | float, b:str | float, t:int | float):
         return a + (b - a) * t
 
+@classWrapper
 class Random:
     @overload
     def randomNum(x:int, y:int) -> int: ...

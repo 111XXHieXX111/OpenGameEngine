@@ -1,7 +1,7 @@
 from .modules import os
 from .kernel import log_system
 
-log_system.addInfo("Loading icons path's")
+log_system.addDInfo("Loading icons path's")
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)

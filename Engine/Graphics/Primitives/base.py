@@ -1,3 +1,4 @@
+from multiprocessing import log_to_stderr
 from .modules import *
 from ...Kernel.kernel import log_system, render_items, classWrapper
 from ...Kernel.Components.system import System
@@ -81,6 +82,10 @@ class canConnect:
         self.connected = []
 
     def connectModule(self, module):
+        try:
+            log_system.addDInfo(f"Connecting module:{module.__class__.__name__}")
+        except:
+            log_system.addDWarn("Failed to retrieve class name")
         module.window = self.window
         module._inited()
         self.connected.append(module)

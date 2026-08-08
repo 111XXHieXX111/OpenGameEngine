@@ -1,5 +1,7 @@
 from .logging import Logging
-from .modules import sys, os, GL, compileShader, compileProgram
+from .modules import sys, os, GL, compileShader, compileProgram, traceback
+
+# OLD (NOT USING)
 
 def colorSupportChecker():
     if not sys.stdout.isatty():
@@ -23,14 +25,18 @@ def colorSupportChecker():
     
     return True
 
-log_system = Logging(True, True, True)
+# LOGGING:
+
+log_system = Logging()
 log_system.consoleStream(True)
 
-log_system.addInfo(f"Platform:{sys.platform}")
-
-log_system.colored = colorSupportChecker()
+os.system("")
 
 log_system.addInfo("Logging system connected!")
+
+log_system.addDInfo(f"Platform:{sys.platform}")
+
+# OTHER
 
 debug = True
 render_items = []
@@ -54,7 +60,8 @@ def logWrapper(func):
             log_system.addError("Not enough rights!")
             return None
         except Exception as ex:
-            log_system.addError(f"{ex}")
+            error_info = traceback.format_exc()
+            log_system.addError(f"Error: {error_info}")
             return None
     return wrapper
 
@@ -68,6 +75,8 @@ shader = None
 
 def initGFX():
     global render_type, shader
+
+    log_system.addInfo("Init GFX")
 
     try:
         VERTEX_SHADER_CODE = """#version 330 core
@@ -104,32 +113,32 @@ def initGFX():
         }
     }"""
 
-        log_system.addInfo("Create shaders")
+        log_system.addDInfo("Create shaders")
         vertShader = GL.glCreateShader(GL.GL_VERTEX_SHADER)
         GL.glShaderSource(vertShader, VERTEX_SHADER_CODE)
         fragShader = GL.glCreateShader(GL.GL_FRAGMENT_SHADER)
         GL.glShaderSource(fragShader, FRAGMENT_SHADER_CODE)
     
-        log_system.addInfo("Compiling shaders")
+        log_system.addDInfo("Compiling shaders")
         GL.glCompileShader(vertShader)
         GL.glCompileShader(fragShader)
 
-        log_system.addInfo("Create shader program")
+        log_system.addDInfo("Create shader program")
 
         programShader = GL.glCreateProgram()
 
-        log_system.addInfo("Attach shaders")
+        log_system.addDInfo("Attach shaders")
         GL.glAttachShader(programShader, vertShader)
         GL.glAttachShader(programShader, fragShader)
 
-        log_system.addInfo("Link program")
+        log_system.addDInfo("Link program")
         GL.glLinkProgram(programShader)
 
-        log_system.addInfo("Delete shaders")
+        log_system.addDInfo("Delete shaders")
         GL.glDeleteShader(vertShader)
         GL.glDeleteShader(fragShader)
     
-        log_system.addInfo("Set render type to 0")
+        log_system.addDInfo("Set render type to 0")
         render_type = 0
     
         programs.append(programShader)
