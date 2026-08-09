@@ -1,6 +1,6 @@
-gravity = 16.4
+gravity = 1800.0
 
-def setGravity(g:float | int = 16.4):
+def setGravity(g:float | int = 1800.0):
     global gravity
     gravity = g
 

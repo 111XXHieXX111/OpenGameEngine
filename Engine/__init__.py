@@ -48,6 +48,7 @@ from .Physics.Collision.Globals.sat import _GSAT as globalSATCollision
 from .Physics.Collision.raycast import rayCast
 from .Physics.Modules.Collider4 import collider4Body
 from .Physics.Modules.gravity_body import gravityBody
+from .Physics.Modules.rigid_body import rigidBodyBox
 
 # MISC
 

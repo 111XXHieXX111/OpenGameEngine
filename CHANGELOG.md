@@ -2,6 +2,16 @@
 
 # Changelog
 
+## 09.08.26
+
+Added:
++ **rigidBodyBox**
+
+## 08.08.26
+
+Updated:
++ **logSystem**
+
 ## 07.08.26
 
 Updated:

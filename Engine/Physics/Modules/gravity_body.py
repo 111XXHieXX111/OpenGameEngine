@@ -4,9 +4,8 @@ from ..config import getGravity
 from .Collider4 import collider4Body
 
 class gravityBody:
-    def __init__(self, autoconnect:bool=True, delta:bool=True):
+    def __init__(self, autoconnect:bool=True):
         self.autoconnect = autoconnect
-        self.delta = delta
 
     def _inited(self):
         self.current_body = None
@@ -32,16 +31,14 @@ class gravityBody:
         self.is_on_floor = self.current_body.runModuleFunction("collider4Body", "getColliding", 2)
         
         if not self.is_on_floor:
-            self.velocity.y += self.gravity
+            self.velocity.y += self.gravity/100
         else:
             if self.velocity.y >= 0:
                 self.velocity.y = 0
         
         self.velocity.y = Math.Clamp(-(self.max_velocity_y*10), self.max_velocity_y, self.velocity.y)
-
-        dt = 1.0
-        if self.delta:
-            dt = self.current_body.window.getDelta()
+        
+        dt = self.current_body.window.getDelta()
 
         self.velocity.x *= 0.5 ** dt
 
