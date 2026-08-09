@@ -9,6 +9,7 @@ class consoleHandler:
  objlist - print all render objs
  getfps - print fps"""
         self.window = window
+        log_system.addDInfo("Init console handler")
 
     def addOutput(self, test:str):
         self.output += f"{test}\n"

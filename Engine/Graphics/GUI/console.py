@@ -2,11 +2,13 @@ from .imgui import GUIBegin, GUIInputTextMultiline, GUIBeginChild, GUIInputText,
 from .imgui_flags import GUIFlags
 from ..Window.console import consoleHandler
 from ...Kernel.Components.vectors import Vec2
+from ...Kernel.kernel import log_system
 
 class Console:
     def __init__(self, console:consoleHandler):
         self.console = console
         self.text = ""
+        log_system.addDInfo("Init GUI Console")
 
     def drawConsole(self):
         with GUIBegin("Console"):

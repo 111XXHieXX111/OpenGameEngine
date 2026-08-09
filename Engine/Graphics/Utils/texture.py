@@ -13,10 +13,14 @@ def loadTexture(path:str, textureType:textureType):
 
     # READ TEXTURE
 
+    log_system.addDInfo("Read texture file")
+
     img = Image.open(path).convert("RGBA")
     img_data = img.tobytes()
 
     # LOAD TEXTURE
+
+    log_system.addDInfo("Load texture in OpenGL")
 
     tex_id = GL.glGenTextures(1)
     GL.glBindTexture(GL.GL_TEXTURE_2D, tex_id)

@@ -41,6 +41,7 @@ class infoMenu:
         self.mousepos = Mouse.getPosition(self.window)
         self.render_objs = render_items
         self.threads = threading.active_count()
+        self.delta = self.window.delta_time
 
     def infoMenuDraw(self):
         self.upd_timer.timerProcess(self.window)
@@ -53,7 +54,8 @@ class infoMenu:
             GUIText(f"PEAK:{self.peak:.2f}MB")
 
         with GUIBegin("Window", Vec2(20, 100), Vec2(320, 140), False, GUIFlags.WINDOW_NO_MOVE | GUIFlags.WINDOW_NO_RESIZE | GUIFlags.WINDOW_NO_COLLAPSE):
-            GUIText(f"FPS:{self.fps:.2f}")
+            GUIText(f"FPS:{self.fps}")
+            GUIText(f"Delta:{self.delta:.12f}")
             GUIText(f"Window size:{int(self.winsize[0])}x{int(self.winsize[1])}")
             GUIText(f"Mouse position:{int(self.mousepos.x)}x{int(self.mousepos.y)}")
             GUIText(f"Render objects:{len(self.render_objs)}")

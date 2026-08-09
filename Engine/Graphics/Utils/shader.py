@@ -39,25 +39,35 @@ def loadShader(path:str, uniforms:list[list]=[]):
     
     # READ FILE
     
+    log_system.addDInfo("Read shader file")
+
     with open(path, "r") as f:
         data = json.load(f)
     
     # DECODE FILE
+
+    log_system.addDInfo("Decode shader file")
     
     frag_bytes = base64.b64decode(data["f"])
     vert_bytes = base64.b64decode(data["v"])
     
     # DECOMPRESS FILE
     
+    log_system.addDInfo("Decompress shader file")
+
     frag_dec = lzma.decompress(frag_bytes).decode("utf-8")
     vert_dec = lzma.decompress(vert_bytes).decode("utf-8")
     
     # COMPILE SHADER
+
+    log_system.addDInfo("Compile shader")
     
     frag_shader = compileShader(frag_dec, GL.GL_FRAGMENT_SHADER)
     vert_shader = compileShader(vert_dec, GL.GL_VERTEX_SHADER)
     
     # CHECK SHADERS
+
+    log_system.addDInfo("Check shaders for errors")
     
     if not GL.glGetShaderiv(frag_shader, GL.GL_COMPILE_STATUS):
         log = GL.glGetShaderInfoLog(frag_shader)
@@ -70,6 +80,8 @@ def loadShader(path:str, uniforms:list[list]=[]):
         return None
     
     # CREATE PROGRAM
+
+    log_system.addDInfo("Create program and attach")
     
     program = GL.glCreateProgram()
     
@@ -77,10 +89,14 @@ def loadShader(path:str, uniforms:list[list]=[]):
     GL.glAttachShader(program, frag_shader)
     
     # LINK
+
+    log_system.addDInfo("Link program")
     
     GL.glLinkProgram(program)
     
     # CHECK LINK
+
+    log_system.addDInfo("Check link for errors")
     
     if not GL.glGetProgramiv(program, GL.GL_LINK_STATUS):
         log = GL.glGetProgramInfoLog(program)
@@ -88,11 +104,15 @@ def loadShader(path:str, uniforms:list[list]=[]):
         return None
     
     # DELETE SHADERS
+
+    log_system.addDInfo("Delete shaders")
     
     GL.glDeleteShader(vert_shader)
     GL.glDeleteShader(frag_shader)
     
     # RETURN SHADER
+
+    log_system.addDInfo("Create shader class")
     
     shader = Shader()
     shader.frag = frag_shader

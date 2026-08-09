@@ -69,6 +69,10 @@ class Window:
 
         self.legacydebug = False
 
+        self.starttime = time.time()
+        self.endtime = 0.0
+        self.startduration = 0.0
+
         self.render = {
             "screen_clear":True,
             "GUIDraw":True,
@@ -582,6 +586,14 @@ class Window:
             log_system.addInfo(f"Create winprocess, Update:{update}, FPS:{fps}")
 
         last_time = time.time()
+
+        self.endtime = time.time()
+
+        self.startduration = abs(self.starttime - self.endtime)
+
+        log_system.addDInfo(f"Started on:{self.startduration:.2f} sec")
+
+
 
         log_system.addDInfo("")
 
