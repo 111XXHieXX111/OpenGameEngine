@@ -896,6 +896,20 @@ collider4Body() has values such as:
 + left (Rectangle);
 + right (Rectangle);
 
+### rigidBodyBox
+
+```python
+obj.connectModule(rigidBodyBox()) #arg1 - auto connect other modules (collider4Body) (optional)
+```
+
+rigidBodyBox() has values such as
++ velocity (Vec2);
++ gravity (float) (default:getGravity (function));
++ bounce (float) (default:1.0);
++ friction (float) (default:1.0);
++ mass (float) (default:1.0);
++ wind (float) (default:0.0);
+
 ### How to create my own module
 
 ```python
