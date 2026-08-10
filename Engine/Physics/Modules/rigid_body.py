@@ -1,7 +1,7 @@
 ﻿from ...Kernel.Components.vectors import Vec2
 from ...Kernel.math import Math
 from ..config import getGravity
-from .Collider4 import collider4Body
+from .collider4 import collider4Body
 
 class rigidBodyBox:
     def __init__(self, autoconnect:bool=True):
