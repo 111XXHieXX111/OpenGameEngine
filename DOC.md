@@ -990,6 +990,9 @@ Press F12 to open debug menu
 window.setLegacyDebug(True) # Set old debug, arg1 - bool
 ```
 
+Press shift+F12 to show fps
+Press ctrl+F12 to open console
+
 <p align="center">OLD:</p>
 
 ![Old](https://i.ibb.co/21PXC9Hm/old.png)
