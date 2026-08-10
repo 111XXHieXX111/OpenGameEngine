@@ -21,16 +21,15 @@ imanager = inputManager(window)
 
 def update():
     if imanager.kEvent("w", kEvent.Pres):
-        player.position.y -= 8
+        player.Move(Vec2(0, -8))
     if imanager.kEvent("s", kEvent.Pres):
-        player.position.y += 8
+        player.Move(Vec2(0, 8))
     
     if imanager.kEvent("a", kEvent.Pres):
-        player.position.x -= 8
+        player.Move(Vec2(-8, 0))
     if imanager.kEvent("d", kEvent.Pres):
-        player.position.x += 8
+        player.Move(Vec2(8, 0))
     
-    player.calculateSize()
     player.drawRectangle(drawMode.FILL)
 
 window.winProcess(update, 60)

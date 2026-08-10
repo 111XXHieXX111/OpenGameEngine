@@ -21,14 +21,14 @@ kevent = Keyboard.KeyPressed
 
 def update():
     if kevent(Key("w"), window):
-        player.position.y -= 8
+        player.Move(Vec2(0, -8))
     elif kevent(Key("s"), window):
-        player.position.y += 8
+        player.Move(Vec2(0, 8))
     
     if kevent(Key("a"), window):
-        player.position.x -= 8
+        player.Move(Vec2(-8, 0))
     elif kevent(Key("d"), window):
-        player.position.x += 8
+        player.Move(Vec2(8, 0))
     
     player.calculateSize()
     player.drawRectangle(drawMode.FILL)

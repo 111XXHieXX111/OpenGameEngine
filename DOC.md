@@ -264,6 +264,9 @@ Primitives (Rectangle, Triangle, Circle) have functions such as:
 + addModule - add module to primitive;
 + isHovered - check if mouse hovered on primitive (You can use: isHovered or isHovered() );
 + isPressed - check if mouse button pressed on primitive; (MouseButton)
++ Move - move primitive; (Vec2)
++ Rotate - rotate primitive; (Vec1)
++ reSize - resize primitive; (Vec2)
 And have values:
 + position; (Vec2)
 + size; (Vec2)

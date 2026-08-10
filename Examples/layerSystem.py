@@ -28,16 +28,14 @@ def playerUpdate():
     speed = player.customData["Speed"]*dt
     
     if Keyboard.KeyPressed(Key("a"), window):
-        player.position.x -= speed
+        player.surface.Move(Vec2(-speed, 0))
     elif Keyboard.KeyPressed(Key("d"), window):
-        player.position.x += speed
+        player.surface.Move(Vec2(speed, 0))
     
     if Keyboard.KeyPressed(Key("w"), window):
-        player.position.y -= speed
+        player.surface.Move(Vec2(0, -speed))
     elif Keyboard.KeyPressed(Key("s"), window):
-        player.position.y += speed
-    
-    player.surface.calculateSize()
+        player.surface.Move(Vec2(0, speed))
 
 player = Sprite(window, playerUpdate)
 player.setPosition(Vec2(20, 20))

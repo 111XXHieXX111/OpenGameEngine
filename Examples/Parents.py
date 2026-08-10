@@ -31,25 +31,23 @@ def update():
     dt = window.getDelta()
     
     if Keyboard.KeyPressed(Key("a"), window):
-        rect1.position.x -= speed*dt
+        rect1.Move(Vec2(-speed*dt, 0))
     elif Keyboard.KeyPressed(Key("d"), window):
-        rect1.position.x += speed*dt
+        rect1.Move(Vec2(speed*dt, 0))
     
     if Keyboard.KeyPressed(Key("w"), window):
-        rect1.position.y -= speed*dt
+        rect1.Move(Vec2(0, -speed*dt))
     elif Keyboard.KeyPressed(Key("s"), window):
-        rect1.position.y += speed*dt
+        rect1.Move(Vec2(0, speed*dt))
     
     if Keyboard.KeyPressed(Key("up"), window):
-        rect1.size += Vec2(0.4, 0.4)
+        rect1.reSize(Vec2(0.4, 0.4))
     elif Keyboard.KeyPressed(Key("down"), window):
-        rect1.size -= Vec2(0.4, 0.4)
+        rect1.reSize(Vec2(-0.4, -0.4))
     
     if Keyboard.KeyPressed(Key("left"), window):
-        rect1.rotation.x -= 0.2
+        rect1.Rotate(Vec1(-0.2))
     elif Keyboard.KeyPressed(Key("right"), window):
-        rect1.rotation.x += 0.2
-    
-    rect1.calculateSize()
+        rect1.Rotate(Vec1(0.2))
 
 window.winProcess(update)

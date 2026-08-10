@@ -36,15 +36,13 @@ def update():
     window.drawText(str(f"Colliding:{colliding}"), Vec2(0, 0), Color3(1, 0, 0))
 
     if inv:
-        rect.position.x -= 2
+        rect.Move(Vec2(-2, 0))
     else:
-        rect.position.x += 2
+        rect.Move(Vec2(2, 0))
     
     if rect.position.x >= 180:
         inv = True
     elif rect.position.x <= 60:
         inv = False
-    
-    rect.calculateSize()
 
 window.winProcess(update, 60)

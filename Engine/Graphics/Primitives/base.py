@@ -228,6 +228,54 @@ class Base(GFXObject, canParent, canConnect, canHover):
         self._dirty = True
         self.calculated = False
     
+    def Move(self, position:Vec2):
+
+        # CHECK TYPE
+        
+        if isinstance(position, list) or isinstance(position, tuple):
+            position = System.cltv2(position)
+        else:
+            if not isinstance(position, Vec2):
+                return
+        
+        # APPLY
+        
+        self.position += position
+        self._dirty = True
+        self.calculated = False
+
+    def reSize(self, size:Vec2):
+
+        # CHECK TYPE
+        
+        if isinstance(size, list) or isinstance(size, tuple):
+            size = System.cltv2(size)
+            log_system.addWarn("Use Vec2 in setSize")
+        else:
+            if not isinstance(size, Vec2):
+                return
+        
+        # APPLY
+        
+        self.size += size
+        self.calculated = False
+
+    def Rotate(self, rotation:Vec1):
+
+        # CHECK TYPE
+        
+        if isinstance(rotation, int):
+            rotation = Vec1(rotation)
+        else:
+            if not isinstance(rotation, Vec1):
+                return
+        
+        # APPLY
+        
+        self.rotation += rotation
+        self._dirty = True
+        self.calculated = False
+
     def setColor(self, new_color:Color3 | Color4):
         self.color = System.c3toc4(new_color)
         self.calculated = False

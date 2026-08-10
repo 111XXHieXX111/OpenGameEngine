@@ -56,10 +56,6 @@ class rigidBodyBox:
 
         self.velocity.x += self.wind
 
-        # CALCULATE SIZE
-
-        self.current_body.calculateSize()
-
         # VELOCITY
 
-        self.current_body.position += self.velocity * dt
+        self.current_body.Move(self.velocity * dt)

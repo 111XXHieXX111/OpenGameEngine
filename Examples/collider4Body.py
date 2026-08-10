@@ -41,16 +41,14 @@ def update():
     dtspeed = dt*speed
     
     if Keyboard.KeyPressed(Key("a"), window):
-        rect.position.x -= dtspeed
+        rect.Move(Vec2(-dtspeed, 0))
     elif Keyboard.KeyPressed(Key("d"), window):
-        rect.position.x += dtspeed
+        rect.Move(Vec2(dtspeed, 0))
     
     if Keyboard.KeyPressed(Key("w"), window):
-        rect.position.y -= dtspeed
+        rect.Move(Vec2(0, -dtspeed))
     elif Keyboard.KeyPressed(Key("s"), window):
-        rect.position.y += dtspeed
-    
-    rect.calculateSize()
+        rect.Move(Vec2(0, dtspeed))
     
     wall0.drawRectangle(drawMode.FILL)
     wall1.drawRectangle(drawMode.FILL)
@@ -60,12 +58,12 @@ def update():
     rect.drawRectangle(drawMode.FILL)
     
     if rect.runModuleFunction("collider4Body", "getColliding", 1):
-        rect.position.y += dtspeed
+        rect.Move(Vec2(0, dtspeed))
     if rect.runModuleFunction("collider4Body", "getColliding", 2):
-        rect.position.y -= dtspeed
+        rect.Move(Vec2(0, -dtspeed))
     if rect.runModuleFunction("collider4Body", "getColliding", 3):
-        rect.position.x += dtspeed
+        rect.Move(Vec2(dtspeed, 0))
     if rect.runModuleFunction("collider4Body", "getColliding", 4):
-        rect.position.x -= dtspeed
+        rect.Move(Vec2(-dtspeed, 0))
 
 window.winProcess(update)

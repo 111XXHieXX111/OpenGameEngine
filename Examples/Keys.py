@@ -19,14 +19,14 @@ player.setColor(Color3(0, 0, 0))
 
 def update():
     if Keyboard.KeyPressed(Keys.W, window):
-        player.position.y -= 8
+        player.Move(Vec2(0, -8))
     elif Keyboard.KeyPressed(Keys.S, window):
-        player.position.y += 8
+        player.Move(Vec2(0, 8))
     
     if Keyboard.KeyPressed(Keys.A, window):
-        player.position.x -= 8
+        player.Move(Vec2(-8, 0))
     elif Keyboard.KeyPressed(Keys.D, window):
-        player.position.x += 8
+        player.Move(Vec2(8, 0))
     
     player.calculateSize()
     player.drawRectangle(drawMode.FILL)

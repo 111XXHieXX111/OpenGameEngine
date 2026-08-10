@@ -6,6 +6,7 @@
 
 Added:
 + **New console commands**
++ **New functions for primitives (Rectangle, Triangle, Circle)**
 
 ## 09.08.26
 

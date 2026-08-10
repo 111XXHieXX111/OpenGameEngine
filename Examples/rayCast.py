@@ -24,11 +24,9 @@ def update():
     dt = window.getDelta()
     
     if rev:
-        rect.position.x -= 200*dt
+        rect.Move(Vec2(-200*dt, 0))
     else:
-        rect.position.x += 200*dt
-    
-    rect.calculateSize()
+        rect.Move(Vec2(200*dt, 0))
     
     if rect.position.x <= 20:
         rev = False

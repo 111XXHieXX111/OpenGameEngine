@@ -42,5 +42,4 @@ class gravityBody:
 
         self.velocity.x *= 0.5 ** dt
 
-        self.current_body.position += self.velocity * dt
-        self.current_body.calculateSize()
+        self.current_body.Move(self.velocity * dt)
