@@ -531,6 +531,7 @@ class Window:
         # CONSOLE
 
         if self.debugmenu == 3 and debug:
+            self.console_gui.consoleProcess()
             self.console_gui.drawConsole()
 
         # INFO MENU
