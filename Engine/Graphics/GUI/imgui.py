@@ -68,3 +68,6 @@ def GUIInputTextMultiline(text:str="InputTextMultiline", value:str="", buffer_le
 
 def GUISameLine(position:float=0.0, spacing:float=-1.0):
     return imgui.same_line(position=position, spacing=spacing)
+
+def GUITextUnformatted(text:str="TextUnformatted"):
+    return imgui.text_unformatted(text)

@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 10.08.26
+
+Added:
++ **New console commands**
+
 ## 09.08.26
 
 Added:

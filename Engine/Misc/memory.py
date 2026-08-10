@@ -36,8 +36,7 @@ def memoryClean():
     except Exception as ex:
         log_system.addError(f"An error occurred while deleting textures: {ex}")
 
-    log_system.addInfo(f"Deleting {len(programs)} programs")
-
+    log_system.addDInfo(f"Deleting {len(programs)} programs")
     
     for program in programs:
         try:
@@ -46,4 +45,4 @@ def memoryClean():
         except Exception as ex:
             log_system.addError(f"An error occurred while deleting the shader: {ex}")
     
-    log_system.addInfo(f"Deleted {deleted} objects")
+    log_system.addDInfo(f"Deleted {deleted} objects")

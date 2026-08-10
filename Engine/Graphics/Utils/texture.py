@@ -1,11 +1,13 @@
 from ...Kernel.modules import GL, os
 from ...Kernel.Components.graphics import textureType
-from ...Kernel.kernel import log_system, textures, logWrapper
+from ...Kernel.kernel import log_system, textures, logWrapper, textures2
 
 @logWrapper
 def loadTexture(path:str, textureType:textureType):
     
-    log_system.addInfo(f"Load texture:{os.path.basename(path)}")
+    tex_name = os.path.basename(path)
+
+    log_system.addInfo(f"Load texture:{tex_name}")
     
     # IMPORT PILLOW
     
@@ -35,5 +37,6 @@ def loadTexture(path:str, textureType:textureType):
     GL.glBindTexture(GL.GL_TEXTURE_2D, 0)
     
     textures.append(tex_id)
+    textures2.append([tex_name, tex_id])
     
     return tex_id

@@ -42,6 +42,7 @@ debug = True
 render_items = []
 render_vertexes = []
 textures = []
+textures2 = []
 programs = []
 
 def setDebug(dbg:bool):
