@@ -32,6 +32,12 @@ I wanted to make my engine similar to the LÖVE engine - the same camelCase styl
 + Game development
 + Understanding how the engine works
 
+## 🐍 Python version
+Minimal:
++ 3.8
+Maximal:
++ 3.12
+
 ## 🧾 Documentation
 The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [DOC](DOC.md)
 
