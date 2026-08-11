@@ -775,6 +775,18 @@ manager.getSound("sound")                         # Return sound, arg1 - name
 manager.removeSound("sound")                      # Remove sound, arg1 - name
 ```
 
+## Resources
+
+### loadResource
+
+```python
+resource = loadResource("path.ores")
+```
+
+loadResource has args such as (specified by the type of resource):
++ textureType - if resource is Texture; (textureType) (Default:textureType.NEAREST)
++ soundtype - if resource is Sound; (float) (Default:"float32")
+
 ## Physics
 
 ### Collision

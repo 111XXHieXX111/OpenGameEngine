@@ -6,6 +6,7 @@
 
 Added:
 + **Curve**
++ **Resource System**
 
 ## 10.08.26
 

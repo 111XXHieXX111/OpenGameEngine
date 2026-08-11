@@ -62,6 +62,7 @@ from .Misc.scenes import sceneManager
 from .Misc.debugger import Debugger
 from .Misc.tween import Tween
 from .Misc.idgenerator import generateID
+from .Misc.resloader import loadResource
 
 # MODULES
 
