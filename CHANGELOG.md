@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 11.08.26
+
+Added:
++ **Curve**
+
 ## 10.08.26
 
 Added:

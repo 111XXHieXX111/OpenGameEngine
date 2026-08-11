@@ -327,14 +327,25 @@ Pointed objs have values such as:
 
 #### Line (Lined) (Pointed)
 ```python
-line = gfx.Line() # arg1 - window (optional)
+line = gfx.Line(window) # arg1 - window
 line.drawLine()
 ```
 
 #### Arrow (Lined) (Pointed)
 ```python
-arrow = gfx.Arrow() # arg1 - window (optional)
+arrow = gfx.Arrow(window) # arg1 - window
 arrow.drawArrow()
+```
+
+#### Curve (Lined)
+
+```python
+curve = Curve(window)                       # arg1 - window
+curve.addPoint(Vec2(0.0, 0.0))              # arg1 - Vec2
+curve.removePointByPosition(Vec2(0.0, 0.0)) # arg1 - Vec2
+curve.removePointByIndex(0)                 # arg1 - int
+curve.clearPoints()
+curve.drawCurve()
 ```
 
 #### Parents & Childs
