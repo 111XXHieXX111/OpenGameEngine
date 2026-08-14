@@ -2,11 +2,15 @@
 
 layout(location = 0) in vec3 vertex_position;
 layout(location = 1) in vec4 vertex_color;
+layout(location = 2) in vec2 vertex_uv;
+
 out vec4 color;
+out vec2 uv;
 
 uniform mat4 camera_matrix;
 
 void main() {
 	color = vertex_color;
+	uv = vertex_uv;
 	gl_Position = camera_matrix * vec4(vertex_position, 1.0);
 }

@@ -19,6 +19,7 @@ class Base2D:
     def __init__(self):
         self.vao = None
         self.vbo = None
+        self.texture = None
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)
 
@@ -38,14 +39,24 @@ class Base2D:
             ndc_pos = pxtondc(Vec2(world_x, world_y), self.window)
             
             _vertex = Vertex(
-                Vec3(ndc_pos.x, ndc_pos.y, world_z),
+                Vec3(ndc_pos.x, 
+                     ndc_pos.y, 
+                     world_z
+                ),
                 Color4(
                     self.vertices[index].r,
                     self.vertices[index].g,
                     self.vertices[index].b,
                     self.vertices[index].a
+                ),
+                Vec2(
+                    self.vertices[index].u,
+                    self.vertices[index].v
                 )
             )
             ndc_vertices.append(_vertex)
 
         self.vbo, self.vao = Builder(ndc_vertices)
+
+        if self.texture:
+            self.texture.use(0)

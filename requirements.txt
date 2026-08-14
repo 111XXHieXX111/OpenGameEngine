@@ -3,3 +3,4 @@ pyimgui
 glfw
 psutil
 glm
+pillow

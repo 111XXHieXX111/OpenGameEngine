@@ -59,6 +59,12 @@ Color4 has values such as: r, g, b, a
 c256(0.5) # Convert 0-256 to 0-1, return float, arg1 - x (float or int)
 ```
 
+# Graphical
+
+TextureFilter has:
++ NEAREST
++ LINEAR
+
 # Renderer
 
 ## Window
@@ -116,6 +122,13 @@ Transform.Scale()       # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D,
 
 ```python
 Color.Set() # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
+```
+
+# Texture
+
+```python
+texture_raw = Renderer.TextureReader() # Return raw texture, arg1 - path (str)
+texture = Renderer.TextureLoader()     # Return texture, arg1 - texture_raw (str), arg2 - _filter (TextureFilter)
 ```
 
 # Input

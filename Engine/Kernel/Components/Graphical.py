@@ -1,4 +1,5 @@
-from .Vectors import Vec3
+from .Vectors import Vec2, Vec3
+import moderngl as mgl
 import ctypes
 
 class c256:
@@ -50,9 +51,11 @@ class Vertex(ctypes.Structure):
         ("g", ctypes.c_float),
         ("b", ctypes.c_float),
         ("a", ctypes.c_float),
+        ("u", ctypes.c_float),
+        ("v", ctypes.c_float)
     ]
 
-    def __init__(self, position:Vec3, color:Color4):
+    def __init__(self, position:Vec3, color:Color4, uv:Vec2):
         self.x = position.x
         self.y = position.y
         self.z = position.z
@@ -60,9 +63,15 @@ class Vertex(ctypes.Structure):
         self.g = color.g
         self.b = color.b
         self.a = color.a
+        self.u = uv.x
+        self.v = uv.y
 
 def c3toc4(Color:Color3 | Color4):
     if isinstance(Color, Color4):
         return Color
 
     return Color4(Color.r, Color.g, Color.b, 1.0)
+
+class TextureFilter:
+    LINEAR = mgl.LINEAR
+    NEAREST = mgl.NEAREST
