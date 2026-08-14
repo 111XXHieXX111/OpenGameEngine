@@ -67,7 +67,7 @@ c256(0.5) # Convert 0-256 to 0-1, return float, arg1 - x (float or int)
 window = Renderer.Window()
 window.SetTitle("Window")      # arg1 - Title (str)
 window.SetSize(Vec2(640, 480)) # arg1 - Size (Vec2)
-window.SetVSync(0)             # if 1 - vsync enabled, if 2 - vsync - disabled, arg1 - sync (int) (default: 1)     
+window.SetVSync(0)             # if 1 - vsync enabled, if 0 - vsync - disabled, arg1 - sync (int) (default: 1)     
 window.GetFPS()                # Return FPS
 window.GetDelta()              # Return Delta time
 
