@@ -6,6 +6,9 @@
 
 Rebuilding the engine from scratch
 
+Added:
++ **Camera2D**
+
 # OLD Changelog
 
 ## 11.08.26

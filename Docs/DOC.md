@@ -78,6 +78,21 @@ def update():
 window.Run()                   # Start main loop
 ```
 
+## Cameras
+
+### Camera2D
+
+```python
+camera2d = Renderer.Camera2D()
+window.SetCamera(camera)
+```
+
+Camera2D has values such as:
++ position (Vec2)
++ zoom (Vec2)
+
+**Zoom bad working**
+
 # Primitives
 
 ```python

@@ -1,9 +1,11 @@
 from ...Kernel.Components.Graphical import Color4
 from ...Kernel.Kernel import paths, ClassWrapper
+from ..Camera.Camera2D import Camera2D
 from ..Shaders.ShaderReader import ShaderReader
 from ..Shaders.ShaderLoader import ShaderLoader
 import os
 import moderngl as mgl
+import glm
 
 @ClassWrapper
 class WindowRenderer():
@@ -25,6 +27,10 @@ class WindowRenderer():
         winsize = self.window.current_window_sizes
         
         self.context.viewport = (0, 0, winsize.x, winsize.y)
+        
+        self.program["camera_matrix"].write(glm.mat4(1))
+        if isinstance(self.window.camera, Camera2D):
+            self.program["camera_matrix"].write(self.window.camera._camera_matrix(self.window))
 
         for render_item in self.window.to_render:
             render_item.vao.render(mgl.TRIANGLE_FAN)

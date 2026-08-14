@@ -2,3 +2,4 @@ ModernGL
 pyimgui
 glfw
 psutil
+glm

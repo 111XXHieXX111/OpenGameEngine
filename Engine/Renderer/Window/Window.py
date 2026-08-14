@@ -3,6 +3,7 @@ from ...Kernel.Components.Vectors import Vec2
 from ...Input.Keyboard import _Keyboard
 from ..GUI.imgui import imguiInit, imguiInputs, imguiRender
 from ..GUI.Window.InfoMonitor import InfoMonitor
+from ..Camera.Camera2D import Camera2D
 from .WindowRenderer import WindowRenderer
 from .WindowOther import FPSCounter, DeltaCounter
 import glfw
@@ -17,6 +18,7 @@ class Window:
         self.current_window_sizes = Vec2(0.0, 0.0)
         self.key_callbacks = [(glfw.KEY_F12, self._f12_callback)]
         self.info_monitor_render = False
+        self.camera = None
 
         self.window_settings = {
             "WindowSize":[640, 480],
@@ -108,6 +110,9 @@ class Window:
     def SetVSync(self, sync:int):
         log_system.AddDInfo(f"VSync:{bool(sync)}")
         glfw.swap_interval(sync)
+
+    def SetCamera(self, camera:Camera2D):
+        self.camera = camera
 
     def _f12_callback(self):
         if _Keyboard.KeyJustPressed(glfw.KEY_F12):
