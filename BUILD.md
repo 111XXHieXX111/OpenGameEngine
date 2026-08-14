@@ -5,8 +5,7 @@
 Setup **PyInstaller** for build to executable file.
 
 ```bash
-pip3 install pyinstaller        # Default
-sudo pip3 install pyinstaller # For sudo
+pip3 install pyinstaller
 ```
 
 ## Optimization

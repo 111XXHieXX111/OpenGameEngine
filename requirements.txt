@@ -1,10 +1,4 @@
-PyOpenGL
-PyOpenGL_accelerate
-glfw
-keyboard
-Pillow
-psutil
-soundfile
-sounddevice
-cryptography
+ModernGL
 pyimgui
+glfw
+psutil
