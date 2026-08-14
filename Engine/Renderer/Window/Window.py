@@ -72,8 +72,8 @@ class Window:
 
         try:
             log_system.AddInfo(f"OpenGL Version:{self.window_renderer.context.version_code}")
-            log_system.AddInfo(f"GLSL Version:{self.window_renderer.context.info["GL_VERSION"]}")
-            log_system.AddDInfo(f"Render:{self.window_renderer.context.info["GL_RENDERER"]}")
+            log_system.AddInfo(f"GLSL Version:{self.window_renderer.context.info['GL_VERSION']}")
+            log_system.AddDInfo(f"Render:{self.window_renderer.context.info['GL_RENDERER']}")
         except Exception as ex:
             log_system.AddWarn(f"Information could not be retrieved:{ex}")
 
