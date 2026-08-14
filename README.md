@@ -21,6 +21,7 @@ Developed with ❤️ by **XXHieXX**
 # 🐍 Python version
 Minimal:
 + 3.8
+
 Maximal:
 + 3.12
 
