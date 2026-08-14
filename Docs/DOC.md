@@ -89,7 +89,7 @@ window.SetCamera(camera)
 
 Camera2D has values such as:
 + position (Vec2)
-+ zoom (Vec2)
++ zoom (float)
 
 **Zoom bad working**
 
