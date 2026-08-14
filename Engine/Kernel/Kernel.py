@@ -5,6 +5,8 @@ import os
 log_system = Logging()
 log_system.ConsoleStream(True)
 
+os.system("")
+
 current_window = None
 engine_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 render_items = []
