@@ -8,7 +8,7 @@ Added:
 + **Textures**
 + **Release unnecessary (Fix mini memory leaks)**
 
-## 14.08.26
+## 14.08.26 (26.2.0.0)
 
 Rebuilding the engine from scratch
 
