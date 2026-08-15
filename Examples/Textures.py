@@ -2,7 +2,7 @@ from OpenGameEngine import *
 
 window = Renderer.Window()
 
-texture_raw = Renderer.TextureReader(textures.Get("LightGrid")) 
+texture_raw = Renderer.TextureReader(textures.Get("Grid2")) 
 texture = Renderer.TextureLoader(texture_raw, TextureFilter.NEAREST)
 
 rect = gfx.Rectangle()
