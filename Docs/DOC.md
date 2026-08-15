@@ -79,7 +79,7 @@ window.GetDelta()              # Return Delta time
 
 @window.UpdateFunction         # Pointer for update function
 def update():
-	pass                   # <- Your update code here
+	pass                       # <- Your update code here
 
 window.Run()                   # Start main loop
 ```
@@ -129,6 +129,14 @@ Color.Set() # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
 ```python
 texture_raw = Renderer.TextureReader() # Return raw texture, arg1 - path (str)
 texture = Renderer.TextureLoader()     # Return texture, arg1 - texture_raw (str), arg2 - _filter (TextureFilter)
+```
+
+## In engine textures
+
+See [Textures names](Textures.md)
+
+```python
+texture_path = textures.Get() # Return texture path, arg1 - name
 ```
 
 # Input

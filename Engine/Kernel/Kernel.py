@@ -9,11 +9,16 @@ os.system("")
 
 current_window = None
 engine_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+opengine_folder = os.path.dirname(engine_folder)
 render_items = []
+textures = []
+shaders = []
 
 paths = {
     "Shaders":os.path.join(engine_folder, "Shaders")
 }
+
+textures_path = os.path.join(opengine_folder, "Textures")
 
 def LogWrapper(func):
     def Wrapper(*args, **kwargs):

@@ -1,4 +1,4 @@
-from ...Kernel.Kernel import log_system, LogWrapper, GetCurrentWindow
+from ...Kernel.Kernel import log_system, LogWrapper, GetCurrentWindow, textures
 from ...Kernel.Components.Graphical import TextureFilter
 from PIL import Image
 
@@ -17,5 +17,7 @@ def TextureLoader(raw_texture:Image, _filter:TextureFilter):
     )
 
     texture.filter = (_filter, _filter)
+
+    textures.append(texture)
 
     return texture

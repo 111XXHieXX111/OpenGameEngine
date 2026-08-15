@@ -3,6 +3,7 @@ from OpenGameEngine import *
 camera = Renderer.Camera2D()
 window = Renderer.Window()
 window.SetCamera(camera)
+window.SetVSync(0)
 
 rectangle = gfx.Rectangle()
     

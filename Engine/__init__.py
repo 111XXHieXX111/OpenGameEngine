@@ -2,6 +2,7 @@ from .Renderer import *
 from .Kernel.Components.Graphical import Color3, Color4, c256, TextureFilter
 from .Kernel.Components.Vectors import Vec1, Vec2, Vec3
 from .Kernel.Components.Input import MouseButton, Keys
+from .Kernel.Textures import textures
 from .Primitives.Transform import Transform
 from .Primitives.Texture import Texture
 from .Primitives import *
@@ -22,5 +23,6 @@ __all__ = [
     "Math", "Random",
     "Keys", "MouseButton","Input",
     "Misc",
-    "TextureFilter", "Texture"
+    "TextureFilter", "Texture",
+    "textures"
 ]

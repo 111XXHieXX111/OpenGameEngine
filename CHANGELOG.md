@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 15.08.26
+
+Added:
++ **Textures**
+
 ## 14.08.26
 
 Rebuilding the engine from scratch

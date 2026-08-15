@@ -1,4 +1,4 @@
-from .Kernel import LogWrapper
+from .Kernel import LogWrapper, textures, log_system, shaders
 import psutil
 import os
 
@@ -20,3 +20,21 @@ def GetMemoryLoad():
         "vms":current,
         "peak":_peak
     }
+
+@LogWrapper
+def ReleaseTextures():
+    if len(textures):
+        log_system.AddDInfo(f"Releasing {len(textures)} textures")
+        for texture in textures:
+            texture.release()
+    else:
+        log_system.AddDInfo("Not textures for release")
+
+@LogWrapper
+def ReleaseShaders():
+    if len(shaders):
+        log_system.AddDInfo(f"Releasing {len(shaders)} shaders")
+        for shader in shaders:
+            shader.release()
+    else:
+        log_system.AddDInfo("Not shaders for release")

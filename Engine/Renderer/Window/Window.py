@@ -1,4 +1,5 @@
 from ...Kernel.Kernel import log_system, ClassWrapper, SetCurrentWindow, render_items
+from ...Kernel.Memory import ReleaseTextures, ReleaseShaders
 from ...Kernel.Components.Vectors import Vec2
 from ...Input.Keyboard import _Keyboard
 from ..GUI.imgui import imguiInit, imguiInputs, imguiRender
@@ -155,8 +156,11 @@ class Window:
             glfw.poll_events()
             glfw.swap_buffers(self.window)
 
+        print(self.to_render)
         log_system.AddDInfo("Terminate glfw")
         glfw.terminate()
+        ReleaseTextures()
+        ReleaseShaders()
 
     def UpdateFunction(self, func):
         log_system.AddDInfo("Set update function")
