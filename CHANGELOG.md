@@ -6,6 +6,7 @@
 
 Added:
 + **Textures**
++ **Release unnecessary (Fix mini memory leaks)**
 
 ## 14.08.26
 
