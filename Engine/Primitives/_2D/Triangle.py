@@ -1,6 +1,6 @@
 from ...Kernel.Components.Graphical import Vertex, Color4
 from ...Kernel.Components.Vectors import Vec2, Vec3
-from ...Kernel.Kernel import GetCurrentWindow, ClassWrapper
+from ...Kernel.Kernel import ClassWrapper
 from ..Base import Base, Base2D
 
 @ClassWrapper
