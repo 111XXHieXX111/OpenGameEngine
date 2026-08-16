@@ -104,6 +104,7 @@ Camera2D has values such as:
 ```python
 rectangle = gfx.Rectangle()
 triangle = gfx.Triangle()
+circle = gfx.Circle() # arg1 - s (Segments, Default:32, optional)
 ```
 
 Primitives has function such as:
@@ -137,6 +138,8 @@ Texture.Set()                          # Set texture, arg1 - Object, arg2 - Text
 ```python
 Texture.SetUV() # Set UV, arg1 - Object, arg2 - UV (list of vec2s, count = number of vertices)
 ```
+
+It's better not to edit the UVs of the circle (since there are a lot of UV points there)
 
 Mini example:
 
