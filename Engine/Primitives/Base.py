@@ -50,8 +50,8 @@ class Base2D:
                     self.vertices[index].a
                 ),
                 Vec2(
-                    self.vertices[index].u,
-                    self.vertices[index].v
+                    self.uv[index].x,
+                    self.uv[index].y
                 )
             )
             ndc_vertices.append(_vertex)

@@ -13,10 +13,16 @@ class Triangle(Base, Base2D):
             (0.0, 1.0, 0.0)
         )
 
+        self.uv = [
+            Vec2(0.5, 0.0),
+            Vec2(1.0, 1.0),
+            Vec2(0.0, 1.0)
+        ]
+
         self.vertices = [
-            Vertex(Vec3(0.0, 0.0, 0.0), Color4(1.0, 0.0, 0.0, 1.0), Vec2(0.5, 0.0)),
-            Vertex(Vec3(0.0, 0.0, 0.0), Color4(0.0, 1.0, 0.0, 1.0), Vec2(1.0, 1.0)),
-            Vertex(Vec3(0.0, 0.0, 0.0), Color4(0.0, 0.0, 1.0, 1.0), Vec2(0.0, 1.0))
+            Vertex(Vec3(0.0, 0.0, 0.0), Color4(1.0, 0.0, 0.0, 1.0), Vec2(0.0, 0.0)),
+            Vertex(Vec3(0.0, 0.0, 0.0), Color4(0.0, 1.0, 0.0, 1.0), Vec2(0.0, 0.0)),
+            Vertex(Vec3(0.0, 0.0, 0.0), Color4(0.0, 0.0, 1.0, 1.0), Vec2(0.0, 0.0))
         ]
 
         self._build_vao()

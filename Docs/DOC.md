@@ -124,11 +124,24 @@ Transform.Scale()       # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D,
 Color.Set() # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
 ```
 
-# Texture
+# Textures
 
 ```python
 texture_raw = Renderer.TextureReader() # Return raw texture, arg1 - path (str)
 texture = Renderer.TextureLoader()     # Return texture, arg1 - texture_raw (str), arg2 - _filter (TextureFilter)
+Texture.Set()                          # Set texture, arg1 - Object, arg2 - Texture 
+```
+
+## UV
+
+```python
+Texture.SetUV() # Set UV, arg1 - Object, arg2 - UV (list of vec2s, count = number of vertices)
+```
+
+Mini example:
+
+```python
+Texture.SetUV(..., [Vec2(0, 0), Vec2(1, 0), Vec2(1, 1), Vec2(0, 1)]) # Working for only rectangle
 ```
 
 ## In engine textures

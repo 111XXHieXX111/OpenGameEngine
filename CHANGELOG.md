@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 16.08.26
+
+Added:
++ **UV**
+
 ## 15.08.26
 
 Added:
