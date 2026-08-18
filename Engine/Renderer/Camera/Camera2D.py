@@ -14,7 +14,7 @@ class Camera2D:
             glm.vec4(2/self.zoom, 0, 0, 0),
             glm.vec4(0, 2/self.zoom, 0, 0),
             glm.vec4(0, 0, 1, 0),
-            glm.vec4(-pos.x, pos.y, 0, 1)
+            glm.vec4(-pos.x, -pos.y, 0, 1)
         )
 
         return matrix
