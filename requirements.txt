@@ -2,5 +2,5 @@ ModernGL
 pyimgui
 glfw
 psutil
-glm
+pyglm
 pillow
