@@ -14,6 +14,7 @@ from .Input import *
 from .Kernel.Math.Math import Math
 from .Kernel.Math.Random import Random
 from .Misc import *
+from .Physics import *
 
 __all__ = [
     "Renderer", "gfx",
@@ -24,5 +25,6 @@ __all__ = [
     "Keys", "MouseButton","Input",
     "Misc",
     "TextureFilter", "Texture",
-    "textures"
+    "textures",
+    "Physics"
 ]

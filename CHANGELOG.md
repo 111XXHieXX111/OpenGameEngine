@@ -7,6 +7,9 @@
 Updated:
 + **Debug**
 
+Added:
++ **BoxCollision**
+
 ## 16.08.26
 
 Added:

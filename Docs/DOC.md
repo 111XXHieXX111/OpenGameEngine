@@ -210,6 +210,14 @@ timer = Misc.Timer() # arg1 - target_sec (int), func (default - None)
 timer.Process()      # Place in update function
 ```
 
+# Physics
+
+## Collision
+
+```python
+colliding = Physics.BoxCollision(rect1, rect2) # arg1 - rect1 (Rectangle), arg2 - rect2 (Rectangle)
+```
+
 # Debug
 
 Press F12 to open debug menu
