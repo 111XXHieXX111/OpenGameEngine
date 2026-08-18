@@ -4,7 +4,7 @@ from ....Kernel.Kernel import render_items, LogWrapper
 from ....Input.Mouse import _Mouse
 from ....Misc.Timer import Timer
 from ..imgui_flags import Flags
-from ..imgui import Begin, Label, SameLine
+from ..imgui import Begin, Label, SameLine, CheckBox
 import threading
 
 @LogWrapper
@@ -22,6 +22,9 @@ class InfoMonitor:
 
         self.window = window
         self.Timer = Timer(1, self._update_info)
+
+        self.wireframe_enabled = False
+        self.notexture_enabled = False
     
     def _update_info(self):
         # Memory
@@ -44,17 +47,26 @@ class InfoMonitor:
         self.Timer.Process()
 
         # Render
-        with Begin("Memory", Vec2(20, 20), Vec2(320, 60), False, Flags.WINDOW_NO_MOVE | Flags.WINDOW_NO_RESIZE | Flags.WINDOW_NO_COLLAPSE):
+        with Begin("Memory", Vec2(20, 20), Vec2(320, 60), False, Flags.WINDOW_NO_MOVE | Flags.WINDOW_NO_RESIZE | Flags.WINDOW_NO_COLLAPSE | Flags.WINDOW_NO_INPUTS):
             Label(f"RSS:{self.rss:.2f}MB")
             SameLine()
             Label(f"VMS:{self.vms:.2f}MB")
             SameLine()
             Label(f"PEAK:{self.peak:.2f}MB")
 
-        with Begin("Window", Vec2(20, 100), Vec2(320, 140), False, Flags.WINDOW_NO_MOVE | Flags.WINDOW_NO_RESIZE | Flags.WINDOW_NO_COLLAPSE):
+        with Begin("Window", Vec2(20, 100), Vec2(320, 140), False, Flags.WINDOW_NO_MOVE | Flags.WINDOW_NO_RESIZE | Flags.WINDOW_NO_COLLAPSE | Flags.WINDOW_NO_INPUTS):
             Label(f"FPS:{self.fps:.2f}")
             Label(f"Delta:{self.delta:.8f}")
             Label(f"Window size:{int(self.winsize.x)}x{int(self.winsize.y)}")
             Label(f"Mouse position X:{int(self.mousepos.x)} Y:{int(self.mousepos.y)}")
             Label(f"Render objects:{len(self.render_objs)}")
             Label(f"Threads:{self.threads}")
+
+        with Begin("Debug", Vec2(20, 260), Vec2(320, 140), False):
+            Label("Render:")
+            _wireframe, self.wireframe_enabled = CheckBox("Wireframe", self.wireframe_enabled)
+            _, self.notexture_enabled = CheckBox("No texture", self.notexture_enabled)
+
+            if _wireframe:
+                ctx = self.window.window_renderer.context
+                ctx.wireframe = self.wireframe_enabled

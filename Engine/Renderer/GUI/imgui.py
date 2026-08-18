@@ -61,3 +61,6 @@ def SameLine(position:float=0.0, spacing:float=-1.0):
 
 def LabelUnformatted(text:str="TextUnformatted"):
     return imgui.text_unformatted(text)
+
+def CheckBox(text:str="Checkbox", state:bool=False):
+    return imgui.checkbox(text, state)

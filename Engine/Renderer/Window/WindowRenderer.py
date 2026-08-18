@@ -28,17 +28,19 @@ class WindowRenderer():
         
         self.context.viewport = (0, 0, winsize.x, winsize.y)
         
+        notexture_enabled = self.window.infomonitor.notexture_enabled
+
         self.program["camera_matrix"].write(glm.mat4(1))
         if isinstance(self.window.camera, Camera2D):
             self.program["camera_matrix"].write(self.window.camera._camera_matrix(self.window))
 
         for render_item in self.window.to_render:
-            if render_item.texture:
+            if render_item.texture and not notexture_enabled:
                 render_item.texture.use(0)
                 self.program["use_tex"].value = 1
             else:
                 self.program["use_tex"].value = 0
-
+    
             render_item.vao.render(mgl.TRIANGLE_FAN)
 
         self.window.to_render.clear()

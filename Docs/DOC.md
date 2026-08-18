@@ -209,3 +209,7 @@ Random.RandomColor4() # Return random Color4, arg1 - rnd_alpha (bool) (default -
 timer = Misc.Timer() # arg1 - target_sec (int), func (default - None)
 timer.Process()      # Place in update function
 ```
+
+# Debug
+
+Press F12 to open debug menu

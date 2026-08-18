@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 18.08.26
+
+Updated:
++ **Debug**
+
 ## 16.08.26
 
 Added:
