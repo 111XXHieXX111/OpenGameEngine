@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 21.08.26
+
+Added:
++ **More GUI**
+
 ## 18.08.26
 
 Updated:

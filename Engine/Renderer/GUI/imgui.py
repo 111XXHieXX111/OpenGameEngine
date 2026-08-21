@@ -64,3 +64,9 @@ def LabelUnformatted(text:str="TextUnformatted"):
 
 def CheckBox(text:str="Checkbox", state:bool=False):
     return imgui.checkbox(text, state)
+
+def Separator():
+    return imgui.separator()
+
+def Image(texture, size:Vec2):
+    return imgui.image(texture, width=size.x, height=size.y)
