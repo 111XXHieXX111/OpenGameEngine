@@ -6,6 +6,7 @@
 
 Added:
 + **Scenes**
++ **SetBackGround**
 
 ## 21.08.26
 

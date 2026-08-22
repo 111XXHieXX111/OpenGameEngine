@@ -122,8 +122,11 @@ Transform.Scale()       # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D,
 # Color
 
 ```python
-Color.Set() # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
+Color.Set()           # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
+Color.SetBackGround() # arg1 - Color (Color3 or Color4)
 ```
+
+Default BGColor: 0.1, 0.1, 0.1
 
 # Textures
 

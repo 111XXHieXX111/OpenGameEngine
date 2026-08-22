@@ -1,5 +1,5 @@
 from ..Kernel.Components.Graphical import Color3, Color4, c3toc4
-from ..Kernel.Kernel import ClassWrapper
+from ..Kernel.Kernel import ClassWrapper, GetCurrentWindow
 
 @ClassWrapper
 class Color:
@@ -12,3 +12,7 @@ class Color:
             vertex.b = Color.b
             vertex.a = Color.a
         Object._build_vao()
+
+    @staticmethod
+    def SetBackGround(Color:Color3 | Color4):
+        GetCurrentWindow().window_renderer.fillcolor = c3toc4(Color)
