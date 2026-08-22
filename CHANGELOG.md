@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 22.08.26
+
+Added:
++ **Scenes**
+
 ## 21.08.26
 
 Added:

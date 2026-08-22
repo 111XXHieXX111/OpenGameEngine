@@ -210,6 +210,23 @@ timer = Misc.Timer() # arg1 - target_sec (int), func (default - None)
 timer.Process()      # Place in update function
 ```
 
+## Scenes
+
+```python
+class Scene(Misc.SceneClass):
+	def SceneI(self):
+		pass # <- Your init code here
+
+	def SceneU(self):
+		pass # <- Your update code here
+
+scenes = Misc.SceneManager()
+scenes.AddScene()   # arg1 - scene (scene class), arg2 - name (str)
+scenes.SetScene()   # arg1 - name (str)
+scenes.UnSetScene()
+scenes.Process()    # Place in update function
+```
+
 # Physics
 
 ## Collision
