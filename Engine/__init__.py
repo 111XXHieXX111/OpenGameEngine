@@ -15,6 +15,7 @@ from .Kernel.Math.Math import Math
 from .Kernel.Math.Random import Random
 from .Misc import *
 from .Physics import *
+from . import Audio as sfx
 
 __all__ = [
     "Renderer", "gfx",
@@ -26,5 +27,6 @@ __all__ = [
     "Misc",
     "TextureFilter", "Texture",
     "textures",
-    "Physics"
+    "Physics",
+    "sfx"
 ]

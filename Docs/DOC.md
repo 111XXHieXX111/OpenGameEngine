@@ -238,6 +238,18 @@ scenes.Process()    # Place in update function
 colliding = Physics.BoxCollision(rect1, rect2) # arg1 - rect1 (Rectangle), arg2 - rect2 (Rectangle)
 ```
 
+# Audio
+
+```python
+audio_raw = sfx.AudioLoader() # Return raw audio, arg1 - audio_path (str)
+audio = Audio()               # Make audio class
+audio.SetSource()             # arg1 - source (audio raw)
+audio.Play()                  # Audio play
+audio.Stop()                  # Audio stop
+audio.SetPosition()           # arg1 - position (float, 0-1)
+audio.IsPlaying()             # Return bool, you can use without ()
+```
+
 # Debug
 
 Press F12 to open debug menu
