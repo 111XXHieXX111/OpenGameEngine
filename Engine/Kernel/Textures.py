@@ -1,4 +1,5 @@
 from .Kernel import textures_path
+from .Components.Graphical import TextureFilter
 import glob
 import os
 
@@ -21,3 +22,19 @@ class Textures:
 
 textures = Textures()
 textures.Load()
+
+no_texture = None
+
+def SetNoTexture():
+    global no_texture
+
+    if no_texture:
+        return no_texture
+    else:
+        from ..Renderer.Textures.TextureReader import TextureReader
+        from ..Renderer.Textures.TextureLoader import TextureLoader
+        texture_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Textures", "notex.png")
+        texture_raw = TextureReader(texture_path)
+        texture = TextureLoader(texture_raw, TextureFilter.NEAREST)
+        no_texture = texture
+        return texture

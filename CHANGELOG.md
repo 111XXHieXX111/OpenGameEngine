@@ -6,6 +6,7 @@
 
 Added:
 **Audio**
+**No texture**
 
 ## 22.08.26
 
