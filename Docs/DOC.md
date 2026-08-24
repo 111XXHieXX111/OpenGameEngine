@@ -126,7 +126,6 @@ Transform.GetSize()     # Return Vec2, arg1 - Object (Primitive)
 
 ```python
 Color.Set()           # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
-Color.Get()           # Return Color4, arg1 - Object (Primitive)
 Color.SetBackGround() # arg1 - Color (Color3 or Color4)
 ```
 

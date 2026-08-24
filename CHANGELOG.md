@@ -5,7 +5,7 @@
 ## 24.08.26
 
 Added:
-**New functions for Transform + Color**
+**New functions for Transform**
 
 ## 23.08.26
 

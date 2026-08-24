@@ -38,3 +38,11 @@ class Transform:
             pass
 
         Object._build_vao()
+
+    @staticmethod
+    def GetPosition(Object):
+        return Object.position
+
+    @staticmethod
+    def GetSize(Object):
+        return Object.size
