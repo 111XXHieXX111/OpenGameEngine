@@ -128,6 +128,8 @@ Color.SetBackGround() # arg1 - Color (Color3 or Color4)
 
 Default BGColor: 0.1, 0.1, 0.1
 
+**DON'T PLACE IN UPDATE**
+
 # Textures
 
 ```python
@@ -149,6 +151,8 @@ Mini example:
 ```python
 Texture.SetUV(..., [Vec2(0, 0), Vec2(1, 0), Vec2(1, 1), Vec2(0, 1)]) # Working for only rectangle
 ```
+
+**UV Made Automatic!**
 
 ## In engine textures
 
