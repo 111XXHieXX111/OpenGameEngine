@@ -117,12 +117,16 @@ Transform.SetPosition() # arg1 - Object (Primitive), arg2 - Position (Vec2 - for
 Transform.SetSize()     # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D, Vec3 - for 3D)
 Transform.Move()        # arg1 - Object (Primitive), arg2 - Position (Vec2 - for 2D, Vec3 - for 3D)
 Transform.Scale()       # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D, Vec3 - for 3D)
+
+Transform.GetPosition() # Return Vec2, arg1 - Object (Primitive)
+Transform.GetSize()     # Return Vec2, arg1 - Object (Primitive)
 ```
 
 # Color
 
 ```python
 Color.Set()           # arg1 - Object (Primitive), arg2 - Color (Color3 Or Color4)
+Color.Get()           # Return Color4, arg1 - Object (Primitive)
 Color.SetBackGround() # arg1 - Color (Color3 or Color4)
 ```
 

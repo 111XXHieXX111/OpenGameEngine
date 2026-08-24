@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 24.08.26
+
+Added:
+**New functions for Transform + Color**
+
 ## 23.08.26
 
 Added:
