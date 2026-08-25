@@ -13,6 +13,7 @@ opengine_folder = os.path.dirname(engine_folder)
 render_items = []
 textures = []
 shaders = []
+vaosvbos = []
 
 paths = {
     "Shaders":os.path.join(engine_folder, "Shaders")

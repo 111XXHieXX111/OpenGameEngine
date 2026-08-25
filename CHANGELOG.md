@@ -6,6 +6,7 @@
 
 Added:
 **Layers**
+**Memory leak fix**
 
 ## 24.08.26
 

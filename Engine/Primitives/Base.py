@@ -1,6 +1,6 @@
 from ..Renderer.Builder import Builder
 from ..Renderer.Utils import pxtondc
-from ..Kernel.Kernel import render_items, ClassWrapper, GetCurrentWindow
+from ..Kernel.Kernel import render_items, ClassWrapper, GetCurrentWindow, vaosvbos
 from ..Kernel.Components.Graphical import Vertex, Color4
 from ..Kernel.Components.Vectors import Vec2, Vec3
 
@@ -25,9 +25,9 @@ class Base2D:
         self.layer = 0
 
     def _build_vao(self):
-        if self.vao:
+        if self.vao and self.vbo:
+            vaosvbos.remove((self.vao, self.vbo))
             self.vao.release()
-        if self.vbo:
             self.vbo.release()
 
         ndc_vertices = []
@@ -58,6 +58,7 @@ class Base2D:
             ndc_vertices.append(_vertex)
 
         self.vbo, self.vao = Builder(ndc_vertices)
+        vaosvbos.append((self.vao, self.vbo))
 
         if self.texture:
             self.texture.use(0)

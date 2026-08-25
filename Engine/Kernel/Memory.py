@@ -42,9 +42,11 @@ def ReleaseShaders():
 @LogWrapper
 def ReleaseVAOs(objects):
     if len(objects):
-        log_system.AddDInfo(f"Releasing {len(objects)} vao")
+        log_system.AddDInfo(f"Releasing {len(objects)} vao + vbo")
         for _object in objects:
-            if _object.vao:
-                _object.vao.release()
+            if _object[0]:
+                _object[0].release()
+            if _object[1]:
+                _object[1].release()
     else:
         log_system.AddDInfo("Not VAO's for release")

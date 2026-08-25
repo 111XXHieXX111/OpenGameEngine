@@ -1,4 +1,4 @@
-from ...Kernel.Kernel import log_system, ClassWrapper, SetCurrentWindow, render_items
+from ...Kernel.Kernel import log_system, ClassWrapper, SetCurrentWindow, render_items, vaosvbos
 from ...Kernel.Memory import ReleaseTextures, ReleaseShaders, ReleaseVAOs
 from ...Kernel.Components.Vectors import Vec2
 from ...Input.Keyboard import _Keyboard
@@ -160,7 +160,7 @@ class Window:
         glfw.terminate()
         ReleaseTextures()
         ReleaseShaders()
-        ReleaseVAOs(self.to_render)
+        ReleaseVAOs(vaosvbos)
 
     def UpdateFunction(self, func):
         log_system.AddDInfo("Set update function")
