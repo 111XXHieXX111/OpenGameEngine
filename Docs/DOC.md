@@ -157,6 +157,13 @@ Texture.SetUV(..., [Vec2(0, 0), Vec2(1, 0), Vec2(1, 1), Vec2(0, 1)]) # Working f
 
 **UV Made Automatic!**
 
+# Layers
+
+```python
+Layers.Set() # arg1 - Object, arg2 - Layer (int)
+Layers.Get() # Return int, arg1 - Object
+```
+
 ## In engine textures
 
 See [Textures names](Textures.md)

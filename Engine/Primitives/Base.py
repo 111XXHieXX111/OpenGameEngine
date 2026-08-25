@@ -22,6 +22,7 @@ class Base2D:
         self.texture = None
         self.position = Vec2(0.0, 0.0)
         self.size = Vec2(0.0, 0.0)
+        self.layer = 0
 
     def _build_vao(self):
         if self.vao:

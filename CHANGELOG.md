@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 25.08.26
+
+Added:
+**Layers**
+
 ## 24.08.26
 
 Added:

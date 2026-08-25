@@ -33,14 +33,16 @@ class WindowRenderer():
         self.program["camera_matrix"].write(glm.mat4(1))
         if isinstance(self.window.camera, Camera2D):
             self.program["camera_matrix"].write(self.window.camera._camera_matrix(self.window))
-
+        
+        self.window.to_render.sort(key=lambda item: item.layer)
+        
         for render_item in self.window.to_render:
             if render_item.texture and not notexture_enabled:
                 render_item.texture.use(0)
                 self.program["use_tex"].value = 1
             else:
                 self.program["use_tex"].value = 0
-    
+        
             render_item.vao.render(mgl.TRIANGLE_FAN)
 
         self.window.to_render.clear()
