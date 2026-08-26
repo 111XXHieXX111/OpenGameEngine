@@ -4,3 +4,5 @@ glfw
 psutil
 pyglm
 pillow
+sounddevice
+soundfile
