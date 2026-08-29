@@ -292,6 +292,16 @@ ResourceTypes:
 + TEXTURE_NEAREST
 + AUDIO
 
+## IDGen
+
+```python
+id0 = Misc.IDGen()
+id1 = Misc.IDGen()
+id2 = Misc.IDGen()
+```
+
+Generates a unique ID
+
 # Physics
 
 ## Collision

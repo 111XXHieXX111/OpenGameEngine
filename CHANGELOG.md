@@ -10,6 +10,7 @@ Added:
 + **Quad**
 + **Optimization**
 + **ResLoader**
++ **IDGen**
 
 ## 25.08.26
 
