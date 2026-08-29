@@ -2,6 +2,14 @@
 
 # Changelog
 
+## 29.08.26
+
+Added:
++ **Camera3D**
++ **Cube**
++ **Quad**
++ **Optimization**
+
 ## 25.08.26
 
 Added:

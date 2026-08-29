@@ -7,6 +7,7 @@
 # 🎮 OpenGameEngine info
 Game engine made on ModernGL, Python312
 Mastermind - Milk2b (Respect to him)
+2D, 3D
 
 # Why was this engine created?
 First of all, like any **game engine**, it is designed to simplify the process of creating games.

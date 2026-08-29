@@ -90,7 +90,7 @@ window.Run()                   # Start main loop
 
 ```python
 camera2d = Renderer.Camera2D()
-window.SetCamera(camera)
+window.SetCamera(camera2d)
 ```
 
 Camera2D has values such as:
@@ -99,7 +99,27 @@ Camera2D has values such as:
 
 **Zoom bad working**
 
+Pivot: top-left
+
+### Camera3D
+
+```python
+camera3d = Renderer.Camera3D()
+window.SetCamera(camera3d)
+```
+
+Camera2D has values such as:
++ position (Vec3)
++ fov (float)
++ pitch (float)
++ yaw (float)
+
 # Primitives
+
+Primitives has function such as:
++ Draw - Place in update function for drawing
+
+## 2D
 
 ```python
 rectangle = gfx.Rectangle()
@@ -107,19 +127,25 @@ triangle = gfx.Triangle()
 circle = gfx.Circle() # arg1 - s (Segments, Default:32, optional)
 ```
 
-Primitives has function such as:
-+ Draw - Place in update function for drawing
+## 3D
+
+```python
+quad = gfx.Quad()
+cube = gfx.Cube()
+```
 
 # Transform
 
 ```python
 Transform.SetPosition() # arg1 - Object (Primitive), arg2 - Position (Vec2 - for 2D, Vec3 - for 3D)
 Transform.SetSize()     # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D, Vec3 - for 3D)
+Transform.SetRotation() # arg1 - Object (Primitive), arg2 - Rotation (Vec1 - for 2D, Vec3 - for 3D)
 Transform.Move()        # arg1 - Object (Primitive), arg2 - Position (Vec2 - for 2D, Vec3 - for 3D)
 Transform.Scale()       # arg1 - Object (Primitive), arg2 - Size (Vec2 - for 2D, Vec3 - for 3D)
+Transform.Rotate()      # arg1 - Object (Primitive), arg2 - Rotation (Vec1 - for 2D, Vec3 - for 3D)
 
-Transform.GetPosition() # Return Vec2, arg1 - Object (Primitive)
-Transform.GetSize()     # Return Vec2, arg1 - Object (Primitive)
+Transform.GetPosition() # Return Vec2 or Vec3, arg1 - Object (Primitive)
+Transform.GetSize()     # Return Vec2 or Vec3, arg1 - Object (Primitive)
 ```
 
 # Color
@@ -131,7 +157,7 @@ Color.SetBackGround() # arg1 - Color (Color3 or Color4)
 
 Default BGColor: 0.1, 0.1, 0.1
 
-**DON'T PLACE IN UPDATE**
+**DON'T PLACE SetBackGround IN UPDATE**
 
 # Textures
 

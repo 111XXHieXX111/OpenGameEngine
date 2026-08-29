@@ -1,43 +1,37 @@
-from ..Kernel.Components.Vectors import Vec2, Vec3
+from ..Kernel.Components.Vectors import Vec1, Vec2, Vec3
 from ..Kernel.Kernel import ClassWrapper
 
 @ClassWrapper
 class Transform:
     @staticmethod
     def SetPosition(Object, Position:Vec2 | Vec3):
-        if isinstance(Position, Vec2):
-            Object.position = Position
-        elif isinstance(Position, Vec3):
-            pass
-
-        Object._build_vao()
+        Object.position = Position
+        Object._build_model()
 
     @staticmethod
     def SetSize(Object, Size:Vec2 | Vec3):
-        if isinstance(Size, Vec2):
-            Object.size = Size
-        elif isinstance(Size, Vec3):
-            pass
-
-        Object._build_vao()
+        Object.size = Size
+        Object._build_model()
 
     @staticmethod
     def Move(Object, Position:Vec2 | Vec3):
-        if isinstance(Position, Vec2):
-            Object.position += Position
-        elif isinstance(Position, Vec3):
-            pass
-
-        Object._build_vao()
+        Object.position += Position
+        Object._build_model()
 
     @staticmethod
     def Scale(Object, Size:Vec2 | Vec3):
-        if isinstance(Size, Vec2):
-            Object.size *= Size
-        elif isinstance(Size, Vec3):
-            pass
+        Object.size *= Size
+        Object._build_model()
 
-        Object._build_vao()
+    @staticmethod
+    def SetRotation(Object, Rotation:Vec1 | Vec3):
+        Object.rotation = Rotation
+        Object._build_model()
+
+    @staticmethod
+    def Rotate(Object, Rotation:Vec1 | Vec3):
+        Object.rotation += Rotation
+        Object._build_model()
 
     @staticmethod
     def GetPosition(Object):
@@ -46,3 +40,4 @@ class Transform:
     @staticmethod
     def GetSize(Object):
         return Object.size
+    
