@@ -2,6 +2,7 @@ from ..Renderer.Builder import Builder
 from ..Kernel.Kernel import render_items, ClassWrapper, GetCurrentWindow, vaosvbos
 from ..Kernel.Components.Vectors import Vec1, Vec2, Vec3
 from ..Kernel.Components.Graphical import Color4
+from .Misc.GFXObject import GFXObject
 import glm
 
 class DType:
@@ -9,9 +10,10 @@ class DType:
     _2D = "2DDT"
 
 @ClassWrapper
-class Base:
+class Base(GFXObject):
     def __init__(self):
         super().__init__()
+        self.InitObject()
         self.window = GetCurrentWindow()
         self.layer = 0
         self.model = glm.mat4(1)
