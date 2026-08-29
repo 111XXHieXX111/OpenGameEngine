@@ -86,6 +86,8 @@ window.Run()                   # Start main loop
 
 ## Cameras
 
+You must have a camera for your game!
+
 ### Camera2D
 
 ```python
@@ -127,12 +129,16 @@ triangle = gfx.Triangle()
 circle = gfx.Circle() # arg1 - s (Segments, Default:32, optional)
 ```
 
+Pivot: top-left
+
 ## 3D
 
 ```python
 quad = gfx.Quad()
 cube = gfx.Cube()
 ```
+
+Pivot: center
 
 # Transform
 
@@ -269,6 +275,22 @@ scenes.SetScene()   # arg1 - name (str)
 scenes.UnSetScene()
 scenes.Process()    # Place in update function
 ```
+
+## ResourceLoader
+
+```python
+resources = Misc.ResourceLoader() # arg - path (str), arg2 - files (tuple)
+```
+
+Mini example:
+```python
+resources = Misc.ResourceLoader("files", (("*.png", Misc.ResourceType.TEXTURE_NEAREST), ("*.wav", Misc.ResourceType.AUDIO)))
+```
+
+ResourceTypes:
++ TEXTURE_LINEAR
++ TEXTURE_NEAREST
++ AUDIO
 
 # Physics
 

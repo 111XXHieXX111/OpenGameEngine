@@ -9,23 +9,24 @@ Added:
 + **Cube**
 + **Quad**
 + **Optimization**
++ **ResLoader**
 
 ## 25.08.26
 
 Added:
-**Layers**
-**Memory leak fix**
++ **Layers**
++ **Memory leak fix**
 
 ## 24.08.26
 
 Added:
-**New functions for Transform**
++ **New functions for Transform**
 
 ## 23.08.26
 
 Added:
-**Audio**
-**No texture**
++ **Audio**
++ **No texture**
 
 ## 22.08.26
 
