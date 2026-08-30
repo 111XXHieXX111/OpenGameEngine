@@ -325,3 +325,7 @@ audio.IsPlaying()             # Return bool, you can use without ()
 # Debug
 
 Press F12 to open debug menu
+
+```python
+DisableDebug() # Remove all DINF, DWAR, DERR
+```

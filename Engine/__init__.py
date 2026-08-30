@@ -17,6 +17,7 @@ from .Misc import *
 from .Physics import *
 from . import Audio as sfx
 from .Primitives.Layer import Layers
+from .Kernel.Kernel import DisableDebug
 
 __all__ = [
     "Renderer", "gfx",
@@ -30,5 +31,6 @@ __all__ = [
     "textures",
     "Physics",
     "sfx",
-    "Layers"
+    "Layers",
+    "DisableDebug"
 ]

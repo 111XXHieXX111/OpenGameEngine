@@ -49,3 +49,6 @@ def SetCurrentWindow(Window):
 
 def GetCurrentWindow():
     return current_window
+
+def DisableDebug():
+    log_system.debug = False

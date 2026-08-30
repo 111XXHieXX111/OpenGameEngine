@@ -6,6 +6,7 @@ class Logging:
     def __init__(self):
         self.console = False
         self.last_log = ""
+        self.debug = True
 
         self.log = []
     
@@ -29,19 +30,22 @@ class Logging:
         self._log_add(text, '', 'INFO')
 
     def AddDInfo(self, text:str):
-        self._log_add(text, '\033[96m', 'DINF')
+        if self.debug:
+            self._log_add(text, '\033[96m', 'DINF')
 
     def AddWarn(self, text:str):
         self._log_add(text, '\033[33m', 'WARN')
 
     def AddDWarn(self, text:str):
-        self._log_add(text, '\033[93m', 'DWAR')
+        if self.debug:
+            self._log_add(text, '\033[93m', 'DWAR')
 
     def AddError(self, text:str):
         self._log_add(text, '\033[31m', 'ERR ')
 
     def AddDError(self, text:str):
-        self._log_add(text, '\033[91m', 'DERR')
+        if self.debug:
+            self._log_add(text, '\033[91m', 'DERR')
 
     def AddCritical(self, text:str):
         self._log_add(text, '\033[31m\033[1m', 'CRIT')

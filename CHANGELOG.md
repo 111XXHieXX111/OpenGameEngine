@@ -2,6 +2,16 @@
 
 # Changelog
 
+## 31.08.26
+
+Added:
+**DisableDebug**
+
+## 30.08.26
+
+Updated:
++ **Circle (fixed)**
+
 ## 29.08.26
 
 Added:
