@@ -12,8 +12,6 @@ class Circle(Base, Base2D):
 
         self.uv = self._gen_uv(s)
 
-        self.vertices = self._gen_vertices(s)
-
         self._build_vao()
 
     def _gen_circle_config(self, segments):
@@ -22,26 +20,8 @@ class Circle(Base, Base2D):
             t = 2 * math.pi * i / segments
             x = (math.cos(t) + 1) / 2
             y = (math.sin(t) + 1) / 2
-            points.append((x, y))
+            points.append((x, y, 0.0))
         return tuple(points)
-    
-    def _gen_vertices(self, segments:int):
-        vertices = []
-
-        for _vertex_index in range(segments):
-            idx = _vertex_index
-
-            if idx == 0:
-                idx = 1
-
-            r = 1 / idx
-            g = -(1 / idx) + 1
-            b = abs(1 - 2 * idx / segments)
-
-            vertex = Vertex(Vec3(0.0, 0.0, 0.0), Color4(r, g, b, 1.0), Vec2(0.0, 0.0))
-            vertices.append(vertex)
-
-        return vertices
 
     def _gen_uv(self, segments:int):
         uv = []
