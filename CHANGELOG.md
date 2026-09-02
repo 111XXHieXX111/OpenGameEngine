@@ -2,10 +2,18 @@
 
 # Changelog
 
+## 02.09.26
+
+Added:
++ **GL_IM**
+
+Updated:
++ **Camera3D (move forward, right)**
+
 ## 31.08.26
 
 Added:
-**DisableDebug**
++ **DisableDebug**
 
 ## 30.08.26
 

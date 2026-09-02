@@ -7,11 +7,12 @@ from ..GUI.Window.InfoMonitor import InfoMonitor
 from ..Camera.Camera2D import Camera2D
 from .WindowRenderer import WindowRenderer
 from .WindowOther import FPSCounter, DeltaCounter
+from ..GL_IM.Simulate import GL_IM_Init, RenderGL_IM
 import glfw
 
 @ClassWrapper
 class Window:
-    def __init__(self):
+    def __init__(self, use_gl_im:bool=True):
         log_system.AddInfo("Initializing the window")
 
         self.update_function = None
@@ -20,6 +21,7 @@ class Window:
         self.key_callbacks = [(glfw.KEY_F12, self._f12_callback)]
         self.info_monitor_render = False
         self.camera = None
+        self.use_gl_im = use_gl_im
 
         self.window_settings = {
             "WindowSize":[640, 480],
@@ -53,6 +55,9 @@ class Window:
         self.window_renderer.LoadBaseShader()
 
         self.impl = imguiInit(self.window)
+
+        if self.use_gl_im:
+            GL_IM_Init()
 
         log_system.AddDInfo("Creating InfoMonitor")
         self.infomonitor = InfoMonitor(self)
@@ -147,6 +152,9 @@ class Window:
             
             if self.info_monitor_render:
                 self.infomonitor.Render()
+
+            if self.use_gl_im:
+                RenderGL_IM()
 
             imguiRender(self.impl)
 

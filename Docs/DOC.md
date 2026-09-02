@@ -67,6 +67,11 @@ TextureFilter has:
 
 # Renderer
 
+# NOTE
+
+**3D** render in **NDC**
+**2D** render in **px**
+
 ## Window
 
 ```python
@@ -110,11 +115,33 @@ camera3d = Renderer.Camera3D()
 window.SetCamera(camera3d)
 ```
 
-Camera2D has values such as:
+Camera3D has values such as:
 + position (Vec3)
 + fov (float)
 + pitch (float)
 + yaw (float)
+
+Camera3D has methods such as:
++ MoveForward, arg1 - Distance (int | float)
++ MoveRight, arg1 - Distance (int | float)
+
+## GL_IM
+
+If you want to disable this feature, when initializing the window, set the argument "use_gl_im" to (bool). By default, it is True.
+
+```python
+Renderer.Window(use_gl_im=False)
+```
+
+**This rendering method must be executed in a loop.** This mode merely simulates the old one.
+
+```python
+glBegin()    # Method for start draw
+glEnd()      # Method for end draw
+glVertex2f() # Place Vertex, arg1 - posx (float), arg2 - posy (float)
+glColor3f()  # Setup Color3 for next vertices, arg1 - r (float), arg2 - g (float), arg3 - b (float)
+glColor4f()  # Setup Color4 for next vertcies, arg1 - r (float), arg2 - g (float), arg3 - b (float), arg3 = a (float)
+```
 
 # Primitives
 

@@ -9,7 +9,7 @@ from .Primitives import *
 gfx = Primitives
 from .Primitives.Color import Color
 from .Renderer.GUI import *
-GUI = Renderer.GUI
+ImGUI = Renderer.GUI
 from .Input import *
 from .Kernel.Math.Math import Math
 from .Kernel.Math.Random import Random
@@ -18,9 +18,10 @@ from .Physics import *
 from . import Audio as sfx
 from .Primitives.Layer import Layers
 from .Kernel.Kernel import DisableDebug
+from .Renderer import GL_IM
 
 __all__ = [
-    "Renderer", "gfx",
+    "Renderer", "gfx", "GL_IM",
     "Vec1", "Vec2", "Vec3",
     "Color3", "Color4", "c256",
     "Transform", "Color",
@@ -32,5 +33,6 @@ __all__ = [
     "Physics",
     "sfx",
     "Layers",
-    "DisableDebug"
+    "DisableDebug",
+    "ImGUI"
 ]
