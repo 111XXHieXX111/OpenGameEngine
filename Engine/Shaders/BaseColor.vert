@@ -17,9 +17,7 @@ void main() {
 	color = vertex_color;
 	uv = vertex_uv;
 
-	if (camera == 0) {
-		gl_Position = vec4(vertex_position, 1.0);
-	} else if (camera == 1) {
+	if (camera == 1) {
 		gl_Position = camera_matrix * model * vec4(vertex_position, 1.0);
 	} else if (camera == 2) {
 		gl_Position = proj * view * model * vec4(vertex_position, 1.0);

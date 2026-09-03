@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 03.09.26
+
+Updated:
++ **BaseColor (mini-optimization)**
+
 ## 02.09.26
 
 Added:
