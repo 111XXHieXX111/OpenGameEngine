@@ -19,6 +19,8 @@ from . import Audio as sfx
 from .Primitives.Layer import Layers
 from .Kernel.Kernel import DisableDebug
 from .Renderer import GL_IM
+from .Primitives.Material import Material
+from .Renderer.Material import Material3D
 
 __all__ = [
     "Renderer", "gfx", "GL_IM",
@@ -34,5 +36,6 @@ __all__ = [
     "sfx",
     "Layers",
     "DisableDebug",
-    "ImGUI"
+    "ImGUI",
+    "Material", "Material3D"
 ]

@@ -12,7 +12,7 @@ import glfw
 
 @ClassWrapper
 class Window:
-    def __init__(self, use_gl_im:bool=True):
+    def __init__(self, use_gl_im:bool=True, use_materials:bool=True):
         log_system.AddInfo("Initializing the window")
 
         self.update_function = None
@@ -21,7 +21,9 @@ class Window:
         self.key_callbacks = [(glfw.KEY_F12, self._f12_callback)]
         self.info_monitor_render = False
         self.camera = None
+
         self.use_gl_im = use_gl_im
+        self.use_materials = use_materials
 
         self.window_settings = {
             "WindowSize":[640, 480],
@@ -53,6 +55,10 @@ class Window:
 
         log_system.AddDInfo("Loading base shader")
         self.window_renderer.LoadBaseShader()
+
+        if self.use_materials:
+            log_system.AddDInfo("Loading 3DMaterial shader")
+            self.window_renderer.LoadMaterial3DShader()
 
         self.impl = imguiInit(self.window)
 

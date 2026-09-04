@@ -143,6 +143,26 @@ glColor3f()  # Setup Color3 for next vertices, arg1 - r (float), arg2 - g (float
 glColor4f()  # Setup Color4 for next vertcies, arg1 - r (float), arg2 - g (float), arg3 - b (float), arg3 = a (float)
 ```
 
+## Materials
+
+If you want to disable this feature, when initializing the window, set the argument "use_materials" to (bool). By default, it is True.
+
+```python
+Renderer.Window(use_materials=False)
+```
+
+```python
+material = Material3D() # Create material
+Material.Set()          # Set Material3D for Object, arg1 - Object, arg2 - Material (Material3D)
+```
+
+Material3D has values such as:
++ ambient_color - Color3
++ light_pos - Vec2
++ light_color - Color3
++ texture - Texture
++ color - Color4
+
 # Primitives
 
 Primitives has function such as:

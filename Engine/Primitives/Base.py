@@ -18,6 +18,7 @@ class Base(GFXObject):
         self.layer = 0
         self.model = glm.mat4(1)
         self.color = Color4(0.0, 0.0, 0.0, 0.0)
+        self.material = None
     
     def Draw(self):
         render_items.append(self)
@@ -43,8 +44,11 @@ class Base(GFXObject):
 
         self.model = trans
 
-        if self.texture:
+        if self.texture and not self.material:
             self.texture.use(0)
+        elif self.material:
+           if self.material.texture:
+               self.material.texture.use(0)
 
     def _build_vao(self):
         if self.vao and self.vbo:
