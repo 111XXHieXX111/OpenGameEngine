@@ -181,7 +181,6 @@ Pivot: top-left
 ## 3D
 
 ```python
-quad = gfx.Quad()
 cube = gfx.Cube()
 ```
 
