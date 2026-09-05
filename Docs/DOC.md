@@ -349,6 +349,20 @@ id2 = Misc.IDGen()
 
 Generates a unique ID
 
+## Map3D
+
+The Map3D is created using the MapBuilder tool
+
+```python
+map3d = Misc.Map3D() # Load .res file, arg1 - map3d_path (str)
+map3d.Render()       # Render all objects in map
+```
+
+You can use Transform (Only 3):
++ SetPosition
++ SetSize
++ SetRotation
+
 # Physics
 
 ## Collision
