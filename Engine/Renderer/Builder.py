@@ -11,7 +11,9 @@ def Builder(_self):
     data = []
     for i, v in enumerate(_self.vertices_config):
         uv = _self.uv[i]
-        normal = _self.normals[i]
+        normal = (0.0, 0.0, 0.0)
+        if hasattr(_self, "normals"):
+            normal = _self.normals[i]
         data.extend([v[0], v[1], v[2], uv.x, uv.y, normal[0], normal[1], normal[2]])
 
     vbo = ctx.buffer(array("f", data).tobytes())
