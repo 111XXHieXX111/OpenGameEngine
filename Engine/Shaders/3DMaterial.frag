@@ -9,6 +9,8 @@ out vec4 frag_color;
 
 uniform sampler2D tex;
 uniform int use_tex;
+uniform int show_normals;
+uniform int show_normals_without_texture;
 uniform vec3 ambient_light;
 uniform vec3 light_position;
 uniform vec3 light_color;
@@ -21,6 +23,23 @@ void main() {
     vec4 ambient_color = vec4(ambient_light * color.rgb, color.a);
     vec4 diffuse_color = vec4(diff * light_color * color.rgb, color.a);
     vec4 out_color = ambient_color + diffuse_color;
+
+    if (show_normals == 1) {
+        vec4 normal_color = vec4(norm * 0.5 + 0.5, 1.0);
+
+        if (show_normals_without_texture == 1) {
+            frag_color = normal_color;
+            return;
+        }
+
+        if (use_tex == 0) {
+            frag_color = normal_color;
+        } else {
+            frag_color = texture(tex, uv) * normal_color;
+        }
+
+        return;
+    }
 
     if (use_tex == 0) {
         frag_color = out_color;

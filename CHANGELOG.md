@@ -7,6 +7,9 @@
 Added:
 + **Material for MapBuilder**
 
+Updated:
++ **Debug panel**
+
 ## 14.09.26
 
 Added:

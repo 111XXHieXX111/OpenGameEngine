@@ -25,6 +25,8 @@ class InfoMonitor:
 
         self.wireframe_enabled = False
         self.notexture_enabled = False
+        self.normals_enabled = False
+        self.notexnormals_enabled = False
     
     def _update_info(self):
         # Memory
@@ -66,6 +68,9 @@ class InfoMonitor:
             Label("Render:")
             _wireframe, self.wireframe_enabled = CheckBox("Wireframe", self.wireframe_enabled)
             _, self.notexture_enabled = CheckBox("No texture", self.notexture_enabled)
+            _, self.normals_enabled = CheckBox("Show normals", self.normals_enabled)
+            if self.normals_enabled:
+                _, self.notexnormals_enabled = CheckBox("Disable textures on normal", self.notexnormals_enabled)
 
             if _wireframe:
                 ctx = self.window.window_renderer.context

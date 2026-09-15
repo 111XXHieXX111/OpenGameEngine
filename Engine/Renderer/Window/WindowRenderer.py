@@ -35,6 +35,8 @@ class WindowRenderer():
         self.context.viewport = (0, 0, winsize.x, winsize.y)
         
         notexture_enabled = self.window.infomonitor.notexture_enabled
+        normals_enabled = self.window.infomonitor.normals_enabled
+        notexnormals_enabled = self.window.infomonitor.notexnormals_enabled
         
         _set_camera_for_shader(self, self.material)
         _set_camera_for_shader(self, self.program)
@@ -68,6 +70,9 @@ class WindowRenderer():
                 shader["ambient_light"].value = (ambient_color.r, ambient_color.g, ambient_color.b)
                 shader["light_position"].value = (light_pos.x, light_pos.y, light_pos.z)
                 shader["light_color"].value = (light_color.r, light_color.g, light_color.b)
+
+                shader["show_normals"].value = int(normals_enabled)
+                shader["show_normals_without_texture"].value = int(notexnormals_enabled)
 
             if render_item.dtype == DType._3D:
                 self.context.enable(mgl.DEPTH_TEST)
