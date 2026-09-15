@@ -10,11 +10,12 @@ gfx = Primitives
 from .Primitives.Color import Color
 from .Renderer.GUI import *
 ImGUI = Renderer.GUI
+from .Renderer.GUI.imgui_flags import Flags as ImGUIf
+from .Renderer.GUI import imgui_other as ImGUIo
 from .Input import *
 from .Kernel.Math.Math import Math
 from .Kernel.Math.Random import Random
 from .Misc import *
-from .Physics import *
 from . import Audio as sfx
 from .Primitives.Layer import Layers
 from .Kernel.Kernel import DisableDebug
@@ -32,10 +33,9 @@ __all__ = [
     "Misc",
     "TextureFilter", "Texture",
     "textures",
-    "Physics",
     "sfx",
     "Layers",
     "DisableDebug",
-    "ImGUI",
+    "ImGUI", "ImGUIf", "ImGUIo",
     "Material", "Material3D"
 ]

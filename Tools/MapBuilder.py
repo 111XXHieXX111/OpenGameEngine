@@ -101,7 +101,7 @@ def Render():
 def DrawGui():
     global selected_obj, selected_obj_params
 
-    with ImGUI.Begin("Tree", Vec2(5, 5), Vec2(180, 200), flags=Renderer.GUI.Flags.WINDOW_NO_MOVE | Renderer.GUI.Flags.WINDOW_NO_RESIZE):
+    with ImGUI.Begin("Tree", Vec2(5, 5), Vec2(180, 200), flags=ImGUIf.WINDOW_NO_MOVE | ImGUIf.WINDOW_NO_RESIZE):
         _add_cube = ImGUI.Button("Add Cube", Vec2(-1, 0))
 
         if _add_cube:
@@ -118,7 +118,7 @@ def DrawGui():
                     color = selected_obj[0].color
                     selected_obj_params = [pos, size, color, rot]
     
-    with ImGUI.Begin("Inspector", Vec2(5, 225), Vec2(180, 200), flags=Renderer.GUI.Flags.WINDOW_NO_MOVE):
+    with ImGUI.Begin("Inspector", Vec2(5, 225), Vec2(180, 200), flags=ImGUIf.WINDOW_NO_MOVE):
         if selected_obj:
             ImGUI.Label(f"{selected_obj[1]}")
 
@@ -163,7 +163,7 @@ def DrawGui():
                 Color.Set(selected_obj[0], color)
             except:...
 
-    with ImGUI.Begin("Tools", Vec2(190, 5), Vec2(360, 60), flags=Renderer.GUI.Flags.WINDOW_NO_MOVE | Renderer.GUI.Flags.WINDOW_NO_RESIZE):
+    with ImGUI.Begin("Tools", Vec2(190, 5), Vec2(360, 60), flags=ImGUIf.WINDOW_NO_MOVE | ImGUIf.WINDOW_NO_RESIZE):
         if ImGUI.Button("Save"):
             SaveMap()
         ImGUI.SameLine()
