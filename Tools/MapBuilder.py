@@ -13,7 +13,7 @@ objects = []
 last_object = 0
 
 selected_obj = None
-selected_obj_params = [Vec3(0, 0, 0), Vec3(1, 1, 1), Color4(1, 1, 1, 1), Vec3(0, 0, 0)]
+selected_obj_params = [Vec3(0, 0, 0), Vec3(1, 1, 1), Color4(1, 1, 1, 1), Vec3(0, 0, 0), None]
 
 def SaveMap():
     objects_lists = []
@@ -23,7 +23,7 @@ def SaveMap():
             pos = obj[0].position
             size = obj[0].size
             rot = obj[0].rotation
-            color = obj[0].color
+            color = obj[0].material.color
             name = obj[1]
             objects_lists.append([
                 0, 
@@ -79,9 +79,12 @@ def AddCube():
 
     name = f"Object{last_object}"
 
+    material = Material3D()
+    material.color = Color4(1, 1, 1, 1)
+
     cube = gfx.Cube()
     Transform.SetSize(cube, Vec3(1, 1, 1))
-    Color.Set(cube, Color3(1, 1, 1))
+    Material.Set(cube, material)
     
     objects.append([cube, name])
 
@@ -115,7 +118,7 @@ def DrawGui():
                     pos = selected_obj[0].position
                     size = selected_obj[0].size
                     rot = selected_obj[0].rotation
-                    color = selected_obj[0].color
+                    color = selected_obj[0].material.color
                     selected_obj_params = [pos, size, color, rot]
     
     with ImGUI.Begin("Inspector", Vec2(5, 225), Vec2(180, 200), flags=ImGUIf.WINDOW_NO_MOVE):
@@ -160,7 +163,7 @@ def DrawGui():
                 Transform.SetPosition(selected_obj[0], pos)
                 Transform.SetSize(selected_obj[0], size)
                 Transform.SetRotation(selected_obj[0], rot)
-                Color.Set(selected_obj[0], color)
+                selected_obj[0].material.color = color
             except:...
 
     with ImGUI.Begin("Tools", Vec2(190, 5), Vec2(360, 60), flags=ImGUIf.WINDOW_NO_MOVE | ImGUIf.WINDOW_NO_RESIZE):

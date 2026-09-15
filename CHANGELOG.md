@@ -2,11 +2,21 @@
 
 # Changelog
 
+## 15.09.26 
+
+Added:
++ **Material for MapBuilder**
+
+## 14.09.26
+
+Added:
+**Bug fix**
+
 ## 05.09.26
 
 Added:
-**Map3D**
-**Map builder**
++ **Map3D**
++ **Map builder**
 
 ## 04.09.26
 
