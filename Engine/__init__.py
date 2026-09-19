@@ -22,6 +22,7 @@ from .Kernel.Kernel import DisableDebug
 from .Renderer import GL_IM
 from .Primitives.Material import Material
 from .Renderer.Material import Material3D
+from .Physics import *
 
 __all__ = [
     "Renderer", "gfx", "GL_IM",
@@ -37,5 +38,6 @@ __all__ = [
     "Layers",
     "DisableDebug",
     "ImGUI", "ImGUIf", "ImGUIo",
-    "Material", "Material3D"
+    "Material", "Material3D",
+    "Physics"
 ]
