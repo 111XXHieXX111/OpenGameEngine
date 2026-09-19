@@ -6,13 +6,13 @@ from ..GUI.imgui import imguiInit, imguiInputs, imguiRender
 from ..GUI.Window.InfoMonitor import InfoMonitor
 from ..Camera.Camera2D import Camera2D
 from .WindowRenderer import WindowRenderer
-from .WindowOther import FPSCounter, DeltaCounter
+from .WindowOther import FPSCounter, DtFPSCounter, DeltaCounter
 from ..GL_IM.Simulate import GL_IM_Init, RenderGL_IM
 import glfw
 
 @ClassWrapper
 class Window:
-    def __init__(self, use_gl_im:bool=True, use_materials:bool=True):
+    def __init__(self, use_gl_im:bool=True, use_materials:bool=True, use_dtfps:bool=True):
         log_system.AddInfo("Initializing the window")
 
         self.update_function = None
@@ -24,6 +24,7 @@ class Window:
 
         self.use_gl_im = use_gl_im
         self.use_materials = use_materials
+        self.use_dtfps = use_dtfps
 
         self.window_settings = {
             "WindowSize":[640, 480],
@@ -68,8 +69,12 @@ class Window:
         log_system.AddDInfo("Creating InfoMonitor")
         self.infomonitor = InfoMonitor(self)
 
-        log_system.AddDInfo("Creating FPSCounter")
-        self.fpscounter = FPSCounter(self)
+        if self.use_dtfps:
+            log_system.AddDInfo("Creating DtFPSCounter")
+            self.fpscounter = DtFPSCounter(self)
+        else:
+            log_system.AddDInfo("Creating FPSCounter")
+            self.fpscounter = FPSCounter(self)
 
         log_system.AddDInfo("Creating DeltaCounter")
         self.deltacounter = DeltaCounter(self)
@@ -165,6 +170,7 @@ class Window:
             imguiRender(self.impl)
 
             self.fpscounter.FPSCalculate()
+
             self.deltacounter.DeltaCalculate()
 
             glfw.poll_events()

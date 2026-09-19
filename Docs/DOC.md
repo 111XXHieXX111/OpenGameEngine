@@ -89,6 +89,16 @@ def update():
 window.Run()                   # Start main loop
 ```
 
+### FPS Counter
+
+You can use the frames per second counter on delta time. In order to disable it, you need to write:
+
+```python
+Renderer.Window(use_dtfps=False)
+```
+
+By default, the delta counting mode is enabled, if there are problems with the delta meter, turn it off by setting it to normal.
+
 ## Cameras
 
 You must have a camera for your game!

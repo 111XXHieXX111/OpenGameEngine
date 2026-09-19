@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 19.09.26
+
+Added:
++ **DtFPSCounter**
+
 ## 15.09.26 
 
 Added:

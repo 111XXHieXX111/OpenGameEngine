@@ -17,6 +17,19 @@ class FPSCounter:
             return
 
 @ClassWrapper
+class DtFPSCounter:
+    def __init__(self, window):
+        self.prev_time = 0
+        self.fps = 0
+        self.window = window
+
+    def FPSCalculate(self):
+        try:
+            self.fps = 1 / self.window.deltacounter.delta
+        except ZeroDivisionError:
+            return
+
+@ClassWrapper
 class DeltaCounter:
     def __init__(self, window):
         self.prev_time = time.time()
