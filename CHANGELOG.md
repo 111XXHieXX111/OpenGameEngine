@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 20.09.26
+
+Updated:
++ **Improved FPS and Delta time precision.**
+
 ## 19.09.26
 
 Added:
