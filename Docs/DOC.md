@@ -168,7 +168,7 @@ Material.Set()          # Set Material3D for Object, arg1 - Object, arg2 - Mater
 
 Material3D has values such as:
 + ambient_color - Color3
-+ light_pos - Vec2
++ light_pos - Vec3
 + light_color - Color3
 + texture - Texture
 + color - Color4
