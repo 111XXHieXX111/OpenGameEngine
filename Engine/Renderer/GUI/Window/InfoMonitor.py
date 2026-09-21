@@ -6,6 +6,7 @@ from ....Misc.Timer import Timer
 from ..imgui_flags import Flags
 from ..imgui import Begin, Label, SameLine, CheckBox
 import threading
+import random
 
 @LogWrapper
 class InfoMonitor:
@@ -27,8 +28,15 @@ class InfoMonitor:
         self.notexture_enabled = False
         self.normals_enabled = False
         self.notexnormals_enabled = False
+        self.show_only_fps_enabled = False
+
+        self.onlyfps_menu_id = random.randint(0, 100000)
     
     def _update_info(self):
+        if self.show_only_fps_enabled:
+            self.fps = self.window.GetFPS()
+            return
+
         # Memory
         data = GetMemoryLoad()
         self.rss = data["rss"]
@@ -47,6 +55,13 @@ class InfoMonitor:
 
     def Render(self):
         self.Timer.Process()
+
+        if self.show_only_fps_enabled:
+            with Begin(f"##{self.onlyfps_menu_id}"):
+                Label(f"FPS:{self.fps:.2f}")
+                _, self.show_only_fps_enabled = CheckBox("Show only fps", self.show_only_fps_enabled)
+
+            return
 
         # Render
         with Begin("Memory", Vec2(20, 20), Vec2(320, 60), False, Flags.WINDOW_NO_MOVE | Flags.WINDOW_NO_RESIZE | Flags.WINDOW_NO_COLLAPSE | Flags.WINDOW_NO_INPUTS):
@@ -69,6 +84,8 @@ class InfoMonitor:
             _wireframe, self.wireframe_enabled = CheckBox("Wireframe", self.wireframe_enabled)
             _, self.notexture_enabled = CheckBox("No texture", self.notexture_enabled)
             _, self.normals_enabled = CheckBox("Show normals", self.normals_enabled)
+            _, self.show_only_fps_enabled = CheckBox("Show only fps", self.show_only_fps_enabled)
+
             if self.normals_enabled:
                 _, self.notexnormals_enabled = CheckBox("Disable textures on normal", self.notexnormals_enabled)
 

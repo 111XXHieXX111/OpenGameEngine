@@ -2,6 +2,11 @@
 
 # Changelog
 
+## 21.09.26
+
+Updated:
++ **InfoMonitor (option for show only fps)**
+
 ## 20.09.26
 
 Updated:
