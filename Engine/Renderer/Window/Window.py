@@ -101,7 +101,7 @@ class Window:
             mode = glfw.get_video_mode(monitor)
             resolution = mode.size
 
-            log_system.AddDInfo(f"Selected monitor:{glfw.get_monitor_name(monitor).decode("utf-8")}")
+            log_system.AddDInfo(f"Selected monitor:{glfw.get_monitor_name(monitor).decode('utf-8')}")
             log_system.AddDInfo(f"Resolution:{resolution.width}x{resolution.height}, {mode.refresh_rate}GHz")
 
             del mode, resolution, monitor
