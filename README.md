@@ -2,7 +2,6 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Github](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/111XXHieXX111)
-<img src="Engine/Icons/OGE.png" alt="Logo">
 
 # 🎮 OpenGameEngine info
 Game engine made on ModernGL, Python312
@@ -23,14 +22,14 @@ Developed with ❤️ by **XXHieXX**
 Minimal:
 + 3.8
 
-Maximal:
-+ 3.12
+Maximal (Recommended):
++ 3.11
 
 # 🧾 Documentation
-The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [DOC](Docs/DOC.md)
+The documentation is fairly small, yet it manages to cover a lot. However, this does not hinder your progress with the **engine**. [See documentation](Docs/DOC.md)
 
 # Examples
-There are few examples, but this is enough to understand the basics of the **engine**. [EXAMPLES](Examples)
+There are few examples, but this is enough to understand the basics of the **engine**. [See examples](Examples)
 
 # Thank you for watching!
 By **XXHieXX** ❤️❤️❤️
